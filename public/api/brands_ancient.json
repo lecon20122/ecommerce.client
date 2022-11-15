@@ -1,0 +1,84 @@
+{
+  "brands": [
+    {
+      "id": 1,
+      "name": "Adidas",
+      "slug": "adidas",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/adidas.jpg",
+        "original": "/assets/images/brands/ancient/adidas.jpg"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Dior",
+      "slug": "dior",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/dior.jpg",
+        "original": "/assets/images/brands/ancient/dior.jpg"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Gucci",
+      "slug": "gucci",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/gucci.jpg",
+        "original": "/assets/images/brands/ancient/gucci.jpg"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Levis",
+      "slug": "levis",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/levis.jpg",
+        "original": "/assets/images/brands/ancient/levis.jpg"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Nike",
+      "slug": "nike",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/nike.jpg",
+        "original": "/assets/images/brands/ancient/nike.jpg"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Puma",
+      "slug": "puma",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/puma.jpg",
+        "original": "/assets/images/brands/ancient/puma.jpg"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Under Armour",
+      "slug": "under-armour",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/under-armour.jpg",
+        "original": "/assets/images/brands/ancient/under-armour.jpg"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Zara",
+      "slug": "zara",
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/brands/ancient/zara.jpg",
+        "original": "/assets/images/brands/ancient/zara.jpg"
+      }
+    }
+  ]
+}

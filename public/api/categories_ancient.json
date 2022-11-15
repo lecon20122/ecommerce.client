@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "PURSES",
+      "slug": "purses",
+      "productCount": 20,
+      "tags": ["shovia", "fusion", "elegance", "fashadil", "blaze"],
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/category/ancient/purses.jpg",
+        "original": "/assets/images/category/ancient/purses.jpg"
+      }
+    },
+    {
+      "id": 2,
+      "name": "SHOES",
+      "slug": "shoes",
+      "productCount": 20,
+      "tags": ["shovia", "fusion", "elegance", "fashadil", "blaze"],
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/category/ancient/shoes.jpg",
+        "original": "/assets/images/category/ancient/shoes.jpg"
+      }
+    },
+    {
+      "id": 3,
+      "name": "ACCESSORIES",
+      "slug": "accessories",
+      "productCount": 20,
+      "tags": ["shovia", "fusion", "elegance", "fashadil", "blaze"],
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/category/ancient/accessories.jpg",
+        "original": "/assets/images/category/ancient/accessories.jpg"
+      }
+    },
+    {
+      "id": 4,
+      "name": "JEANS",
+      "slug": "jeans",
+      "productCount": 20,
+      "tags": ["shovia", "fusion", "elegance", "fashadil", "blaze"],
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/category/ancient/jeans.jpg",
+        "original": "/assets/images/category/ancient/jeans.jpg"
+      }
+    },
+    {
+      "id": 5,
+      "name": "WATCHES",
+      "slug": "watches",
+      "productCount": 20,
+      "tags": ["shovia", "fusion", "elegance", "fashadil", "blaze"],
+      "image": {
+        "id": 1,
+        "thumbnail": "/assets/images/category/ancient/watches.jpg",
+        "original": "/assets/images/category/ancient/watches.jpg"
+      }
+    }
+  ]
+}
