@@ -87,12 +87,23 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
             />
           </Tab.Panel>
           <Tab.Panel>
+            <HeroSlider
+              data={banners}
+              variantRounded='default'
+              variant='fullWidth'
+              prevNextButtons='none'
+              className='!mb-12 !md:mb-14 !xl:mb-[60px]'
+            />
+            <CategoryBlockIcon
+              sectionHeading='text-browse-categories'
+              variant='modern'
+            />
             <ProductsBlock
               products={data?.slice(4, 12)}
               loading={isLoading}
               error={error?.message}
               uniqueKey='new-arrivals'
-              variant='gridModernWide'
+              variant='grid'
               imgWidth={435}
               imgHeight={435}
             />
