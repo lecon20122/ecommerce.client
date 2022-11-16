@@ -1,14 +1,15 @@
-import { ShopFilters } from "@components/shop/filters";
 import Scrollbar from "@components/common/scrollbar";
 import { useUI } from "@contexts/ui.context";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import { useTranslation } from "next-i18next";
 import { getDirection } from "@utils/get-direction";
 import { useRouter } from "next/router";
+import ShopFilters from './filters';
 
 const FilterSidebar = () => {
 	const { closeFilter } = useUI();
 	const router = useRouter();
+	const {query} = router
 	const { t } = useTranslation("common");
 	const dir = getDirection(router.locale);
 	return (
@@ -32,7 +33,7 @@ const FilterSidebar = () => {
 
 			<Scrollbar className="menu-scrollbar flex-grow mb-auto">
 				<div className="flex flex-col py-7 px-5 md:px-7 text-heading">
-					<ShopFilters />
+					<ShopFilters mainCategorySlug={query.mainCategory} />
 				</div>
 			</Scrollbar>
 

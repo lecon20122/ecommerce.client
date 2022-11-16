@@ -2,7 +2,6 @@ import Container from '@components/ui/container';
 import Layout from '@components/layout/layout';
 import Subscription from '@components/common/subscription';
 import ShopDiscount from '@components/shop/discount';
-import { ShopFilters } from '@components/shop/filters';
 import StickyBox from 'react-sticky-box';
 import { ProductGrid } from '@components/product/product-grid';
 import SearchTopBar from '@components/shop/top-bar';
@@ -11,9 +10,12 @@ import { BreadcrumbItems } from '@components/common/breadcrumb';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ROUTES } from '@utils/routes';
 import { useTranslation } from 'next-i18next';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
+import ShopFilters from '../../components/shop/filters';
 
-export default function Shop() {
+
+
+export default function Shop({ params }: any) {
   const { t } = useTranslation('common');
 
   return (
@@ -33,7 +35,7 @@ export default function Shop() {
                   </ActiveLink>
                 </BreadcrumbItems>
               </div>
-              <ShopFilters />
+              <ShopFilters mainCategorySlug={params.mainCategory} />
             </StickyBox>
           </div>
 
@@ -50,10 +52,11 @@ export default function Shop() {
 
 Shop.Layout = Layout;
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale!, ['common', 'forms', 'menu', 'footer'])),
+      params,
     },
   };
 };

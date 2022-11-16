@@ -30,4 +30,5 @@ export const API_ENDPOINTS = {
   SEARCH: '/api/search.json',
   ORDERS: '/api/orders.json',
   ORDER: '/api/order.json',
+  FILTERS: '/api/filters'
 };

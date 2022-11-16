@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { ToastContainer } from "react-toastify";
-// import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { appWithTranslation } from "next-i18next";
 import { DefaultSeo } from "@components/common/default-seo";
 
@@ -37,7 +37,7 @@ const Noop: React.FC = ({ children }) => <>{children}</>;
 const CustomApp = ({ Component, pageProps }: AppProps) => {
 	const queryClientRef = useRef<any>();
 	if (!queryClientRef.current) {
-		queryClientRef.current = new QueryClient();
+		queryClientRef.current = new QueryClient({defaultOptions : {queries : {refetchOnWindowFocus : false}}});
 	}
 	const router = useRouter();
 	const dir = getDirection(router.locale);
@@ -60,7 +60,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 						<ManagedDrawer />
 					</ManagedUIContext>
 				</Hydrate>
-				{/* <ReactQueryDevtools /> */}
+				<ReactQueryDevtools  position="bottom-right"/>
 			</QueryClientProvider>
 		</AnimatePresence>
 	);

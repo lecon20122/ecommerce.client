@@ -119,33 +119,33 @@ const CategoryBlockIcon: React.FC<CategoriesProps> = ({
             variant === 'circle'
               ? breakpointsCircle
               : variant === 'list'
-              ? breakpointsList
-              : breakpoints
+                ? breakpointsList
+                : breakpoints
           }
           buttonGroupClassName={variant === 'circle' ? '-mt-4' : '-mt-2'}
         >
           {isLoading && !data
             ? Array.from({ length: 10 }).map((_, idx) => {
-                return (
-                  <SwiperSlide key={`card-rounded-${idx}`}>
-                    {variant === 'circle' ? (
-                      <CardRoundedLoader uniqueKey={`card-circle-${idx}`} />
-                    ) : (
-                      <CardIconLoader uniqueKey={`card-rounded-${idx}`} />
-                    )}
-                  </SwiperSlide>
-                )
-              })
-            : data?.categories?.data?.map((category: Category) => (
-                <SwiperSlide key={`category--icon-key-${category.id}`}>
-                  <IconCard
-                    item={category}
-                    href={`${ROUTES.SEARCH}?category=${category.slug}`}
-                    effectActive={true}
-                    variant={variant}
-                  />
+              return (
+                <SwiperSlide key={`card-rounded-${idx}`}>
+                  {variant === 'circle' ? (
+                    <CardRoundedLoader uniqueKey={`card-circle-${idx}`} />
+                  ) : (
+                    <CardIconLoader uniqueKey={`card-rounded-${idx}`} />
+                  )}
                 </SwiperSlide>
-              ))}
+              )
+            })
+            : data?.categories?.data?.map((category: Category) => (
+              <SwiperSlide key={`category--icon-key-${category.id}`}>
+                <IconCard
+                  item={category}
+                  href={{ pathname: `${ROUTES.SEARCH}/tops`}} //TODO:: Change it back to ${category.slug}
+                  effectActive={true}
+                  variant={variant}
+                />
+              </SwiperSlide>
+            ))}
         </Carousel>
       )}
     </div>

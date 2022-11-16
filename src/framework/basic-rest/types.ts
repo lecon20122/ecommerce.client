@@ -23,7 +23,7 @@ export type ProductsQueryOptionsType = {
 };
 export type QueryOptionsType = {
   text?: string;
-  category?: string;
+  category?: string | any;
   status?: string;
   limit?: number;
   demoVariant?: 'ancient';
@@ -45,16 +45,16 @@ export type Attachment = {
   thumbnail: string;
   original: string;
 };
-export type Category = {
-  id: number | string;
-  name: string;
-  slug: string;
-  details?: string;
-  image?: Attachment;
-  icon?: string;
-  products?: Product[];
-  productCount?: number;
-};
+// export type Category = {
+//   id: number | string;
+//   name: string;
+//   slug: string;
+//   details?: string;
+//   image?: Attachment;
+//   icon?: string;
+//   products?: Product[];
+//   productCount?: number;
+// };
 export type Collection = {
   id: number | string;
   name: string;
@@ -134,3 +134,43 @@ export type Shop = {
   created_at: string;
   updated_at: string;
 };
+
+
+// -------------MINE---------------------------//
+
+export interface Filter {
+  variation_filters: VariationFilter[];
+  stores: string[];
+  sub_categories : Category[]
+}
+
+export interface VariationFilter {
+  id: number;
+  value: Translation;
+  slug: string;
+  hex_value: string;
+  variation_type_id: number;
+  variation_type: VariationType;
+}
+
+export interface Translation {
+  en: string;
+  ar: string;
+}
+
+export interface VariationType {
+  id: number;
+  type: Translation;
+  is_mediable: boolean;
+  is_stockable: boolean;
+}
+
+export interface Category {
+  id:              number;
+  parent_id:       number;
+  title:           Translation;
+  slug:            string;
+  is_active:       boolean;
+  primary_color:   null;
+  secondary_color: null;
+}

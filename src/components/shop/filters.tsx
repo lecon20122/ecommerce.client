@@ -1,4 +1,3 @@
-import { CategoryFilter } from "./category-filter";
 import { BrandFilter } from "./brand-filter";
 import { FilteredItem } from "./filtered-item";
 import { ColorFilter } from "./color-filter";
@@ -6,10 +5,20 @@ import { PriceFilter } from "./price-filter";
 import { useRouter } from "next/router";
 import isEmpty from "lodash/isEmpty";
 import { useTranslation } from "next-i18next";
+import { useFiltersQuery } from "@framework/filters/get-filters-by-category";
+import { SizeFilter } from "./size-filter";
+import CategoryFilter from "./category-filter";
 
-export const ShopFilters: React.FC = () => {
+interface Props {
+	mainCategorySlug: any,
+}
+
+export default function ShopFilters({ mainCategorySlug }: Props) {
 	const router = useRouter();
 	const { pathname, query } = router;
+
+	const { data, isLoading, isError, error } = useFiltersQuery({ category: mainCategorySlug })
+
 	const { t } = useTranslation("common");
 	return (
 		<div className="pt-1">
@@ -22,7 +31,7 @@ export const ShopFilters: React.FC = () => {
 						className="flex-shrink text-xs mt-0.5 transition duration-150 ease-in focus:outline-none hover:text-heading"
 						aria-label="Clear All"
 						onClick={() => {
-							router.push(pathname);
+							router.push({ pathname: pathname, query: { mainCategory: mainCategorySlug } });
 						}}
 					>
 						{t("text-clear-all")}
@@ -45,10 +54,11 @@ export const ShopFilters: React.FC = () => {
 				</div>
 			</div>
 
-			<CategoryFilter />
+			<CategoryFilter subCategories={data?.sub_categories} />
+			<ColorFilter colors={data?.variation_filters.filter((color) => color.variation_type.type.en === 'color')} />
+			<SizeFilter size={data?.variation_filters.filter((color) => color.variation_type.type.en === 'size')} />
 			<BrandFilter />
 			<PriceFilter />
-			<ColorFilter />
 		</div>
 	);
 };

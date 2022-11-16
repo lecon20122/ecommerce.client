@@ -2,7 +2,6 @@ import Container from "@components/ui/container";
 import Layout from "@components/layout/layout";
 import Subscription from "@components/common/subscription";
 import ShopDiscount from "@components/shop/discount";
-import { ShopFilters } from "@components/shop/filters";
 import StickyBox from "react-sticky-box";
 import { ProductGrid } from "@components/product/product-grid";
 import SearchTopBar from "@components/shop/top-bar";
@@ -12,6 +11,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ROUTES } from "@utils/routes";
 import { GetStaticProps } from "next";
+import ShopFilters from '../../components/shop/filters';
 
 export default function Products() {
 	const { t } = useTranslation("common");
@@ -38,7 +38,7 @@ export default function Products() {
 									</ActiveLink>
 								</BreadcrumbItems>
 							</div>
-							<ShopFilters />
+							<ShopFilters mainCategorySlug={'tops'} />
 						</StickyBox>
 					</div>
 

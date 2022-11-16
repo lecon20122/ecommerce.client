@@ -1129,34 +1129,10 @@ export const siteSettings = {
         icon: <SAFlag width="20px" height="15px" />,
       },
       {
-        id: 'zh',
-        name: '中国人 - ZH',
-        value: 'zh',
-        icon: <CNFlag width="20px" height="15px" />,
-      },
-      {
         id: 'en',
         name: 'English - EN',
         value: 'en',
         icon: <USFlag width="20px" height="15px" />,
-      },
-      {
-        id: 'de',
-        name: 'Deutsch - DE',
-        value: 'de',
-        icon: <DEFlag width="20px" height="15px" />,
-      },
-      {
-        id: 'he',
-        name: 'rעברית - HE',
-        value: 'he',
-        icon: <ILFlag width="20px" height="15px" />,
-      },
-      {
-        id: 'es',
-        name: 'Español - ES',
-        value: 'es',
-        icon: <ESFlag width="20px" height="15px" />,
       },
     ],
     categoryMenu: [
