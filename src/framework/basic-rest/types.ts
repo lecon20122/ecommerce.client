@@ -139,7 +139,8 @@ export type Shop = {
 // -------------MINE---------------------------//
 
 export interface Filter {
-  variation_filters: VariationFilter[];
+  color: VariationFilter[];
+  size: VariationFilter[];
   stores: string[];
   sub_categories : Category[]
 }

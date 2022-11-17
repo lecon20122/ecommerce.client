@@ -20,6 +20,13 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 	const { data, isLoading, isError, error } = useFiltersQuery({ category: mainCategorySlug })
 
 	const { t } = useTranslation("common");
+
+	if (isLoading) {
+		return (
+			<h3>Loading..</h3>
+		)
+	}
+
 	return (
 		<div className="pt-1">
 			<div className="block border-b border-gray-300 pb-7 mb-7">
@@ -55,8 +62,8 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 			</div>
 
 			<CategoryFilter subCategories={data?.sub_categories} />
-			<ColorFilter colors={data?.variation_filters.filter((color) => color.variation_type.type.en === 'color')} />
-			<SizeFilter size={data?.variation_filters.filter((color) => color.variation_type.type.en === 'size')} />
+			<ColorFilter colors={data?.color} />
+			<SizeFilter size={data?.size} />
 			<BrandFilter />
 			<PriceFilter />
 		</div>
