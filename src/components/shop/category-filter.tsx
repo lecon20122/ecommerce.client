@@ -11,11 +11,13 @@ interface Props {
 export default function CategoryFilter({ subCategories }: Props) {
 	const { t } = useTranslation("common");
 	const router = useRouter();
-	const { pathname, query , locale } = router;
+	const { pathname, query, locale } = router;
 
 	const selectedCategories = query?.category
 		? (query.category as string).split(",")
 		: [];
+
+
 	const [formState, setFormState] = React.useState<string[]>(
 		selectedCategories
 	);
@@ -24,13 +26,13 @@ export default function CategoryFilter({ subCategories }: Props) {
 		setFormState(selectedCategories);
 	}, [query?.category]);
 
-	// if (isLoading) return <p>Loading...</p>;
+
 
 	function handleItemClick(e: React.FormEvent<HTMLInputElement>): void {
 		const { value } = e.currentTarget;
 		let currentFormState = formState.includes(value)
 			? formState.filter((i) => i !== value)
-			: [...formState, value];
+			: [value];
 		const { category, ...restQuery } = query;
 		router.push(
 			{

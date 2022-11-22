@@ -13,7 +13,10 @@ const fetchFiltersByCategory = async ({ queryKey }: any) => {
 const useFiltersQuery = (options: QueryOptionsType) => {
     return useQuery<Filter, Error>(
         [API_ENDPOINTS.FILTERS, options],
-        fetchFiltersByCategory
+        fetchFiltersByCategory,
+        {
+            cacheTime : 600000,
+        }
     );
 };
 

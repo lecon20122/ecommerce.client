@@ -3,17 +3,15 @@ import Image from 'next/image';
 import type { FC } from 'react';
 import { useUI } from '@contexts/ui.context';
 import usePrice from '@framework/product/use-price';
-import { Product } from '@framework/types';
-// import ProductIcon1 from '../../../public/assets/images/products/icons/product-icon1.svg'
-// import ProductIcon2 from '../../../public/assets/images/products/icons/product-icon2.svg'
-// import ProductIcon3 from '../../../public/assets/images/products/icons/product-icon3.svg'
 import ProductViewIcon from '@components/icons/product-view-icon';
 import ProductWishIcon from '@components/icons/product-wish-icon';
 import ProductCompareIcon from '@components/icons/product-compare-icon';
 import RatingDisplay from '@components/common/rating-display';
+import { ApiProduct, Variation } from '../../framework/basic-rest/types';
+import { useRouter } from 'next/router';
 
 interface ProductProps {
-  product: Product;
+  product: ApiProduct;
   className?: string;
   contactClassName?: string;
   imageContentClassName?: string;
@@ -49,12 +47,16 @@ const ProductCard: FC<ProductProps> = ({
 }) => {
 
   const { openModal, setModalView, setModalData } = useUI();
+  const { locale } = useRouter()
+
   const placeholderImage = `/assets/placeholder/products/product-${variant}.svg`;
+
   const { price, basePrice, discount } = usePrice({
-    amount: product.sale_price ? product.sale_price : product.price,
+    amount: product.price,
     baseAmount: product.price,
-    currencyCode: 'USD',
+    currencyCode: 'EGP',
   });
+
   function handlePopupView() {
     setModalData({ data: product });
     setModalView('PRODUCT_VIEW');
@@ -85,7 +87,7 @@ const ProductCard: FC<ProductProps> = ({
       )}
       onClick={handlePopupView}
       role="button"
-      title={product?.name}
+      title={product?.title[locale as keyof typeof product.title]}
     >
       <div
         className={cn(
@@ -100,12 +102,12 @@ const ProductCard: FC<ProductProps> = ({
         )}
       >
         <Image
-          src={product?.image?.thumbnail ?? placeholderImage}
+          src={product?.variations[0]?.media[0].thumbnail ?? placeholderImage}
           width={demoVariant === 'ancient' ? 352 : imgWidth}
           height={demoVariant === 'ancient' ? 452 : imgHeight}
           loading={imgLoading}
           quality={100}
-          alt={product?.name || 'Product Image'}
+          alt={product?.title.en || 'Product Image'}
           className={cn(`bg-gray-300 object-cover ${!disableBorderRadius && 'rounded-s-md'}`, {
             'w-full transition duration-200 ease-in':
               variant === 'grid' || variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy',
@@ -129,13 +131,13 @@ const ProductCard: FC<ProductProps> = ({
             </span>
           )}
 
-          {product?.isNewArrival && (variant === 'gridModernWide' || variant === 'gridModern' || variant === 'gridTrendy') && (
+          {/* {product?.isNewArrival && (variant === 'gridModernWide' || variant === 'gridModern' || variant === 'gridTrendy') && (
             <span className="bg-[#B26788] text-white text-10px md:text-xs leading-5 rounded-md inline-block px-1.5 sm:px-1.5 xl:px-2 py-0.5 sm:py-1">
               <p>
                 New <span className="hidden sm:inline">Arrival</span>
               </p>
             </span>
-          )}
+          )} */}
         </div>
 
         {variant === 'gridModernWide' && (
@@ -172,7 +174,7 @@ const ProductCard: FC<ProductProps> = ({
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
             <span className="text-xs sm:text-sm text-heading font-semibold truncate">4.5</span>
-            {product.quantity === 0 && <span className="text-xs sm:text-sm leading-5 ps-3 font-semibold text-[#EF4444]">Out of stock</span>}
+            {/* {product.quantity === 0 && <span className="text-xs sm:text-sm leading-5 ps-3 font-semibold text-[#EF4444]">Out of stock</span>} */}
           </div>
         )}
         {/* space-y-1 md:space-x-2.5 lg:space-x-2.5 xl:space-x-2.5 2xl:space-x-2.5  */}
@@ -204,20 +206,18 @@ const ProductCard: FC<ProductProps> = ({
             'text-heading': !bgTransparent,
           })}
         >
-          {product?.name}
+          {product?.title[locale as keyof typeof product.title]}
         </h2>
-        {!hideProductDescription && product?.description && (
+        {/* {!hideProductDescription && product?.description && (
           <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed max-w-[250px] truncate">{product?.description}</p>
-        )}
+        )} */}
         <div
-          className={`font-semibold text-sm sm:text-base mt-1.5 space-s-2 ${
-            variant === 'grid' ? 'lg:text-lg lg:mt-2.5' : 'sm:text-xl md:text-base lg:text-xl md:mt-2.5 2xl:mt-3'
-          }
-          ${
-            variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy'
+          className={`font-semibold text-sm sm:text-base mt-1.5 space-s-2 ${variant === 'grid' ? 'lg:text-lg lg:mt-2.5' : 'sm:text-xl md:text-base lg:text-xl md:mt-2.5 2xl:mt-3'
+            }
+          ${variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy'
               ? 'flex flex-col-reverse !space-s-0 !mt-auto'
               : ''
-          } ${bgTransparent ? 'text-white' : 'text-heading'}`}
+            } ${bgTransparent ? 'text-white' : 'text-heading'}`}
         >
           <span className={`inline-block ${demoVariant === 'ancient' && 'font-bold text-gray-900 text-lg'}`}>{price}</span>
           {discount && <del className={`sm:text-base font-normal ${bgTransparent ? 'text-white/70' : 'text-gray-800'}`}>{basePrice}</del>}
@@ -230,6 +230,15 @@ const ProductCard: FC<ProductProps> = ({
           <ProductCompareIcon className="transition ease-in duration-300 sm:opacity-0 group-hover:opacity-100 delay-300 w-[35px] sm:w-[42px] lg:w-[52px] bg-[#F1F3F4] rounded-md" />
         </div>
       )}
+      <div className='flex flex-row space-x-2 p-2 md:px-2.5 xl:px-4'>
+        {product.variations.map((variation) => {
+          return (
+            <div key={variation.id} className='border border-black w-[18px] h-[18px] lg:w-[23px] lg:h-[23px] flex justify-center items-center'>
+              <h1 className='w-[14px] h-[14px] lg:w-[19px] lg:h-[19px]' style={{ backgroundColor: variation.color ?? variation.variation_type_value.hex_value }}></h1>
+            </div>
+          )
+        })}
+      </div>
     </div>
   );
 };

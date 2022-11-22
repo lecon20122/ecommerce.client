@@ -30,5 +30,6 @@ export const API_ENDPOINTS = {
   SEARCH: '/api/search.json',
   ORDERS: '/api/orders.json',
   ORDER: '/api/order.json',
-  FILTERS: '/api/filters'
+  FILTERS: '/api/filters',
+  API_FILTERED_PRODUCTS : 'http://127.0.0.1:8000/api/category',
 };

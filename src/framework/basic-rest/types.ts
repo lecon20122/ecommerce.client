@@ -139,20 +139,39 @@ export type Shop = {
 // -------------MINE---------------------------//
 
 export interface Filter {
-  color: VariationFilter[];
-  size: VariationFilter[];
+  color: VariationTypeValue[];
+  size: VariationTypeValue[];
   stores: string[];
-  sub_categories : Category[]
+  sub_categories: Category[]
 }
 
-export interface VariationFilter {
+export interface Variation {
   id: number;
-  value: Translation;
-  slug: string;
-  hex_value: string;
-  variation_type_id: number;
+  parent_id: null;
+  store_id: number;
   variation_type: VariationType;
+  variation_type_value: VariationTypeValue;
+  price: string;
+  type: null;
+  title: string;
+  product_id: number;
+  order: number;
+  deleted_at: null;
+  media: Media[];
+  color: null;
+  stock_count: null;
 }
+
+export interface ApiProduct {
+  id: number;
+  title: Translation;
+  price: number;
+  slug: string;
+  store_id: number;
+  variations: Variation[];
+  deleted_at: null;
+}
+
 
 export interface Translation {
   en: string;
@@ -165,13 +184,62 @@ export interface VariationType {
   is_mediable: boolean;
   is_stockable: boolean;
 }
+export interface VariationTypeValue {
+  id: number;
+  value: Translation;
+  slug: string;
+  hex_value: string;
+  variation_type_id: number;
+  variation_type: VariationType;
+}
 
 export interface Category {
-  id:              number;
-  parent_id:       number;
-  title:           Translation;
-  slug:            string;
-  is_active:       boolean;
-  primary_color:   null;
+  id: number;
+  parent_id: number;
+  title: Translation;
+  slug: string;
+  is_active: boolean;
+  primary_color: null;
   secondary_color: null;
+}
+
+export interface Media {
+  id: number;
+  name: string;
+  file_name: string;
+  mime_type: string;
+  original: string;
+  thumbnail: string;
+  big: string;
+  small: string;
+}
+
+export interface PaginatedData<T> {
+  data: T[];
+  links: Links;
+  meta: Meta;
+}
+
+export interface Meta {
+  current_page: number;
+  from: number;
+  last_page: number;
+  links: Link[];
+  path: string;
+  per_page: number;
+  to: number;
+  total: number;
+}
+
+export interface Link {
+  url: null | string;
+  label: string;
+  active: boolean;
+}
+
+export interface Links {
+  first: string;
+  last: string;
+  prev: null;
+  next: string;
 }

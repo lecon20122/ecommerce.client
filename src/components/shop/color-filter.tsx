@@ -2,11 +2,11 @@ import { CheckBox } from "@components/ui/checkbox";
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { VariationFilter } from '../../framework/basic-rest/types';
+import { VariationTypeValue } from '../../framework/basic-rest/types';
 
 
 interface Props {
-	colors: VariationFilter[] | undefined
+	colors: VariationTypeValue[] | undefined
 }
 
 export const ColorFilter = ({ colors }: Props) => {
@@ -23,7 +23,7 @@ export const ColorFilter = ({ colors }: Props) => {
 
 	function handleItemClick(e: React.FormEvent<HTMLInputElement>): void {
 		const { value } = e.currentTarget;
-		console.log(value);
+
 
 		let currentFormState = formState.includes(value)
 			? formState.filter((i) => i !== value)
@@ -45,30 +45,33 @@ export const ColorFilter = ({ colors }: Props) => {
 		);
 	}
 
+	const mappedColors = colors?.map((item: VariationTypeValue) => {
+		return (
+			<CheckBox
+				key={item.id}
+				label={
+					<span className="flex items-center">
+						<span
+							className={`w-5 h-5 rounded-full me-3 mt-0.5 border border-black`}
+							style={{ backgroundColor: item.hex_value }}
+						/>
+					</span>
+				}
+				name={item.slug}
+				checked={formState.includes(item.slug)}
+				value={item.slug}
+				onChange={handleItemClick}
+			/>
+		)
+	})
+
 	return (
 		<div className="block border-b border-gray-300 pb-7">
 			<h3 className="text-heading text-sm md:text-base font-semibold mb-7">
 				{t("text-colors")}
 			</h3>
 			<div className="mt-2 flex flex-col space-y-4">
-				{colors?.map((item: VariationFilter) => (
-					<CheckBox
-						key={item.id}
-						label={
-							<span className="flex items-center">
-								<span
-									className={`w-5 h-5 rounded-full block me-3 mt-0.5 border border-black border-opacity-20`}
-									style={{ backgroundColor: item.hex_value }}
-								/>
-								{item.value[locale as keyof typeof item.value]}
-							</span>
-						}
-						name={item.value[locale as keyof typeof item.value].toLowerCase()}
-						checked={formState.includes(item.slug)}
-						value={item.slug}
-						onChange={handleItemClick}
-					/>
-				))}
+				{mappedColors}
 			</div>
 		</div>
 	);

@@ -76,7 +76,7 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
               variant='modern'
             />
             {/* <CategoryBlock sectionHeading="text-shop-by-category" type='rounded' /> */}
-            <ProductsBlock
+            {/* <ProductsBlock
               products={data?.slice(0, 8)}
               loading={isLoading}
               error={error?.message}
@@ -84,7 +84,7 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
               variant='grid'
               imgWidth={435}
               imgHeight={435}
-            />
+            /> */}
           </Tab.Panel>
           <Tab.Panel>
             <HeroSlider
@@ -98,7 +98,7 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
               sectionHeading='text-browse-categories'
               variant='modern'
             />
-            <ProductsBlock
+            {/* <ProductsBlock
               products={data?.slice(4, 12)}
               loading={isLoading}
               error={error?.message}
@@ -106,10 +106,10 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
               variant='grid'
               imgWidth={435}
               imgHeight={435}
-            />
+            /> */}
           </Tab.Panel>
           <Tab.Panel>
-            <ProductsBlock
+            {/* <ProductsBlock
               products={data?.slice(8, 16)}
               loading={isLoading}
               error={error?.message}
@@ -117,10 +117,10 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
               variant='gridModernWide'
               imgWidth={435}
               imgHeight={435}
-            />
+            /> */}
           </Tab.Panel>
           <Tab.Panel>
-            <ProductsBlock
+            {/* <ProductsBlock
               products={data?.slice(14, 22)}
               loading={isLoading}
               error={error?.message}
@@ -128,7 +128,7 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
               variant='gridModernWide'
               imgWidth={435}
               imgHeight={435}
-            />
+            /> */}
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

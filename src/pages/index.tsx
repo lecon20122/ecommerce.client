@@ -38,7 +38,7 @@ export default function Home() {
       <Container className='py-3'>
       <NewArrivalsProductFeedWithTabs />
       </Container>
-      <Container className='border-b-2 border[#E6E6E6]'>
+      {/* <Container className='border-b-2 border[#E6E6E6]'>
         <SaleBannerGrid
           data={bannerDataContemporary}
           className='mb-12 md:mb-14 xl:mb-16'
@@ -83,7 +83,7 @@ export default function Home() {
         />
         <Instagram className='mb-4 md:mb-5 xl:mb-16' variant='rounded' />
         <Subscription className='bg-opacity-0 px-5 sm:px-16 xl:px-0 mb-12 md:mb-14 xl:mb-16 !py-0 !md:py-0 !lg:py-0' />
-      </Container>
+      </Container> */}
     </>
   )
 }

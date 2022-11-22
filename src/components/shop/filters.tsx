@@ -64,7 +64,7 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 			<CategoryFilter subCategories={data?.sub_categories} />
 			<ColorFilter colors={data?.color} />
 			<SizeFilter size={data?.size} />
-			<BrandFilter />
+			<BrandFilter brands={data?.stores} />
 			<PriceFilter />
 		</div>
 	);
