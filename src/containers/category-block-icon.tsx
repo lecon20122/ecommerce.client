@@ -3,15 +3,18 @@ import SectionHeader from '@components/common/section-header'
 import Carousel from '@components/ui/carousel/carousel'
 import CardIconLoader from '@components/ui/loaders/card-icon-loader'
 import CardRoundedLoader from '@components/ui/loaders/card-rounded-loader'
-import { useCategoriesQuery } from '@framework/category/get-all-categories'
 import { ROUTES } from '@utils/routes'
 import Alert from '@components/ui/alert'
 import cn from 'classnames'
 import { SwiperSlide } from 'swiper/react'
 import { Category } from '@framework/types'
+import { CategoryChild } from '../framework/basic-rest/types';
 
 interface CategoriesProps {
   sectionHeading: string
+  data: CategoryChild[],
+  error: Error | null,
+  isLoading: boolean
   className?: string
   variant?: 'default' | 'modern' | 'circle' | 'list'
 }
@@ -100,10 +103,13 @@ const CategoryBlockIcon: React.FC<CategoriesProps> = ({
   className = 'mb-12 md:mb-14 xl:mb-16',
   sectionHeading,
   variant = 'default',
+  data,
+  error,
+  isLoading
 }) => {
-  const { data, isLoading, error } = useCategoriesQuery({
-    limit: 10,
-  })
+  // const { data, isLoading, error } = useCategoriesQuery({
+  //   limit: 10,
+  // })
 
   return (
     <div className={cn(className)}>
@@ -136,16 +142,19 @@ const CategoryBlockIcon: React.FC<CategoriesProps> = ({
                 </SwiperSlide>
               )
             })
-            : data?.categories?.data?.map((category: Category) => (
-              <SwiperSlide key={`category--icon-key-${category.id}`}>
-                <IconCard
-                  item={category}
-                  href={{ pathname: `${ROUTES.SEARCH}/tops`}} //TODO:: Change it back to ${category.slug}
-                  effectActive={true}
-                  variant={variant}
-                />
-              </SwiperSlide>
-            ))}
+            : data?.map((category: CategoryChild) => {
+              console.log('children2=>',category)
+              return (
+                <SwiperSlide key={`category--icon-key-${category.id}`}>
+                  <IconCard
+                    item={category}
+                    href={{ pathname: `${ROUTES.SEARCH}/${category.slug}` }}
+                    effectActive={false}
+                    variant={variant}
+                  />
+                </SwiperSlide>
+              )
+            })}
         </Carousel>
       )}
     </div>

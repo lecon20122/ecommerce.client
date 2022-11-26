@@ -52,7 +52,7 @@ export const ColorFilter = ({ colors }: Props) => {
 				label={
 					<span className="flex items-center">
 						<span
-							className={`w-5 h-5 rounded-full me-3 mt-0.5 border border-black`}
+							className={`w-5 h-5 rounded-sm me-3 mt-0.5`}
 							style={{ backgroundColor: item.hex_value }}
 						/>
 					</span>

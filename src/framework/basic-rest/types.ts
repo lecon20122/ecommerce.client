@@ -199,8 +199,41 @@ export interface Category {
   title: Translation;
   slug: string;
   is_active: boolean;
-  primary_color: null;
-  secondary_color: null;
+  primary_color: string;
+  secondary_color: string;
+  children:        CategoryChild[];
+  images:          CategoryImages;
+}
+
+export interface CategoryBanner {
+  id:     number;
+  name:   string;
+  width:  number;
+  height: number;
+  url:    string;
+}
+export interface CategoryThumbnail {
+  id:     number;
+  name:   string;
+  width:  number;
+  height: number;
+  url:    string;
+}
+
+export interface CategoryImages {
+  banners:        CategoryBanner[];
+  mobile_banners: CategoryBanner[];
+}
+
+export interface CategoryChild {
+  id:              number;
+  parent_id:       number;
+  title:           Translation;
+  slug:            string;
+  is_active:       boolean;
+  primary_color:   string;
+  secondary_color: string;
+  thumbnail:       CategoryThumbnail;
 }
 
 export interface Media {

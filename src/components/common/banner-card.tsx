@@ -4,19 +4,16 @@ import type { FC } from 'react';
 import { useWindowSize } from '@utils/use-window-size';
 import cn from 'classnames';
 import { LinkProps } from 'next/link';
+import { CategoryBanner } from '../../framework/basic-rest/types';
 
 interface BannerProps {
-  banner: any;
+  banner: CategoryBanner;
   variant?: 'rounded' | 'default';
   effectActive?: boolean;
   className?: string;
   classNameInner?: string;
   href: LinkProps['href'];
   disableBorderRadius?: boolean;
-}
-
-function getImage(deviceWidth: number, imgObj: any) {
-  return deviceWidth < 480 ? imgObj.mobile : imgObj.desktop;
 }
 
 const BannerCard: FC<BannerProps> = ({
@@ -28,18 +25,16 @@ const BannerCard: FC<BannerProps> = ({
   href,
   disableBorderRadius = false,
 }) => {
-  const { width } = useWindowSize();
-  const { title, image } = banner;
-  const selectedImage = getImage(width, image);
+  const { name } = banner;
 
   return (
     <div className={cn('mx-auto', className)}>
       <Link href={href} className={cn('h-full group flex justify-center relative overflow-hidden', classNameInner)}>
         <Image
-          src={selectedImage.url}
-          width={selectedImage.width}
-          height={selectedImage.height}
-          alt={title}
+          src={banner.url}
+          width={banner.width}
+          height={banner.height}
+          alt={name}
           quality={100}
           className={cn('bg-gray-300 object-cover w-full', {
             'rounded-md': variant === 'rounded' && !disableBorderRadius,

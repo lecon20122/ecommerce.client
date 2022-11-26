@@ -4,9 +4,10 @@ import Text from '@components/ui/text';
 import { FaLink } from 'react-icons/fa';
 import { LinkProps } from 'next/link';
 import { useTranslation } from 'next-i18next';
+import { CategoryChild } from '../../framework/basic-rest/types';
 
 interface Props {
-  item: any;
+  item: CategoryChild;
   variant?: 'rounded' | 'circle';
   size?: 'small' | 'medium';
   imgSize?: 'large';
@@ -26,7 +27,7 @@ const Card: React.FC<Props> = ({
   imgSize,
   disableBorderRadius = false,
 }) => {
-  const { name, image } = item ?? {};
+  const { slug, thumbnail } = item ?? {};
   const imageSize: any = (imgSize === 'large' && 375) || (size === 'small' && 180) || (size === 'medium' && 198);
 
   const placeholderImage = `/assets/placeholder/card-${size}.svg`;
@@ -42,8 +43,8 @@ const Card: React.FC<Props> = ({
       >
         <div className="flex">
           <Image
-            src={image?.original ?? placeholderImage}
-            alt={name || t('text-card-thumbnail')}
+            src={thumbnail?.url ?? placeholderImage}
+            alt={slug || t('text-card-thumbnail')}
             width={imageSize}
             height={imageSize}
             quality={100}
@@ -65,7 +66,7 @@ const Card: React.FC<Props> = ({
       </div>
       {!!showName !== false && (
         <Text variant="heading" className="capitalize">
-          {name}
+          {slug}
         </Text>
       )}
     </Link>

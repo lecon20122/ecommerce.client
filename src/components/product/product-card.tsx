@@ -233,8 +233,8 @@ const ProductCard: FC<ProductProps> = ({
       <div className='flex flex-row space-x-2 p-2 md:px-2.5 xl:px-4'>
         {product.variations.map((variation) => {
           return (
-            <div key={variation.id} className='border border-black w-[18px] h-[18px] lg:w-[23px] lg:h-[23px] flex justify-center items-center'>
-              <h1 className='w-[14px] h-[14px] lg:w-[19px] lg:h-[19px]' style={{ backgroundColor: variation.color ?? variation.variation_type_value.hex_value }}></h1>
+            <div key={variation.id} className='w-[18px] h-[18px] lg:w-[23px] lg:h-[23px] flex justify-center items-center'>
+              <h1 className='w-[14px] h-[14px] lg:w-[23px] lg:h-[23px] rounded-sm' style={{ backgroundColor: variation.color ?? variation.variation_type_value.hex_value }}></h1>
             </div>
           )
         })}

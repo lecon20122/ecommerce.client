@@ -4,9 +4,10 @@ import { FaLink } from 'react-icons/fa'
 import { LinkProps } from 'next/link'
 import { useTranslation } from 'next-i18next'
 import cn from 'classnames'
+import { Category, CategoryChild } from '../../framework/basic-rest/types';
 
 interface Props {
-  item: any
+  item: CategoryChild
   effectActive?: boolean
   variant?: 'default' | 'modern' | 'circle' | 'list'
   href: LinkProps['href']
@@ -18,7 +19,7 @@ const IconCard: React.FC<Props> = ({
   variant = 'default',
   href,
 }) => {
-  const { name, icon, tags, productCount } = item ?? {}
+  const { slug , thumbnail  } = item ?? {}
   const { t } = useTranslation('common')
 
   return (
@@ -46,8 +47,8 @@ const IconCard: React.FC<Props> = ({
         })}
       >
         <img
-          src={icon}
-          alt={name || t('text-card-thumbnail')}
+          src={thumbnail.url}
+          alt={slug || t('text-card-thumbnail')}
           className={cn('mb-0', {
             'mx-auto mb-4 sm:mb-6 w-2/4 sm:w-2/3 md:w-8/12 3xl:w-full':
               variant === 'default',
@@ -83,7 +84,7 @@ const IconCard: React.FC<Props> = ({
           {name}
         </Text>
 
-        {(variant === 'modern' || variant === 'list') && (
+        {/* {(variant === 'modern' || variant === 'list') && (
           <Text
             className={cn('pb-0.5 truncate', {
               '': variant === 'list',
@@ -93,7 +94,7 @@ const IconCard: React.FC<Props> = ({
               'text-products'
             )}`}
           </Text>
-        )}
+        )} */}
       </div>
 
       {effectActive === true && variant !== 'circle' && (

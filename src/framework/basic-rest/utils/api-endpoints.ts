@@ -3,7 +3,7 @@ export const API_ENDPOINTS = {
   REGISTER: '/api/register',
   LOGOUT: '/api/logout',
   FORGET_PASSWORD: '/api/forget-password',
-  CATEGORIES: '/api/categories.json',
+  CATEGORIES: '/api/categories',
   CATEGORIES_2: '/api/categories.json',
   CATEGORIES_ANCIENT: '/api/categories_ancient.json',
   FEATURED_CATEGORIES: '/api/featured_categories.json',
@@ -31,5 +31,5 @@ export const API_ENDPOINTS = {
   ORDERS: '/api/orders.json',
   ORDER: '/api/order.json',
   FILTERS: '/api/filters',
-  API_FILTERED_PRODUCTS : 'http://127.0.0.1:8000/api/category',
+  API_FILTERED_PRODUCTS : '/api/category',
 };
