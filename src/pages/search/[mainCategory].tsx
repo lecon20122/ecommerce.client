@@ -12,11 +12,23 @@ import { ROUTES } from '@utils/routes';
 import { useTranslation } from 'next-i18next';
 import { GetServerSideProps } from 'next';
 import ShopFilters from '../../components/shop/filters';
+import { useProductsQuery } from '@framework/product/get-all-products';
+import { useRouter } from 'next/router';
+
 
 
 
 export default function Shop({ params }: any) {
   const { t } = useTranslation('common');
+  const { query } = useRouter();
+  const {
+    isFetching: isLoading,
+    isFetchingNextPage: loadingMore,
+    fetchNextPage,
+    hasNextPage,
+    data,
+    error,
+  } = useProductsQuery({ limit: 50, ...query });
 
   return (
     <>
@@ -40,8 +52,8 @@ export default function Shop({ params }: any) {
           </div>
 
           <div className="w-full lg:-ms-9">
-            <SearchTopBar />
-            <ProductGrid />
+            <SearchTopBar itemsCount={data?.pages[0].data.length} />
+            <ProductGrid products={data} fetchNextPage={fetchNextPage} error={error} hasNextPage={hasNextPage} isFetching={isLoading} isFetchingNextPage={loadingMore} />
           </div>
         </div>
         <Subscription />

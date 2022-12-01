@@ -21,7 +21,7 @@ const useProductsQuery = (options: QueryOptionsType) => {
 				if (pages.length < meta.last_page) {
 					return `/?query=&page=${pages.length + 1}`
 				} else {
-					return ''
+					return undefined
 				}
 			},
 		},

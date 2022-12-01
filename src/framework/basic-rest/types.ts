@@ -147,6 +147,7 @@ export interface Filter {
 
 export interface Variation {
   id: number;
+  children : Variation[],
   parent_id: null;
   store_id: number;
   variation_type: VariationType;

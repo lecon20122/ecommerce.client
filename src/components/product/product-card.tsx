@@ -1,7 +1,6 @@
 import cn from 'classnames';
 import Image from 'next/image';
 import type { FC } from 'react';
-import { useUI } from '@contexts/ui.context';
 import usePrice from '@framework/product/use-price';
 import ProductViewIcon from '@components/icons/product-view-icon';
 import ProductWishIcon from '@components/icons/product-wish-icon';
@@ -9,6 +8,7 @@ import ProductCompareIcon from '@components/icons/product-compare-icon';
 import RatingDisplay from '@components/common/rating-display';
 import { ApiProduct, Variation } from '../../framework/basic-rest/types';
 import { useRouter } from 'next/router';
+import { ROUTES } from '@utils/routes';
 
 interface ProductProps {
   product: ApiProduct;
@@ -46,8 +46,8 @@ const ProductCard: FC<ProductProps> = ({
   disableBorderRadius = false,
 }) => {
 
-  const { openModal, setModalView, setModalData } = useUI();
   const { locale } = useRouter()
+  const router = useRouter()
 
   const placeholderImage = `/assets/placeholder/products/product-${variant}.svg`;
 
@@ -57,11 +57,11 @@ const ProductCard: FC<ProductProps> = ({
     currencyCode: 'EGP',
   });
 
-  function handlePopupView() {
-    setModalData({ data: product });
-    setModalView('PRODUCT_VIEW');
-    return openModal();
-  }
+  function navigateToProductPage() {
+		router.push(`${ROUTES.PRODUCT}/${product.slug}`, undefined, {
+			locale: router.locale,
+		});
+	}
 
   return (
     <div
@@ -85,7 +85,7 @@ const ProductCard: FC<ProductProps> = ({
         },
         className
       )}
-      onClick={handlePopupView}
+      onClick={navigateToProductPage}
       role="button"
       title={product?.title[locale as keyof typeof product.title]}
     >
@@ -102,7 +102,7 @@ const ProductCard: FC<ProductProps> = ({
         )}
       >
         <Image
-          src={product?.variations[0]?.media[0].thumbnail ?? placeholderImage}
+          src={product.variations[0].media[0].thumbnail ?? placeholderImage}
           width={demoVariant === 'ancient' ? 352 : imgWidth}
           height={demoVariant === 'ancient' ? 452 : imgHeight}
           loading={imgLoading}

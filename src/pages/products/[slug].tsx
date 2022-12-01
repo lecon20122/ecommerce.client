@@ -12,12 +12,12 @@ export default function ProductPage() {
 	return (
 		<>
 			<Divider className="mb-0" />
-			<Container>
+			<Container clean className="mx-auto max-w-[1280px] px-4 md:px-8 2xl:px-16">
 				<div className="pt-8">
 					<Breadcrumb />
 				</div>
 				<ProductSingleDetails />
-				<RelatedProducts sectionHeading="text-related-products" />
+				{/* <RelatedProducts sectionHeading="text-related-products" /> */}
 				<Subscription />
 			</Container>
 		</>

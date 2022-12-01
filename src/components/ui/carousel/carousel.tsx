@@ -30,6 +30,7 @@ type CarouselPropsType = {
   autoplay?: {} | any
   type?: 'rounded' | 'circle' | 'list'
   isFraction?: boolean
+  children : React.ReactNode
 }
 
 const Carousel: React.FunctionComponent<CarouselPropsType> = ({

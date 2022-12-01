@@ -1,6 +1,7 @@
 import React from 'react';
 import { getToken } from '@framework/utils/get-token';
 import { CartProvider } from './cart/cart.context';
+import { ApiProduct } from '../framework/basic-rest/types';
 
 export interface State {
   isAuthorized: boolean;
@@ -267,7 +268,7 @@ export const UIProvider: React.FC = (props) => {
     dispatch({ type: 'SET_MODAL_VIEW', view });
   const setDrawerView = (view: DRAWER_VIEWS) =>
     dispatch({ type: 'SET_DRAWER_VIEW', view });
-  const setModalData = (data: any) =>
+  const setModalData = (data: ApiProduct | any) =>
     dispatch({ type: 'SET_MODAL_DATA', data });
 
   const value = React.useMemo(

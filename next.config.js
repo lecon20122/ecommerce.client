@@ -22,7 +22,7 @@ module.exports = withPWA({
 		runtimeCaching,
 	},
 	images: {
-		domains: ['127.0.0.1'],
+		domains: ['127.0.0.1','167.71.42.19'],
 	  },
 	i18n,
 	typescript: {
