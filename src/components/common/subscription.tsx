@@ -34,7 +34,7 @@ const Subscription: React.FC<Props> = ({ className = 'px-5 sm:px-8 md:px-16 2xl:
   const { t } = useTranslation();
   const { title, description, buttonText } = data;
   async function onSubmit(input: FormValues) {
-    console.log(input, 'data');
+
   }
   return (
     <div

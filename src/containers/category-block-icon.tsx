@@ -143,7 +143,7 @@ const CategoryBlockIcon: React.FC<CategoriesProps> = ({
               )
             })
             : data?.map((category: CategoryChild) => {
-              console.log('children2=>',category)
+
               return (
                 <SwiperSlide key={`category--icon-key-${category.id}`}>
                   <IconCard

@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
 			password,
 			remember_me,
 		});
-		console.log(email, password, remember_me, "data");
+	
 	}
 	function handelSocialLogin() {
 		login({

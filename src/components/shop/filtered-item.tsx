@@ -10,7 +10,7 @@ interface Props {
 export const FilteredItem = ({ itemKey, itemValue }: Props) => {
 	const router = useRouter();
 	const { pathname, query } = router;
-	// console.log(itemKey, itemValue);
+
 
 
 	function handleClose() {

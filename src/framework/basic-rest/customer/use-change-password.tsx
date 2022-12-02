@@ -15,10 +15,10 @@ export const useChangePasswordMutation = () => {
     (input: ChangePasswordInputType) => changePassword(input),
     {
       onSuccess: (data) => {
-        console.log(data, "ChangePassword success response");
+
       },
       onError: (data) => {
-        console.log(data, "ChangePassword error response");
+     
       },
     }
   );

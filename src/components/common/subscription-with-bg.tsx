@@ -39,7 +39,7 @@ const SubscriptionWithBg: React.FC<Props> = ({
   const { t } = useTranslation();
   const { title, description, buttonText } = data;
   async function onSubmit(input: FormValues) {
-    console.log(input, 'data');
+
   }
   return (
     <div

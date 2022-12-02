@@ -1,5 +1,6 @@
 import Link from "@components/ui/link";
 interface Props {
+	children : React.ReactNode
 	href: string;
 	className?: string;
 	btnProps: React.ButtonHTMLAttributes<any>;

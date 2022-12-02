@@ -50,7 +50,7 @@ export default function ProductPopup() {
 		}, 600);
 		const item = generateCartItem(data!, attributes);
 		addItemToCart(item, quantity);
-		console.log(item, "item");
+
 	}
 
 	function navigateToProductPage() {

@@ -84,7 +84,7 @@ function ProductSingleDetails() {
 			pauseOnHover: true,
 			draggable: true,
 		});
-		// console.log(item, "item");
+
 	}
 
 	function handleAttribute(variation: Variation) {

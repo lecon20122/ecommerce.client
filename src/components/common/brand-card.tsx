@@ -14,7 +14,7 @@ const BrandCard: React.FC<{ brand: Brand }> = ({ brand }) => {
 				query: { brand: slug },
 			}}
 		>
-			<a className="group flex justify-center text-center relative overflow-hidden rounded-md">
+			<span className="group flex justify-center text-center relative overflow-hidden rounded-md">
 				<Image
 					src={background_image?.original ?? "/assets/placeholder/brand-bg.svg"}
 					alt={name || t("text-brand-thumbnail")}
@@ -30,7 +30,7 @@ const BrandCard: React.FC<{ brand: Brand }> = ({ brand }) => {
 						className="flex-shrink-0"
 					/>
 				</div>
-			</a>
+			</span>
 		</Link>
 	);
 };

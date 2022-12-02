@@ -20,10 +20,10 @@ const ReviewForm: React.FC = () => {
 		formState: { errors },
 	} = useForm<ReviewFormValues>();
 	function onSubmit(values: ReviewFormValues) {
-		console.log(values, "review");
+
 	}
 	const ratingChanged = (newRating: any) => {
-		console.log(newRating);
+
 	};
 	const { t } = useTranslation();
 	return (
