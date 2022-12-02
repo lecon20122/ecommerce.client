@@ -18,6 +18,7 @@ const SearchProduct: React.FC<SearchProductProps> = ({ item }) => {
 			href={`${ROUTES.PRODUCT}/${item?.slug}`}
 			className="group w-full h-auto flex justify-start items-center"
 		>
+			<div>
 			<div className="relative flex w-24 h-24 rounded-md overflow-hidden bg-gray-200 flex-shrink-0 cursor-pointer me-4">
 				<Image
 					src={
@@ -36,6 +37,7 @@ const SearchProduct: React.FC<SearchProductProps> = ({ item }) => {
 					{price}
 					<del className="ps-2 text-gray-400 font-normal">{basePrice}</del>
 				</div>
+			</div>
 			</div>
 		</Link>
 	);

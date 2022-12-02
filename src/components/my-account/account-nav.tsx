@@ -48,7 +48,7 @@ export default function AccountNav() {
 
 				return (
 					<Link key={item.slug} href={item.slug}>
-						<a
+						<span
 							className={
 								mainPath === menuPath
 									? "bg-gray-100 font-semibold flex items-center cursor-pointer text-sm lg:text-base text-heading py-3.5 px-4 lg:px-5 rounded mb-2 "
@@ -57,7 +57,7 @@ export default function AccountNav() {
 						>
 							{item.icon}
 							<span className="ps-2">{t(`${item.name}`)}</span>
-						</a>
+						</span>
 					</Link>
 				);
 			})}
