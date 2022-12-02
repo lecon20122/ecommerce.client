@@ -31,7 +31,7 @@ const SignUpForm: React.FC = () => {
 			email,
 			password,
 		});
-		console.log(name, email, password, "sign form values");
+
 	}
 	return (
 		<div className="py-5 px-5 sm:px-8 bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300">

@@ -18,7 +18,7 @@ const ContactForm: React.FC = () => {
 		formState: { errors },
 	} = useForm<ContactFormValues>();
 	function onSubmit(values: ContactFormValues) {
-		console.log(values, "contact");
+
 	}
 	const { t } = useTranslation();
 	return (

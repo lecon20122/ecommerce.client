@@ -20,7 +20,7 @@ export default function Newsletter() {
 	});
 	const { closeModal } = useUI();
 	function onSubmit(values: NewsLetterFormValues) {
-		console.log(values, "news letter");
+
 		closeModal();
 	}
 	const { t } = useTranslation();

@@ -31,7 +31,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
 		return setFollow(!follow);
 	};
 	const shareHandel = () => {
-		return console.log(shareUrl);
+
 	};
 
 	return (

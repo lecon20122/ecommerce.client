@@ -24,7 +24,7 @@ export const useSignUpMutation = () => {
       closeModal();
     },
     onError: (data) => {
-      console.log(data, "login error response");
+
     },
   });
 };

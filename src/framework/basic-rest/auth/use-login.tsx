@@ -25,7 +25,7 @@ export const useLoginMutation = () => {
       closeModal();
     },
     onError: (data) => {
-      console.log(data, 'login error response');
+
     },
   });
 };
