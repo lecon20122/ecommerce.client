@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 
 const fetchFiltersByCategory = async ({ queryKey }: any) => {
     const [_key, _params] = queryKey;
-    const { data } = await http.get(`http://127.0.0.1:8000${API_ENDPOINTS.FILTERS}/${_params.category}`);
+    const { data } = await http.get(API_ENDPOINTS.FILTERS + '/' + _params.category);
     return data;
 };
 
@@ -15,7 +15,7 @@ const useFiltersQuery = (options: QueryOptionsType) => {
         [API_ENDPOINTS.FILTERS, options],
         fetchFiltersByCategory,
         {
-            cacheTime : 600000,
+            cacheTime: 600000,
         }
     );
 };
