@@ -1,10 +1,10 @@
 {
 	"env": {
-		"NEXT_PUBLIC_REST_API_ENDPOINT": "http://167.71.42.19"
+		"NEXT_PUBLIC_REST_API_ENDPOINT": "https://store.modaje.com"
 	},
 	"build": {
 		"env": {
-			"NEXT_PUBLIC_REST_API_ENDPOINT": "http://167.71.42.19"
+			"NEXT_PUBLIC_REST_API_ENDPOINT": "https://store.modaje.com"
 		}
 	}
 }
