@@ -26,7 +26,7 @@ const PageHeader: React.FC<HeaderProps> = ({
 						{t(`${pageSubHeader}`)}
 					</span>
 					{/* {t(`${pageHeader}`)} */}
-					{user?.user.name}
+					{user?.user?.name}
 				</h2>
 			</div>
 		</div>
