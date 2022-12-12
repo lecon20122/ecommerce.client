@@ -13,7 +13,7 @@ const LoginForm: React.FC = () => {
 	const { closeModal } = useUI();
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 
-	
+
 
 	return (
 		<div className="overflow-hidden bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300 py-5 px-5 sm:px-8">
@@ -47,7 +47,7 @@ const LoginForm: React.FC = () => {
 				loading={isLoading}
 				disabled={isLoading}
 				className="h-11 md:h-12 w-full mt-2.5 bg-google hover:bg-googleHover"
-				onClick={() => signIn("google")}
+				onClick={() => signIn("google", { redirect: false })}
 			>
 				<ImGoogle2 className="text-sm sm:text-base me-1.5" />
 				{t("common:text-login-with-google")}
