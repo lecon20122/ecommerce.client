@@ -1,20 +1,11 @@
-// import SectionHeader from '@components/common/section-header'
-// import ProductsBlock from '@containers/products-block'
-// import { useProductsQuery } from '@framework/product/get-all-products-2'
 import { Tab } from '@headlessui/react'
-import { useTranslation } from 'next-i18next'
-// import { homeContemporaryHeroSlider as banners } from '@framework/static/banner'
 import HeroSlider from '@containers/hero-slider'
-// import CategoryBlock from '@containers/category-block'
-// import BannerSliderBlock from '@containers/banner-slider-block'
 import { useCategoriesQuery } from '../../../framework/basic-rest/category/get-all-categories-2';
 import { useRouter } from 'next/router';
 import CategoryBlock from "@containers/category-block";
-// import { category } from '../../../framework/basic-rest/static/ancient/category';
 import { CategoryChild } from '../../../framework/basic-rest/types';
 
 const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
-  const { t } = useTranslation('common')
   const { locale } = useRouter()
   const { data, error, isLoading } = useCategoriesQuery({})
 

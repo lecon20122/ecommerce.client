@@ -35,7 +35,7 @@ const makeRequest = async (method: Method = "GET", url: string, dataForm: any = 
         url: url,
         data: dataForm,
         headers: {
-            origin: process.env.NEXTAUTH_URL_INTERNAL ?? 'http://localhost:3000', // this is your front-end URL, for example in local -> http://localhost:3000
+            origin: process.env.NEXTAUTH_URL ?? 'http://localhost:3000', // this is your front-end URL, for example in local -> http://localhost:3000
             Cookie: cookies ?? '', // set cookie manually on server
             "X-XSRF-TOKEN": res_cookies ? getXXsrfToken(res_cookies) : ''
         },
@@ -47,7 +47,6 @@ const makeRequest = async (method: Method = "GET", url: string, dataForm: any = 
 const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, response: NextApiResponse) => {
     return {
         debug: true,
-        secret: process.env.JWT_SECRET,
         providers: [
             GoogleProvider({
                 clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -58,7 +57,7 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
             }),
         ],
         callbacks: {
-            async jwt({ token, user, account }) {
+            async jwt({ token, account }) {
                 if (account?.provider === "google") {
                     const csrf = await makeRequest("GET", API_ENDPOINTS.SANCTUM_COOKIE, null, null)
                     const user = await makeRequest("POST", API_ENDPOINTS.THIRD_PARTY_LOGIN,
