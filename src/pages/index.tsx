@@ -5,7 +5,6 @@ import { QueryClient } from 'react-query'
 import { dehydrate } from 'react-query/hydration'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import NewArrivalsProductFeedWithTabs from '@components/product/feeds/new-arrivals-product-feed-with-tabs'
-// All data file
 
 
 

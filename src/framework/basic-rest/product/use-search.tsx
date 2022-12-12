@@ -11,6 +11,7 @@ export const fetchSearchedProducts = async ({ queryKey }: any) => {
 export const useSearchQuery = (options: QueryOptionsType) => {
   return useQuery<Product[], Error>(
     [API_ENDPOINTS.SEARCH, options],
-    fetchSearchedProducts
+    fetchSearchedProducts,
+    { retry: false }
   );
 };
