@@ -9,6 +9,7 @@ import { ROUTES } from '@utils/routes';
 import dynamic from 'next/dynamic';
 import { Drawer } from '@components/common/drawer/drawer';
 import { getDirection } from '@utils/get-direction';
+import { useSession } from 'next-auth/react';
 const CartButton = dynamic(() => import('@components/cart/cart-button'), {
   ssr: false,
 });
@@ -28,6 +29,8 @@ const BottomNavigation: React.FC = () => {
     setDrawerView('MOBILE_MENU');
     return openSidebar();
   }
+
+  const { status, data: user } = useSession()
 
   const { locale } = useRouter();
   const dir = getDirection(locale);
@@ -55,7 +58,7 @@ const BottomNavigation: React.FC = () => {
         </Link>
         <CartButton />
         <AuthMenu
-          isAuthorized={isAuthorized}
+          isAuthorized={status === "authenticated"}
           href={ROUTES.ACCOUNT}
           className="flex-shrink-0"
           btnProps={{

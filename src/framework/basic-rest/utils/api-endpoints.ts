@@ -1,5 +1,5 @@
 export const API_ENDPOINTS = {
-  SANCTUM_COOKIE : '/sanctum/csrf-cookie',
+  SANCTUM_COOKIE: '/sanctum/csrf-cookie',
   USER: '/user',
   LOGIN: '/login',
   THIRD_PARTY_LOGIN: '/third-party-login',
@@ -34,5 +34,5 @@ export const API_ENDPOINTS = {
   ORDERS: '/api/orders.json',
   ORDER: '/api/order.json',
   FILTERS: '/api/filters',
-  API_FILTERED_PRODUCTS : '/api/category',
+  API_FILTERED_PRODUCTS: '/api/category',
 };
