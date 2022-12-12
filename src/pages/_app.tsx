@@ -56,19 +56,19 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 		<AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
 			<QueryClientProvider client={queryClientRef.current}>
 				<Hydrate state={pageProps.dehydratedState}>
-					<ManagedUIContext>
-						<Layout pageProps={pageProps}>
-							<DefaultSeo />
-							<SessionProvider session={pageProps.session} refetchOnWindowFocus={false}>
+					<SessionProvider session={pageProps.session} refetchOnWindowFocus={false}>
+						<ManagedUIContext>
+							<Layout pageProps={pageProps}>
+								<DefaultSeo />
 								<Component {...pageProps} key={router.route} />
-							</SessionProvider>
-							<ToastContainer />
-						</Layout>
-						<ManagedModal />
-						<ManagedDrawer />
-					</ManagedUIContext>
+								<ToastContainer />
+							</Layout>
+							<ManagedModal />
+							<ManagedDrawer />
+						</ManagedUIContext>
+					</SessionProvider>
 				</Hydrate>
-				<ReactQueryDevtools position="bottom-right" />
+				<ReactQueryDevtools position="bottom-left" />
 			</QueryClientProvider>
 		</AnimatePresence>
 	);

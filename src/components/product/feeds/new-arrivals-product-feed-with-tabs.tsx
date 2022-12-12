@@ -36,8 +36,6 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
         <Tab.Panels>
           {data?.map((category) => {
             category.children.map((child : CategoryChild)=>{
-
-              
               return(
                 <h1>{child.slug}</h1>
               )
