@@ -15,10 +15,14 @@ import { UserLineIcon } from '@components/icons/UserLineIcon'
 import Link from '@components/ui/link'
 // import ListMenu from "@components/ui/list-menu";
 import CategoryMenu from '@components/ui/category-menu'
+import { useSession } from 'next-auth/react';
+
 const AuthMenu = dynamic(() => import('./auth-menu'), { ssr: false })
 const CartButton = dynamic(() => import('@components/cart/cart-button'), {
   ssr: false,
 })
+
+
 
 type DivElementRef = React.MutableRefObject<HTMLDivElement>
 const { site_header } = siteSettings
@@ -29,8 +33,9 @@ const Header: React.FC = () => {
     openSearch,
     openModal,
     setModalView,
-    isAuthorized,
   } = useUI()
+
+
   const { t } = useTranslation()
   const siteHeaderRef = useRef() as DivElementRef
   addActiveScroll(siteHeaderRef)
@@ -39,10 +44,13 @@ const Header: React.FC = () => {
     setModalView('LOGIN_VIEW')
     return openModal()
   }
+
   function handleMobileMenu() {
     setDrawerView('MOBILE_MENU')
     return openSidebar()
   }
+
+  const { status, data: user } = useSession()
 
   return (
     <header
@@ -117,7 +125,7 @@ const Header: React.FC = () => {
                 <SearchIcon />
               </button>
               <AuthMenu
-                isAuthorized={isAuthorized}
+                isAuthorized={status === "authenticated"}
                 href={ROUTES.ACCOUNT}
                 className='text-sm font-semibold xl:text-base text-heading'
                 btnProps={{
@@ -163,7 +171,7 @@ const Header: React.FC = () => {
 
           <div className='flex items-center flex-shrink-0 ms-auto gap-x-7'>
             <AuthMenu
-              isAuthorized={isAuthorized}
+              isAuthorized={status === "authenticated"}
               href={ROUTES.ACCOUNT}
               className='flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-3'
               btnProps={{
@@ -175,7 +183,12 @@ const Header: React.FC = () => {
                 ),
                 onClick: handleLogin,
               }}
-            />
+            >
+              <>
+                <UserLineIcon className='w-4 xl:w-[17px] h-auto text-black' />
+                {t('text-account')}
+              </>
+            </AuthMenu>
             <LanguageSwitcher />
           </div>
         </div>

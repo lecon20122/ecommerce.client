@@ -16,6 +16,9 @@ const CartButton = dynamic(() => import('@components/cart/cart-button'), {
 
 type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const { site_header } = siteSettings;
+
+
+
 const Header: React.FC = () => {
   const { openSearch, openModal, setModalView, isAuthorized } = useUI();
   const { t } = useTranslation('common');
@@ -48,7 +51,7 @@ const Header: React.FC = () => {
             </button>
             <div className="-mt-0.5 flex-shrink-0">
               <AuthMenu
-                isAuthorized={isAuthorized}
+                isAuthorized={true}
                 href={ROUTES.ACCOUNT}
                 className="text-sm xl:text-base text-heading font-semibold"
                 btnProps={{

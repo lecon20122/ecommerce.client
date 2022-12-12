@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { appWithTranslation } from "next-i18next";
 import { DefaultSeo } from "@components/common/default-seo";
+import { SessionProvider } from 'next-auth/react';
 
 // Load Open Sans and satisfy typeface font
 import "@fontsource/open-sans";
@@ -32,20 +33,25 @@ function handleExitComplete() {
 	}
 }
 
-const Noop: React.FC = ({ children }) => <>{children}</>;
+
+function Noop({ children }: { children: React.ReactNode }) { return (<>{children}</>) }
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
+
 	const queryClientRef = useRef<any>();
+
 	if (!queryClientRef.current) {
-		queryClientRef.current = new QueryClient({defaultOptions : {queries : {refetchOnWindowFocus : false}}});
+		queryClientRef.current = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 	}
 	const router = useRouter();
+
 	const dir = getDirection(router.locale);
+
 	useEffect(() => {
 		document.documentElement.dir = dir;
 	}, [dir]);
-	const Layout = (Component as any).Layout || Noop;
 
+	const Layout = (Component as any).Layout || Noop;
 	return (
 		<AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
 			<QueryClientProvider client={queryClientRef.current}>
@@ -53,14 +59,16 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 					<ManagedUIContext>
 						<Layout pageProps={pageProps}>
 							<DefaultSeo />
-							<Component {...pageProps} key={router.route} />
+							<SessionProvider session={pageProps.session} refetchOnWindowFocus={false}>
+								<Component {...pageProps} key={router.route} />
+							</SessionProvider>
 							<ToastContainer />
 						</Layout>
 						<ManagedModal />
 						<ManagedDrawer />
 					</ManagedUIContext>
 				</Hydrate>
-				<ReactQueryDevtools  position="bottom-right"/>
+				<ReactQueryDevtools position="bottom-right" />
 			</QueryClientProvider>
 		</AnimatePresence>
 	);

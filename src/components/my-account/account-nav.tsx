@@ -10,6 +10,7 @@ import {
 import { ROUTES } from "@utils/routes";
 import { useLogoutMutation } from "@framework/auth/use-logout";
 import { useTranslation } from "next-i18next";
+import { signOut } from "next-auth/react";
 
 const accountMenu = [
 	{
@@ -35,11 +36,12 @@ const accountMenu = [
 ];
 
 export default function AccountNav() {
-	const { mutate: logout } = useLogoutMutation();
+
 	const { pathname } = useRouter();
 	const newPathname = pathname.split("/").slice(2, 3);
 	const mainPath = `/${newPathname[0]}`;
 	const { t } = useTranslation("common");
+	const { mutate: signOut } = useLogoutMutation()
 	return (
 		<nav className="flex flex-col md:w-2/6 2xl:w-4/12 md:pe-8 lg:pe-12 xl:pe-16 2xl:pe-20 pb-2 md:pb-0">
 			{accountMenu.map((item) => {
@@ -63,7 +65,7 @@ export default function AccountNav() {
 			})}
 			<button
 				className="flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 focus:outline-none"
-				onClick={() => logout()}
+				onClick={() => signOut()}
 			>
 				<IoLogOutOutline className="w-5 h-5" />
 				<span className="ps-2">{t("text-logout")}</span>

@@ -3,6 +3,7 @@ import { getToken } from '@framework/utils/get-token';
 import { CartProvider } from './cart/cart.context';
 import { ApiProduct } from '../framework/basic-rest/types';
 
+
 export interface State {
   isAuthorized: boolean;
   displaySidebar: boolean;
@@ -33,67 +34,67 @@ const initialState = {
 
 type Action =
   | {
-      type: 'SET_AUTHORIZED';
-    }
+    type: 'SET_AUTHORIZED';
+  }
   | {
-      type: 'SET_UNAUTHORIZED';
-    }
+    type: 'SET_UNAUTHORIZED';
+  }
   | {
-      type: 'OPEN_SIDEBAR';
-    }
+    type: 'OPEN_SIDEBAR';
+  }
   | {
-      type: 'CLOSE_SIDEBAR';
-    }
+    type: 'CLOSE_SIDEBAR';
+  }
   | {
-      type: 'OPEN_CART';
-    }
+    type: 'OPEN_CART';
+  }
   | {
-      type: 'CLOSE_CART';
-    }
+    type: 'CLOSE_CART';
+  }
   | {
-      type: 'OPEN_SEARCH';
-    }
+    type: 'OPEN_SEARCH';
+  }
   | {
-      type: 'CLOSE_SEARCH';
-    }
+    type: 'CLOSE_SEARCH';
+  }
   | {
-      type: 'SET_TOAST_TEXT';
-      text: ToastText;
-    }
+    type: 'SET_TOAST_TEXT';
+    text: ToastText;
+  }
   | {
-      type: 'OPEN_FILTER';
-    }
+    type: 'OPEN_FILTER';
+  }
   | {
-      type: 'CLOSE_FILTER';
-    }
+    type: 'CLOSE_FILTER';
+  }
   | {
-      type: 'OPEN_SHOP';
-    }
+    type: 'OPEN_SHOP';
+  }
   | {
-      type: 'CLOSE_SHOP';
-    }
+    type: 'CLOSE_SHOP';
+  }
   | {
-      type: 'OPEN_MODAL';
-    }
+    type: 'OPEN_MODAL';
+  }
   | {
-      type: 'CLOSE_MODAL';
-    }
+    type: 'CLOSE_MODAL';
+  }
   | {
-      type: 'SET_MODAL_VIEW';
-      view: MODAL_VIEWS;
-    }
+    type: 'SET_MODAL_VIEW';
+    view: MODAL_VIEWS;
+  }
   | {
-      type: 'SET_DRAWER_VIEW';
-      view: DRAWER_VIEWS;
-    }
+    type: 'SET_DRAWER_VIEW';
+    view: DRAWER_VIEWS;
+  }
   | {
-      type: 'SET_MODAL_DATA';
-      data: any;
-    }
+    type: 'SET_MODAL_DATA';
+    data: any;
+  }
   | {
-      type: 'SET_USER_AVATAR';
-      value: string;
-    };
+    type: 'SET_USER_AVATAR';
+    value: string;
+  };
 
 type MODAL_VIEWS =
   | 'SIGN_UP_VIEW'
@@ -311,8 +312,13 @@ export const useUI = () => {
   return context;
 };
 
-export const ManagedUIContext: React.FC = ({ children }) => (
-  <CartProvider>
-    <UIProvider>{children}</UIProvider>
-  </CartProvider>
-);
+interface ManagedUIContextProps  {
+  children: React.ReactNode
+}
+export function ManagedUIContext({ children }: ManagedUIContextProps) {
+  return (
+    <CartProvider>
+      <UIProvider>{children}</UIProvider>
+    </CartProvider>
+  )
+};
