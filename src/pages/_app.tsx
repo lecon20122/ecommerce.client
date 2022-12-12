@@ -54,9 +54,9 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 	const Layout = (Component as any).Layout || Noop;
 	return (
 		<AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
-			<QueryClientProvider client={queryClientRef.current}>
-				<Hydrate state={pageProps.dehydratedState}>
-					<SessionProvider session={pageProps.session} refetchOnWindowFocus={false}>
+			<SessionProvider session={pageProps.session} refetchOnWindowFocus={false}>
+				<QueryClientProvider client={queryClientRef.current}>
+					<Hydrate state={pageProps.dehydratedState}>
 						<ManagedUIContext>
 							<Layout pageProps={pageProps}>
 								<DefaultSeo />
@@ -66,10 +66,10 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 							<ManagedModal />
 							<ManagedDrawer />
 						</ManagedUIContext>
-					</SessionProvider>
-				</Hydrate>
-				<ReactQueryDevtools position="bottom-left" />
-			</QueryClientProvider>
+					</Hydrate>
+					<ReactQueryDevtools position="bottom-left" />
+				</QueryClientProvider>
+			</SessionProvider>
 		</AnimatePresence>
 	);
 };

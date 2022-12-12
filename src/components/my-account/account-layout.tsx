@@ -4,6 +4,7 @@ import AccountNav from "@components/my-account/account-nav";
 import Subscription from "@components/common/subscription";
 
 const AccountLayout: React.FunctionComponent<{}> = ({ children }) => {
+	
 	return (
 		<>
 			<PageHeader pageHeader="text-page-my-account" />

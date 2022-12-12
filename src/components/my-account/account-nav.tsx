@@ -10,7 +10,9 @@ import {
 import { ROUTES } from "@utils/routes";
 import { useLogoutMutation } from "@framework/auth/use-logout";
 import { useTranslation } from "next-i18next";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from 'next-auth/react';
+
+
 
 const accountMenu = [
 	{
@@ -36,6 +38,7 @@ const accountMenu = [
 ];
 
 export default function AccountNav() {
+	const { status, data: user } = useSession()
 
 	const { pathname } = useRouter();
 	const newPathname = pathname.split("/").slice(2, 3);
@@ -63,13 +66,15 @@ export default function AccountNav() {
 					</Link>
 				);
 			})}
-			<button
-				className="flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 focus:outline-none"
-				onClick={() => signOut()}
-			>
-				<IoLogOutOutline className="w-5 h-5" />
-				<span className="ps-2">{t("text-logout")}</span>
-			</button>
+			{status === "authenticated" &&
+				<button
+					className="flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 focus:outline-none"
+					onClick={() => signOut()}
+				>
+					<IoLogOutOutline className="w-5 h-5" />
+					<span className="ps-2">{t("text-logout")}</span>
+				</button>
+			}
 		</nav>
 	);
 }
