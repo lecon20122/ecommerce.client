@@ -46,6 +46,7 @@ const makeRequest = async (method: Method = "GET", url: string, dataForm: any = 
 
 const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, response: NextApiResponse) => {
     return {
+        secret: process.env.JWT_SECRET,
         providers: [
             GoogleProvider({
                 clientId: process.env.GOOGLE_CLIENT_ID as string,
