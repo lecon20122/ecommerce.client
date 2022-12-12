@@ -58,6 +58,9 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
         ],
         callbacks: {
             async jwt({ token, account }) {
+                console.log('====================================');
+                console.log('NEXTAUTH_URL => ',process.env.NEXTAUTH_URL);
+                console.log('====================================');
                 if (account?.provider === "google") {
                     const csrf = await makeRequest("GET", API_ENDPOINTS.SANCTUM_COOKIE, null, null)
                     const user = await makeRequest("POST", API_ENDPOINTS.THIRD_PARTY_LOGIN,
