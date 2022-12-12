@@ -5,7 +5,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { API_ENDPOINTS } from '../../../framework/basic-rest/utils/api-endpoints';
 import { NextAuthOptions } from 'next-auth/core/types';
 import { NextApiRequest, NextApiResponse } from "next";
-import _logger from "next-auth/utils/logger";
 
 type NextAuthOptionsCallback = (req: NextApiRequest, res: NextApiResponse) => NextAuthOptions
 //This is for getting the laravel-session cookie and the CSRF cookie 
@@ -48,7 +47,6 @@ const makeRequest = async (method: Method = "GET", url: string, dataForm: any = 
 const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, response: NextApiResponse) => {
     return {
         debug: true,
-        logger: _logger,
         secret: process.env.JWT_SECRET,
         providers: [
             GoogleProvider({
