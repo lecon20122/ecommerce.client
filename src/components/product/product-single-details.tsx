@@ -1,22 +1,15 @@
 import React, { useState } from "react";
 import Button from "@components/ui/button";
-import Counter from "@components/common/counter";
 import { useRouter } from "next/router";
 import { useProductQuery } from "@framework/product/get-product";
-import { getVariations } from "@framework/utils/get-variations";
 import usePrice from "@framework/product/use-price";
-import { useCart } from "@contexts/cart/cart.context";
-import { generateCartItem } from "@utils/generate-cart-item";
 import { ProductAttributes } from "./product-attributes";
-import isEmpty from "lodash/isEmpty";
-import Link from "@components/ui/link";
 import { toast } from "react-toastify";
 import { useWindowSize } from "@utils/use-window-size";
 import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import ProductMetaReview from "@components/product/product-meta-review";
 import { Variation, ApiProduct } from '../../framework/basic-rest/types';
-import Image from 'next/image';
+import { useAddToCartMutation } from "@framework/cart/use-add-to-cart";
 
 const productGalleryCarouselResponsive = {
 	"768": {
@@ -32,15 +25,15 @@ function ProductSingleDetails() {
 		query: { slug },
 		locale
 	} = useRouter();
+	
 	const { width } = useWindowSize();
 
 
-	const { addItemToCart } = useCart();
 	const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
-	const [quantity, setQuantity] = useState(1);
 	const [currentVariation, setCurrentVariation] = useState<Variation | undefined>();
+	const [currentBuyableVariation, setCurrentBuyableVariation] = useState<Variation | undefined>();
 
-
+	const { mutate, isLoading: cartLoading } = useAddToCartMutation()
 
 
 	const onSuccess = (data: ApiProduct) => {
@@ -59,14 +52,9 @@ function ProductSingleDetails() {
 		}
 	);
 	if (isLoading) return <p>Loading...</p>;
-	const variations = getVariations(data?.variations);
 
-	const isSelected = !isEmpty(variations)
-		? !isEmpty(attributes) &&
-		Object.keys(variations).every((variation) =>
-			attributes.hasOwnProperty(variation)
-		)
-		: true;
+
+	const isSelected = currentBuyableVariation === undefined ? false : true
 
 	const addToCart = () => {
 		// if (!isSelected) return;
@@ -88,6 +76,9 @@ function ProductSingleDetails() {
 	}
 
 	function handleAttribute(variation: Variation) {
+		if (variation.variation_type.type.en === 'size') {
+			setCurrentBuyableVariation(variation)
+		}
 		setCurrentVariation(variation)
 	}
 
@@ -149,6 +140,7 @@ function ProductSingleDetails() {
 						variations={data?.variations}
 						currentVariation={currentVariation}
 						onClick={handleAttribute}
+						setCurrentBuyableVariation={setCurrentBuyableVariation}
 					/>
 				</div>
 				<div className="flex items-center space-s-4 md:pe-32 lg:pe-12 2xl:pe-32 3xl:pe-48 border-b border-gray-300 py-8">
@@ -161,12 +153,17 @@ function ProductSingleDetails() {
 						disableDecrement={quantity === 1}
 					/> */}
 					<Button
-						onClick={(e) => addToCart()}
+						onClick={(e) => mutate({
+							variation_id: currentBuyableVariation?.id,
+							price: parseInt(currentBuyableVariation?.price ?? ""),
+							store_id: currentBuyableVariation?.store_id,
+							variation_parent_id: currentBuyableVariation?.parent_id,
+						})}
 						variant="slim"
 						className={`w-full md:w-6/12 xl:w-full ${!isSelected && "bg-gray-400 hover:bg-gray-400"
 							}`}
 						disabled={!isSelected}
-						loading={addToCartLoader}
+						loading={cartLoading}
 					>
 						<span className="py-2 3xl:px-8">Add to cart</span>
 					</Button>

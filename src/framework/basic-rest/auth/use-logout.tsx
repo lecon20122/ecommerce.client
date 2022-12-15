@@ -9,6 +9,7 @@ import { useMutation } from "react-query";
 async function logout() {
   return http.post(API_ENDPOINTS.LOGOUT);
 }
+
 export const useLogoutMutation = () => {
   return useMutation(() => logout(), {
     onSuccess: (_data) => {

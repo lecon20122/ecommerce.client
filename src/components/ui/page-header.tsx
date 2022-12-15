@@ -11,7 +11,7 @@ const PageHeader: React.FC<HeaderProps> = ({
 	pageHeader = "text-page-header",
 }) => {
 	const { t } = useTranslation("common");
-	const { status, data: user } = useSession()
+	// const { status, data: user } = useSession()
 	return (
 		<div
 			className="flex justify-center p-6 md:p-10 2xl:p-8 relative bg-no-repeat bg-center bg-cover"
@@ -26,7 +26,7 @@ const PageHeader: React.FC<HeaderProps> = ({
 						{t(`${pageSubHeader}`)}
 					</span>
 					{/* {t(`${pageHeader}`)} */}
-					{user?.user?.name}
+					{/* {user?.user?.name} */}
 				</h2>
 			</div>
 		</div>

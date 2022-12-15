@@ -10,6 +10,7 @@ interface Props {
 	currentVariation: Variation | undefined
 	active: number | undefined;
 	onClick: any;
+	setCurrentBuyableVariation?: any,
 }
 
 export const ProductAttributes: React.FC<Props> = ({
@@ -17,7 +18,8 @@ export const ProductAttributes: React.FC<Props> = ({
 	variations,
 	active,
 	onClick,
-	currentVariation
+	currentVariation,
+	setCurrentBuyableVariation
 }) => {
 	const { locale } = useRouter();
 	const dir = getDirection(locale)
@@ -58,9 +60,9 @@ export const ProductAttributes: React.FC<Props> = ({
 				})}
 			</ul>
 			<ul className="colors flex flex-wrap -me-3 space-x-2">
-				<h1 className={`items-center self-center ${dir === 'ltr' ? 'mr-5' : 'ml-5'} text-xl`}>{t('text-size')}:</h1>
+				<h1 className={`items-center self-center ${dir === 'ltr' ? 'mr-7' : 'ml-7'} text-xl`}>{t('text-size')}:</h1>
 				{currentVariation?.children?.map((variation) => {
-					
+
 					return (
 						<li
 							key={`${variation.variation_type_value.value.en}-${variation.id}`}
@@ -76,6 +78,7 @@ export const ProductAttributes: React.FC<Props> = ({
 							{variation.variation_type.type.en === "size" ? (
 
 								<span
+									onClick={() => setCurrentBuyableVariation(variation)}
 									className="h-full w-full rounded flex items-center justify-center text-lg"
 								>
 									{variation.variation_type_value.value.en}

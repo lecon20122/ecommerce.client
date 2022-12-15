@@ -1,3 +1,4 @@
+import Cart from '../../../components/cart/cart';
 export const API_ENDPOINTS = {
   SANCTUM_COOKIE: '/sanctum/csrf-cookie',
   USER: '/user',
@@ -5,6 +6,9 @@ export const API_ENDPOINTS = {
   THIRD_PARTY_LOGIN: '/third-party-login',
   REGISTER: '/register',
   LOGOUT: '/logout',
+  ADD_TO_CART: '/api/cart',
+  GET_CART: '/api/cart',
+  CART: '/api/cart',
   FORGET_PASSWORD: '/forget-password',
   CATEGORIES: '/api/categories',
   CATEGORIES_2: '/api/categories.json',

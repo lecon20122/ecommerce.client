@@ -148,7 +148,7 @@ export interface Filter {
 export interface Variation {
   id: number;
   children: Variation[],
-  parent_id: null;
+  parent_id: number | undefined;
   store_id: number;
   variation_type: VariationType;
   variation_type_value: VariationTypeValue;
@@ -161,6 +161,7 @@ export interface Variation {
   media: Media[];
   color: null;
   stock_count: null;
+  small_image : VariationSmallImage,
 }
 
 export interface ApiProduct {
@@ -207,6 +208,13 @@ export interface Category {
 }
 
 export interface CategoryBanner {
+  id: number;
+  name: string;
+  width: number;
+  height: number;
+  url: string;
+}
+export interface VariationSmallImage {
   id: number;
   name: string;
   width: number;
@@ -283,4 +291,10 @@ export interface User {
   name: string,
   email: string,
   phone: string,
+}
+
+export interface Store {
+  id:          number;
+  name:        string;
+  description: null;
 }

@@ -41,9 +41,6 @@ const makeRequest = async (method: Method = "GET", url: string, dataForm: any = 
         },
         withCredentials: true,
     })
-    console.log('====================================');
-    console.log('response',res.request);
-    console.log('====================================');
     return res
 }
 

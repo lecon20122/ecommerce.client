@@ -11,15 +11,26 @@ import Link from "@components/ui/link";
 import { ROUTES } from "@utils/routes";
 import cn from "classnames";
 import { useTranslation } from "next-i18next";
+import { useCartQuery } from '../../framework/basic-rest/cart/use-get-cart';
 
 export default function Cart() {
 	const { t } = useTranslation("common");
 	const { closeCart } = useUI();
-	const { items, total, isEmpty } = useCart();
+
+	const { data: cartItems } = useCartQuery()
+
+
+	let cartTotalPrice: number = 0
+	cartItems?.map((item) => {
+		return cartTotalPrice += (parseInt(item.price) * item.quantity)
+	})
+
 	const { price: cartTotal } = usePrice({
-		amount: total,
-		currencyCode: "USD",
+		amount: cartTotalPrice,
+		currencyCode: "EGP",
 	});
+
+	const isEmpty: boolean = (cartItems?.length === 0)
 	return (
 		<div className="flex flex-col w-full h-full justify-between">
 			<div className="w-full flex justify-between items-center relative ps-5 md:ps-7 py-0.5 border-b border-gray-100">
@@ -34,10 +45,10 @@ export default function Cart() {
 					<IoClose className="text-black mt-1 md:mt-0.5" />
 				</button>
 			</div>
-			{!isEmpty ? (
+			{cartItems?.length !== 0 ? (
 				<Scrollbar className="cart-scrollbar w-full flex-grow">
 					<div className="w-full px-5 md:px-7">
-						{items?.map((item) => (
+						{cartItems?.map((item) => (
 							<CartItem item={item} key={item.id} />
 						))}
 					</div>
