@@ -59,9 +59,9 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
         callbacks: {
             async jwt({ token, account }) {
                 if (account?.provider === "google") {
-                    const csrf = await makeRequest("GET",API_ENDPOINTS.SANCTUM_COOKIE, null, null)
-
-                    const user = await makeRequest("POST",API_ENDPOINTS.THIRD_PARTY_LOGIN,
+                    const csrf = await makeRequest("GET", API_ENDPOINTS.SANCTUM_COOKIE, null, null)
+                    console.log('params', { token: account?.access_token, provider: "google" });
+                    const user = await makeRequest("POST", API_ENDPOINTS.THIRD_PARTY_LOGIN,
                         { token: account?.access_token, provider: "google" }, csrf)
                     const cookies = user.headers['set-cookie'] as string[]
                     response.setHeader('Set-Cookie', cookies)
@@ -70,6 +70,7 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
                 return token
             },
             session({ session, token }) {
+                console.log('session-user', token.user);
                 session.user = token.user
                 return session
             },
