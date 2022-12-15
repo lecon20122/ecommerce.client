@@ -68,7 +68,6 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
                     response.setHeader('Set-Cookie', cookies)
                     token.user = user.data
                     console.log('user-data' , user.data);
-                    console.log('user-response' , user);
                     
                 }
                 return token
