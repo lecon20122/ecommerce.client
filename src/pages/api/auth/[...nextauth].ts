@@ -63,9 +63,12 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
                     console.log('params', { token: account?.access_token, provider: "google" });
                     const user = await makeRequest("POST", API_ENDPOINTS.THIRD_PARTY_LOGIN,
                         { token: account?.access_token, provider: "google" }, csrf)
+                    
                     const cookies = user.headers['set-cookie'] as string[]
                     response.setHeader('Set-Cookie', cookies)
                     token.user = user.data
+                    console.log('user-data' , user.data);
+                    
                 }
                 return token
             },
