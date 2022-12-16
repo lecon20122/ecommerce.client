@@ -57,18 +57,20 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
             }),
         ],
         callbacks: {
-            async jwt({ token, account }) {
+            async jwt({ token, account, profile }) {
+
                 if (account?.provider === "google") {
                     const csrf = await makeRequest("GET", API_ENDPOINTS.SANCTUM_COOKIE, null, null)
-                    console.log('params', { token: account?.access_token, provider: "google" });
-                    const user = await makeRequest("POST", API_ENDPOINTS.THIRD_PARTY_LOGIN,
-                        { token: account?.access_token, provider: "google" }, csrf)
-                    
+
+                    const user = await makeRequest("GET", API_ENDPOINTS.THIRD_PARTY_LOGIN,
+                        { token: account?.access_token, provider: "google", email: profile?.email }, csrf)
+                    console.log('csrf');
+
                     const cookies = user.headers['set-cookie'] as string[]
                     response.setHeader('Set-Cookie', cookies)
                     token.user = user.data
-                    console.log('user-data' , user.data);
-                    
+                    console.log('user.statusText', user.statusText);
+
                 }
                 return token
             },
