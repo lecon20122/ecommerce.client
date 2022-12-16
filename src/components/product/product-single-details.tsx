@@ -25,13 +25,14 @@ function ProductSingleDetails() {
 		query: { slug },
 		locale
 	} = useRouter();
-	
+
 	const { width } = useWindowSize();
 
 
 	const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
 	const [currentVariation, setCurrentVariation] = useState<Variation | undefined>();
 	const [currentBuyableVariation, setCurrentBuyableVariation] = useState<Variation | undefined>();
+	const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
 
 	const { mutate, isLoading: cartLoading } = useAddToCartMutation()
 
@@ -43,7 +44,7 @@ function ProductSingleDetails() {
 	const { data, isLoading } = useProductQuery(slug as string, onSuccess);
 
 
-	const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
+	const [addToCartLoader, setAddToCartLoader] = useState<boolean>();
 	const { price, basePrice, discount } = usePrice(
 		data && {
 			amount: data.price,
@@ -54,32 +55,28 @@ function ProductSingleDetails() {
 	if (isLoading) return <p>Loading...</p>;
 
 
-	const isSelected = currentBuyableVariation === undefined ? false : true
 
-	const addToCart = () => {
-		// if (!isSelected) return;
-		// to show btn feedback while product carting
-		setAddToCartLoader(true);
 
-		// const item = generateCartItem(data!, attributes);
-		// addItemToCart(item, quantity);
-		toast("Added to the bag", {
-			progressClassName: "fancy-progress-bar",
-			position: width > 768 ? "bottom-right" : "top-right",
-			autoClose: 2000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-		});
-
-	}
 
 	function handleAttribute(variation: Variation) {
 		if (variation.variation_type.type.en === 'size') {
 			setCurrentBuyableVariation(variation)
 		}
 		setCurrentVariation(variation)
+	}
+
+	const handleAddToCartButton = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		const isSelected = currentBuyableVariation === undefined ? false : true
+		if (isSelected) {
+			mutate({
+				variation_id: currentBuyableVariation?.id,
+				price: parseInt(currentBuyableVariation?.price ?? ""),
+				store_id: currentBuyableVariation?.store_id,
+				variation_parent_id: currentBuyableVariation?.parent_id,
+			})
+		} else {
+			setIsSizeSelected(true)
+		}
 	}
 
 	return (
@@ -141,6 +138,8 @@ function ProductSingleDetails() {
 						currentVariation={currentVariation}
 						onClick={handleAttribute}
 						setCurrentBuyableVariation={setCurrentBuyableVariation}
+						isSizePropSelected={isSizeSelected}
+						setIsSizeSelected={setIsSizeSelected}
 					/>
 				</div>
 				<div className="flex items-center space-s-4 md:pe-32 lg:pe-12 2xl:pe-32 3xl:pe-48 border-b border-gray-300 py-8">
@@ -153,16 +152,9 @@ function ProductSingleDetails() {
 						disableDecrement={quantity === 1}
 					/> */}
 					<Button
-						onClick={(e) => mutate({
-							variation_id: currentBuyableVariation?.id,
-							price: parseInt(currentBuyableVariation?.price ?? ""),
-							store_id: currentBuyableVariation?.store_id,
-							variation_parent_id: currentBuyableVariation?.parent_id,
-						})}
+						onClick={handleAddToCartButton}
 						variant="slim"
-						className={`w-full md:w-6/12 xl:w-full ${!isSelected && "bg-gray-400 hover:bg-gray-400"
-							}`}
-						disabled={!isSelected}
+						className={'w-full md:w-6/12 xl:w-full'}
 						loading={cartLoading}
 					>
 						<span className="py-2 3xl:px-8">Add to cart</span>

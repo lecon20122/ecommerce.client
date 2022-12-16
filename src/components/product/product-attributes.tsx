@@ -11,6 +11,8 @@ interface Props {
 	active: number | undefined;
 	onClick: any;
 	setCurrentBuyableVariation?: any,
+	setIsSizeSelected?: any,
+	isSizePropSelected : boolean
 }
 
 export const ProductAttributes: React.FC<Props> = ({
@@ -19,12 +21,19 @@ export const ProductAttributes: React.FC<Props> = ({
 	active,
 	onClick,
 	currentVariation,
-	setCurrentBuyableVariation
+	setCurrentBuyableVariation,
+	isSizePropSelected,
+	setIsSizeSelected
 }) => {
 	const { locale } = useRouter();
 	const dir = getDirection(locale)
 	const { t } = useTranslation("common");
 	const [currentStockAbleVariation, setCurrentStockAbleVariation] = useState<Variation | undefined>();
+
+	const handleSizeOnClick = (variation : Variation) => {
+		setIsSizeSelected(false)
+		setCurrentBuyableVariation(variation)
+	}
 
 	return (
 		<div className={className}>
@@ -78,17 +87,19 @@ export const ProductAttributes: React.FC<Props> = ({
 							{variation.variation_type.type.en === "size" ? (
 
 								<span
-									onClick={() => setCurrentBuyableVariation(variation)}
+									onClick={() => handleSizeOnClick(variation)}
 									className="h-full w-full rounded flex items-center justify-center text-lg"
 								>
 									{variation.variation_type_value.value.en}
 								</span>
+
 							) : (
 								<span></span>
 							)}
 						</li>
 					)
 				})}
+				{isSizePropSelected && <span className="text-red-400 self-center mb-3">*please select size</span>}
 			</ul>
 		</div>
 	);
