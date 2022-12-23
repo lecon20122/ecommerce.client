@@ -44,9 +44,9 @@ const makeRequest = async (method: Method = "GET", url: string, dataForm: any = 
     return res
 }
 
-const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, response: NextApiResponse) => {
+export const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, response: NextApiResponse) => {
     return {
-        debug: true,
+        // debug: true,
         providers: [
             GoogleProvider({
                 clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -64,22 +64,20 @@ const nextAuthOptions: NextAuthOptionsCallback = (request: NextApiRequest, respo
 
                     const user = await makeRequest("GET", API_ENDPOINTS.THIRD_PARTY_LOGIN,
                         { token: account?.access_token, provider: "google", email: profile?.email }, csrf)
-                    console.log('csrf');
 
                     const cookies = user.headers['set-cookie'] as string[]
                     response.setHeader('Set-Cookie', cookies)
                     token.user = user.data
-                    console.log('user.statusText', user.statusText);
-
                 }
                 return token
             },
             session({ session, token }) {
-                console.log('session-user', token.user);
                 session.user = token.user
                 return session
             },
-
+            redirect({ url }) {
+                return url
+            },
         },
     }
 }

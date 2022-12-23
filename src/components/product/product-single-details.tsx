@@ -4,12 +4,13 @@ import { useRouter } from "next/router";
 import { useProductQuery } from "@framework/product/get-product";
 import usePrice from "@framework/product/use-price";
 import { ProductAttributes } from "./product-attributes";
-import { toast } from "react-toastify";
 import { useWindowSize } from "@utils/use-window-size";
 import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
 import { Variation, ApiProduct } from '../../framework/basic-rest/types';
-import { useAddToCartMutation } from "@framework/cart/use-add-to-cart";
+import { AddToCartInputProps, useAddToCartMutation } from "@framework/cart/use-add-to-cart";
+import Cookies from "js-cookie";
+import { useEffect } from 'react';
 
 const productGalleryCarouselResponsive = {
 	"768": {
@@ -25,6 +26,14 @@ function ProductSingleDetails() {
 		query: { slug },
 		locale
 	} = useRouter();
+
+	useEffect(() => {
+		const afterLoginCartVariables = Cookies.get('cart') !== undefined ? JSON.parse(Cookies.get('cart') as any) as AddToCartInputProps : null
+		if (afterLoginCartVariables?.variation_id) {
+			mutate(afterLoginCartVariables)
+			Cookies.remove('cart')
+		}
+	}, [])
 
 	const { width } = useWindowSize();
 

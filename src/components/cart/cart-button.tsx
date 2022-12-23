@@ -1,10 +1,19 @@
 import CartIcon from "@components/icons/cart-icon";
-import { useCart } from "@contexts/cart/cart.context";
 import { useUI } from "@contexts/ui.context";
+import { useCartQuery } from "@framework/cart/use-get-cart";
+
 
 const CartButton = () => {
 	const { openCart } = useUI();
-	const { totalItems } = useCart();
+
+	const { data: items } = useCartQuery()
+
+	let count = 0
+
+	items?.forEach((cart) => {
+		count = count + cart.quantity
+	})
+
 	function handleCartOpen() {
 		return openCart();
 	}
@@ -17,7 +26,7 @@ const CartButton = () => {
 		>
 			<CartIcon />
 			<span className="cart-counter-badge flex items-center justify-center bg-heading text-white absolute -top-2.5 xl:-top-3 -end-2.5 xl:-end-3 rounded-full font-bold">
-				{totalItems}
+				{count}
 			</span>
 		</button>
 	);

@@ -11,7 +11,7 @@ import { Cart } from "@framework/cart/use-get-cart";
 import { useRouter } from 'next/router';
 import { useRemoveFromCartMutation } from '../../framework/basic-rest/cart/use-remove-cart-item';
 import { useUpdateCartItemQuantityMutation } from '../../framework/basic-rest/cart/use-update-cart-item-quantity';
-
+import { ROUTES } from "@utils/routes";
 
 type CartItemProps = {
 	item: Cart;
@@ -21,8 +21,6 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 	const { t } = useTranslation("common");
 	const { locale } = useRouter()
 
-	const { addItemToCart, removeItemFromCart, clearItemFromCart } = useCart();
-
 	const { mutate: removeCartItemMutate, isLoading: removeIsLoading } = useRemoveFromCartMutation()
 	const { mutate: updateQuantityMutate, isLoading: updateIsLoading } = useUpdateCartItemQuantityMutation()
 
@@ -31,12 +29,14 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 		amount: parseInt(item.price),
 		currencyCode: "EGP",
 	});
+
 	const { price: totalPrice } = usePrice({
 		amount: item.quantity * parseInt(item.price),
 		currencyCode: "EGP",
 	});
 
 	const handleUpdateCartItemQuantity = (event: React.ChangeEvent<HTMLSelectElement>) => {
+
 		if (event.target.value === '0') {
 			removeCartItemMutate({ cart_id: item.id })
 		} else {
@@ -92,7 +92,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 						onDecrement={() => removeItemFromCart(item.id)}
 						variant="dark"
 					/> */}
-					<select defaultValue={item.quantity} onChange={(event) => handleUpdateCartItemQuantity(event)}>
+					<select value={item.quantity} onChange={(event) => handleUpdateCartItemQuantity(event)}>
 						<option value="0">0 (delete)</option>
 						<option value="1">1</option>
 						<option value="2">2</option>

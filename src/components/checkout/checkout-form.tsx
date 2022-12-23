@@ -7,38 +7,23 @@ import Button from "@components/ui/button";
 import Router from "next/router";
 import { ROUTES } from "@utils/routes";
 import { useTranslation } from "next-i18next";
+import { useAddressQuery } from '../../framework/basic-rest/address/get-user-addresses';
+import { useState } from 'react';
 
-interface CheckoutInputType {
-	firstName: string;
-	lastName: string;
-	phone: string;
-	email: string;
-	address: string;
-	city: string;
-	zipCode: string;
-	save: boolean;
-	note: string;
-}
+
 
 const CheckoutForm: React.FC = () => {
 	const { t } = useTranslation();
+
 	const { mutate: updateUser, isLoading } = useCheckoutMutation();
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<CheckoutInputType>();
-	function onSubmit(input: CheckoutInputType) {
-		updateUser(input);
-		Router.push(ROUTES.ORDER);
-	}
+
+
 
 	return (
 		<>
-			<h2 className="text-lg md:text-xl xl:text-2xl font-bold text-heading mb-6 xl:mb-8">
-				{t("text-shipping-address")}
-			</h2>
-			<form
+
+			{/* <button>Add Address</button> */}
+			{/* <form
 				onSubmit={handleSubmit(onSubmit)}
 				className="w-full mx-auto flex flex-col justify-center "
 				noValidate
@@ -133,7 +118,7 @@ const CheckoutForm: React.FC = () => {
 						</Button>
 					</div>
 				</div>
-			</form>
+			</form> */}
 		</>
 	);
 };

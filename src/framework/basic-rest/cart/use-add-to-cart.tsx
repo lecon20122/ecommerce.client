@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { useUI } from '../../../contexts/ui.context';
 import { Cart } from './use-get-cart';
+import Cookies from 'js-cookie';
 
 export interface AddToCartInputProps {
     variation_id: number | undefined,
@@ -42,8 +43,10 @@ export const useAddToCartMutation = () => {
                 theme: "light",
             });
         },
-        onError: (error: AxiosError, _variables: AddToCartInputProps, _context) => {
+        onError: (error: AxiosError, variables: AddToCartInputProps, _context) => {
             if (error.response?.status === 401) {
+                // add the variables to cookie 
+                Cookies.set('cart' , JSON.stringify(variables))
                 setModalView('LOGIN_VIEW')
                 openModal()
             } else {

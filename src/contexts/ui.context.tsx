@@ -100,7 +100,8 @@ type MODAL_VIEWS =
   | 'SIGN_UP_VIEW'
   | 'LOGIN_VIEW'
   | 'FORGET_PASSWORD'
-  | 'PRODUCT_VIEW';
+  | 'PRODUCT_VIEW'
+  | 'ADD_NEW_ADDRESS';
 type DRAWER_VIEWS = 'CART_SIDEBAR' | 'MOBILE_MENU';
 type ToastText = string;
 
@@ -312,7 +313,7 @@ export const useUI = () => {
   return context;
 };
 
-interface ManagedUIContextProps  {
+interface ManagedUIContextProps {
   children: React.ReactNode
 }
 export function ManagedUIContext({ children }: ManagedUIContextProps) {
