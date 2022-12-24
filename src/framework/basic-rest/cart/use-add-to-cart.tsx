@@ -29,7 +29,6 @@ export const useAddToCartMutation = () => {
     const queryClient = useQueryClient()
     return useMutation((input: AddToCartInputProps) => addToCart(input), {
         onSuccess: (data) => {
-            
             queryClient.setQueryData([API_ENDPOINTS.GET_CART] , data.data)
 
             toast.success("Added to the bag", {

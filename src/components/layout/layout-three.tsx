@@ -56,7 +56,7 @@ const Layout: React.FC = ({ children }) => {
       </main>
       <Footer />
       <MobileNavigation />
-      <Search />
+      {/* <Search /> */}
       <CookieBar
         title={t('text-cookies-title')}
         hide={acceptedCookies}

@@ -1,21 +1,15 @@
-import { CheckBox } from "@components/ui/checkbox";
 import Button from "@components/ui/button";
-import TextArea from "@components/ui/text-area";
 import Input from "@components/ui/input";
 import { useForm } from "react-hook-form";
+import { City } from '../../framework/basic-rest/address/get-cities';
+import { useState } from 'react';
+import Select from "@components/ui/select";
+import { useUI } from '../../contexts/ui.context';
+import { AddAddressInputProps } from "@framework/address/add-address";
+import { useCreateAddressMutation } from '../../framework/basic-rest/address/add-address';
 
 
-interface CheckoutInputType {
-    firstName: string;
-    lastName: string;
-    phone: string;
-    email: string;
-    address: string;
-    city: string;
-    zipCode: string;
-    save: boolean;
-    note: string;
-}
+
 
 export default function CheckoutAddressForm() {
 
@@ -23,40 +17,44 @@ export default function CheckoutAddressForm() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<CheckoutInputType>();
+    } = useForm<AddAddressInputProps>();
 
-    function onSubmit(input: CheckoutInputType) {
+    const { modalData: cities } = useUI();
+    const { mutate, isLoading: creatingAddressLoading } = useCreateAddressMutation()
+    const [currentCity, setCurrentCity] = useState<City | undefined>(cities.data[0])
 
+    const [currentDistrictId, SetCurrentDistrictId] = useState<number>(cities.data[0].districts[0].id)
+
+    const handleSelectCity = (value: React.ChangeEvent<HTMLSelectElement>) => {
+        value.preventDefault()
+        const city: City = cities?.data?.find((city: { id: number; }) => city.id === parseInt(value.target.value))
+        setCurrentCity(city)
+    }
+    function onSubmit(input: AddAddressInputProps) {
+        mutate(input)
+        console.log('====================================');
+        console.log(input);
+        console.log('====================================');
     }
 
     return (
         <div className="overflow-hidden bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300 py-5 px-5 sm:px-8">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="w-full mx-auto flex flex-col justify-center"
+                className="py-5 w-full mx-auto flex flex-col justify-center"
                 noValidate
             >
                 <div className="flex flex-col space-y-4 lg:space-y-5">
                     <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0">
                         <Input
-                            labelKey="forms:label-first-name"
-                            {...register("firstName", {
-                                required: "forms:first-name-required",
+                            labelKey="forms:label-full-name"
+                            {...register("name", {
+                                required: "forms:full-name-required",
                             })}
-                            errorKey={errors.firstName?.message}
+                            errorKey={errors.name?.message}
                             variant="solid"
-                            className="w-full"
+                            className="w-full lg:w-1/2 "
                         />
-                    </div>
-                    <Input
-                        labelKey="forms:label-address"
-                        {...register("address", {
-                            required: "forms:address-required",
-                        })}
-                        errorKey={errors.address?.message}
-                        variant="solid"
-                    />
-                    <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0">
                         <Input
                             type="tel"
                             labelKey="forms:label-phone"
@@ -65,50 +63,76 @@ export default function CheckoutAddressForm() {
                             })}
                             errorKey={errors.phone?.message}
                             variant="solid"
+                            className="w-full lg:w-1/2 lg:ms-3 mt-2 md:mt-0"
+                        />
+                    </div>
+                    <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0">
+                        <Input
+                            labelKey="forms:label-street"
+                            {...register("street", {
+                                required: "forms:street-required",
+                            })}
+                            errorKey={errors.street?.message}
+                            variant="solid"
                             className="w-full lg:w-1/2 "
                         />
-
                         <Input
-                            type="email"
-                            labelKey="forms:label-email-star"
-                            {...register("email", {
-                                required: "forms:email-required",
-                                pattern: {
-                                    value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                    message: "forms:email-error",
-                                },
+                            labelKey="forms:label-building"
+                            {...register("building", {
+                                required: "forms:building-required",
                             })}
-                            errorKey={errors.email?.message}
+                            errorKey={errors.building?.message}
                             variant="solid"
                             className="w-full lg:w-1/2 lg:ms-3 mt-2 md:mt-0"
                         />
                     </div>
                     <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0">
                         <Input
-                            labelKey="forms:label-city"
-                            {...register("city")}
+                            labelKey="forms:label-floor"
+                            {...register("floor", {
+                                required: "forms:floor-required",
+                            })}
+                            errorKey={errors.floor?.message}
                             variant="solid"
                             className="w-full lg:w-1/2 "
                         />
 
                         <Input
-                            labelKey="forms:label-postcode"
-                            {...register("zipCode")}
+                            labelKey="forms:label-apartment"
+                            {...register("apartment_number", {
+                                required: "forms:apartment-required",
+                            })}
+                            errorKey={errors.apartment_number?.message}
                             variant="solid"
                             className="w-full lg:w-1/2 lg:ms-3 mt-2 md:mt-0"
                         />
                     </div>
-                    <div className="relative flex items-center ">
-                        <CheckBox labelKey="forms:label-save-information" />
+                    <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0">
+                        {
+                            currentCity &&
+                            <Select name="city"
+                                labelKey="forms:label-city"
+                                className="w-full lg:w-1/2 md:mt-0"
+                                optionValues={cities.data as any[]}
+                                value={currentCity?.id}
+                                onChange={handleSelectCity} variant='solid' />
+                        }
+                        {currentCity &&
+                            <Select
+                                {...register("district_id", {
+                                    required: "forms:apartment-required",
+                                })}
+                                labelKey="forms:label-district"
+                                className="w-full lg:w-1/2 lg:ms-3 mt-2 md:mt-0"
+                                optionValues={currentCity?.districts as any[]}
+                                value={currentDistrictId}
+                                onChange={(value) => SetCurrentDistrictId(parseInt(value.target.value))} variant='solid' />
+                        }
                     </div>
-                    <TextArea
-                        labelKey="forms:label-order-notes"
-                        {...register("note")}
-                        placeholderKey="forms:placeholder-order-notes"
-                        className="relative pt-3 xl:pt-6"
-                    />
                     <div className="flex w-full">
                         <Button
+                            loading={creatingAddressLoading}
+                            type="submit"
                             className="w-full sm:w-auto mx-auto"
                         // loading={isLoading}
                         // disabled={isLoading}

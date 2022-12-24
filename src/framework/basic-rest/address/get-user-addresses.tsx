@@ -19,7 +19,7 @@ export const fetchAddress = async () => {
 };
 export const useAddressQuery = () => {
     return useQuery<UserAddress[], Error>(
-        [API_ENDPOINTS.PRODUCT],
+        [API_ENDPOINTS.GET_ADDRESS],
         fetchAddress,
     );
 };

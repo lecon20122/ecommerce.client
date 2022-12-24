@@ -3,7 +3,7 @@ import { Cart } from "@framework/cart/use-get-cart";
 
 export const CheckoutItem: React.FC<{ item: Cart }> = ({ item }) => {
 	const { price } = usePrice({
-		amount: parseInt(item.price),
+		amount: item.quantity * parseInt(item.price),
 		currencyCode: "EGP",
 	});
 	return (
@@ -21,7 +21,7 @@ export const CheckoutItem: React.FC<{ item: Cart }> = ({ item }) => {
 				{/* the title */}
 			</h6>
 			<div className="flex ms-auto text-heading text-sm ps-2 flex-shrink-0">
-				<span className="font-bold mr-1">{item.quantity} x</span> {price}
+				{price}
 			</div>
 		</div>
 	);

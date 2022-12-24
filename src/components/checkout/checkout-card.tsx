@@ -1,12 +1,11 @@
 import usePrice from "@framework/product/use-price";
-import { useCart } from "@contexts/cart/cart.context";
 import { CheckoutItem } from "@components/checkout/checkout-card-item";
 import { CheckoutCardFooterItem } from "./checkout-card-footer-item";
 import { useTranslation } from "next-i18next";
 import { useCartQuery } from '../../framework/basic-rest/cart/use-get-cart';
 
 const CheckoutCard: React.FC = () => {
-	// const { items, total, isEmpty } = useCart();
+
 	const { data: cartItems } = useCartQuery()
 
 	const isEmpty: boolean = (cartItems?.length === 0)

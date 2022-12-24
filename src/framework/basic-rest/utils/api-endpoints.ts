@@ -8,6 +8,8 @@ export const API_ENDPOINTS = {
   LOGOUT: '/logout',
   ADD_TO_CART: '/api/cart',
   GET_ADDRESS: '/api/address',
+  ADDRESS: '/api/address',
+  GET_CITIES: '/api/cities',
   GET_CART: '/api/cart',
   CART: '/api/cart',
   FORGET_PASSWORD: '/forget-password',

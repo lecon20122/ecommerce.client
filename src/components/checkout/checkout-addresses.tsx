@@ -5,6 +5,7 @@ import { useState } from 'react';
 import CheckoutAddressForm from './checkout-address-form';
 import Button from '@components/ui/button';
 import { useUI } from '../../contexts/ui.context';
+import { useCitiesQuery } from '@framework/address/get-cities';
 
 interface Props {
     t: any
@@ -16,13 +17,16 @@ export default function CheckoutAddresses({ t }: Props) {
     const [shipping_type_id, setShipping_type_id] = useState(0)
 
     const { data: addresses } = useAddressQuery()
+    const { data: cities, isLoading } = useCitiesQuery()
 
     const {
+        setModalData,
         openModal,
         setModalView,
     } = useUI()
 
     function handleAddAddress() {
+        setModalData({ data: cities })
         setModalView("ADD_NEW_ADDRESS")
         return openModal()
     }
@@ -45,14 +49,18 @@ export default function CheckoutAddresses({ t }: Props) {
 
     return (
         <>
-            <div className="flex text-lg md:text-xl xl:text-2xl font-bold text-heading mb-6 xl:mb-8">
+            <div className="flex text-lg md:text-xl xl:text-2xl font-bold text-heading mb-6 xl:mb-8 space-x-2 rtl:space-x-reverse">
                 <h2 className='self-center'>
                     {t("text-shipping-address")}
                 </h2>
-                <button onClick={() => handleAddAddress()} className='ml-2 p-1 text-[12px] border border-gray-200 rounded-md bg-gray-150 hover:border-blue-400 hover:bg-blue-50'>Add address</button>
+                {!isLoading &&
+                    <button
+                        onClick={() => handleAddAddress()}
+                        className='p-1 text-[12px] border border-gray-200 rounded-md bg-gray-150 hover:border-blue-400 hover:bg-blue-50'>Add address</button>
+                }
             </div>
 
-            <div className="flex flex-wrap space-x-2">
+            <div className="flex space-x-1 rtl:space-x-reverse">
                 {userAddresses}
             </div>
         </>
