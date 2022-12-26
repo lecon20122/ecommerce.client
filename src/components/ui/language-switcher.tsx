@@ -28,7 +28,7 @@ export default function LanguageSwitcher() {
 			{({ open }) => (
 				<div className="relative ms-2 lg:ms-0 z-10 w-[140px] sm:w-[150px] lg:w-[130px] xl:w-[150px]">
 					<Listbox.Button className="border border-gray-300  text-heading text-[13px] xl:text-sm font-semibold  relative w-full py-2 ps-3 pe-7 text-start bg-white rounded-lg shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 cursor-pointer">
-						<span className="flex truncate items-center">
+						<span className="flex truncate items-center rtl:mr-2">
 							<span className="me-1.5">{selectedItem.icon}</span>{" "}
 							{t(selectedItem.name)}
 						</span>

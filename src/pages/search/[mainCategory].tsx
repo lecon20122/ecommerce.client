@@ -52,7 +52,7 @@ export default function Shop({ params }: any) {
           </div>
 
           <div className="w-full lg:-ms-9">
-            <SearchTopBar itemsCount={data?.pages[0].data.length} />
+            {/* <SearchTopBar itemsCount={data?.pages[0].data.length} /> */}
             <ProductGrid products={data} fetchNextPage={fetchNextPage} error={error} hasNextPage={hasNextPage} isFetching={isLoading} isFetchingNextPage={loadingMore} />
           </div>
         </div>

@@ -17,7 +17,7 @@ const productGalleryCarouselResponsive = {
 		slidesPerView: 1,
 	},
 	"0": {
-		slidesPerView: 1.1,
+		slidesPerView: 1,
 	},
 };
 

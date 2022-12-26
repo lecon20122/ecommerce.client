@@ -30,11 +30,9 @@ export default function CheckoutAddressForm() {
         const city: City = cities?.data?.find((city: { id: number; }) => city.id === parseInt(value.target.value))
         setCurrentCity(city)
     }
+    
     function onSubmit(input: AddAddressInputProps) {
         mutate(input)
-        console.log('====================================');
-        console.log(input);
-        console.log('====================================');
     }
 
     return (
@@ -134,11 +132,8 @@ export default function CheckoutAddressForm() {
                             loading={creatingAddressLoading}
                             type="submit"
                             className="w-full sm:w-auto mx-auto"
-                        // loading={isLoading}
-                        // disabled={isLoading}
                         >
                             Create Address
-                            {/* {t("common:button-place-order")} */}
                         </Button>
                     </div>
                 </div>
