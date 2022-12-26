@@ -32,6 +32,7 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = "", error, fetch
 							<ProductCard
 								key={`product--key${product.id}`}
 								product={product}
+								imgLoading="eager"
 								variant="grid"
 							/>
 						));

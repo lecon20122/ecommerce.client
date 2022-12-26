@@ -35,6 +35,7 @@ const BannerCard: FC<BannerProps> = ({
           width={banner.width}
           height={banner.height}
           alt={name}
+          loading = "eager"
           quality={100}
           className={cn('bg-gray-300 object-cover w-full', {
             'rounded-md': variant === 'rounded' && !disableBorderRadius,
