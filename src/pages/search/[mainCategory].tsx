@@ -32,7 +32,7 @@ export default function Shop({ params }: any) {
 
   return (
     <>
-      <ShopDiscount />
+      {/* <ShopDiscount /> */}
       <Container>
         <div className={`flex pt-8 pb-16 lg:pb-20`}>
           <div className="flex-shrink-0 pe-24 hidden lg:block w-96">
