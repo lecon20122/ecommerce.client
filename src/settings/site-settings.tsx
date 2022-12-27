@@ -1,9 +1,5 @@
-import { ILFlag } from '@components/icons/ILFlag';
 import { SAFlag } from '@components/icons/SAFlag';
-import { CNFlag } from '@components/icons/CNFlag';
 import { USFlag } from '@components/icons/USFlag';
-import { DEFlag } from '@components/icons/DEFlag';
-import { ESFlag } from '@components/icons/ESFlag';
 import Nike from 'public/assets/images/brands/megamenu/nike.png';
 import Dior from 'public/assets/images/brands/megamenu/dior.png';
 import Gucci from 'public/assets/images/brands/megamenu/gucci.png';
@@ -25,10 +21,10 @@ import { SneakerIcon } from '@components/icons/sneaker-icon';
 
 export const siteSettings = {
   name: 'Modaje',
-  description: 'Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS.',
+  description: 'All in one place Shopping experience',
   author: {
-    name: 'RedQ, Inc.',
-    websiteUrl: 'https://redq.io',
+    name: 'Modaje Shopping Online',
+    websiteUrl: 'https://modaje.com',
     address: '',
   },
   logo: {
@@ -39,7 +35,7 @@ export const siteSettings = {
     height: 30,
   },
   defaultLanguage: 'en',
-  currencyCode: 'USD',
+  currencyCode: 'EGP',
   site_header: {
     menu: [
       {
