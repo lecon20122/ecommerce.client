@@ -20,8 +20,9 @@ export const fetchCart = async () => {
     return data;
 };
 export const useCartQuery = () => {
-    return useQuery<Cart[], Error>( 
+    return useQuery<Cart[], Error>(
         [API_ENDPOINTS.GET_CART],
         () => fetchCart(),
+        { retry: false }
     );
 };
