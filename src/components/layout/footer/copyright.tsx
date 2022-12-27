@@ -44,7 +44,7 @@ const Copyright: React.FC<CopyrightProps> = ({ payment, variant }) => {
           &nbsp; {t('text-all-rights-reserved')}
         </p>
 
-        {payment && (
+        {/* {payment && (
           <ul className='hidden md:flex flex-wrap justify-center items-center space-s-4 xs:space-s-5 lg:space-s-7 mb-1 md:mb-0 mx-auto md:mx-0'>
             {payment?.map((item) => (
               <li
@@ -62,7 +62,7 @@ const Copyright: React.FC<CopyrightProps> = ({ payment, variant }) => {
               </li>
             ))}
           </ul>
-        )}
+        )} */}
 
         {variant === 'contemporary' && (
           <p className='text-sm font-semibold leading-[19px] text-[#212121] cursor-pointer'>

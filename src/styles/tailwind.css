@@ -330,8 +330,11 @@
     @apply mb-[30px] h-16 flex flex-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar text-sm font-medium text-center text-gray-600  relative before:absolute before:border-b-[5px] before:w-[200%] before:border-[#D9D9D9] before:rounded-md before:bottom-0 before:start-1 whitespace-nowrap;
   }
   .tab-li-selected {
-    @apply me-8 inline-flex h-16 px-1 py-4 rounded-t-lg border-transparent text-sm sm:text-base font-semibold text-gray-700 active relative before:absolute before:w-full before:h-[5px] before:rounded-md before:bg-gray-600 before:bottom-0;
+    @apply me-8 inline-flex h-16 px-1 py-4 rounded-t-lg border-transparent text-sm sm:text-base
+    font-semibold text-gray-700 active relative before:absolute before:w-full before:h-[5px]
+    before:rounded-md before:bg-gray-600 before:bottom-0;
   }
+  
   .tab-li {
     @apply me-8 inline-flex h-16 px-1 py-4 rounded-t-lg hover:text-gray-700 text-sm sm:text-base font-normal cursor-pointer;
   }

@@ -1120,13 +1120,13 @@ export const siteSettings = {
     languageMenu: [
       {
         id: 'ar',
-        name: 'عربى - AR',
+        name: 'عربي',
         value: 'ar',
         icon: <SAFlag width="20px" height="15px" />,
       },
       {
         id: 'en',
-        name: 'English - EN',
+        name: 'English',
         value: 'en',
         icon: <USFlag width="20px" height="15px" />,
       },
