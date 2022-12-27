@@ -1,9 +1,10 @@
 import cn from "classnames";
 import { Variation } from '../../framework/basic-rest/types';
 import { useRouter } from 'next/router';
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 import { getDirection } from "@utils/get-direction";
 import { useTranslation } from 'next-i18next';
+import { url } from "inspector";
 interface Props {
 	className?: string;
 	variations: Variation[] | undefined
@@ -12,7 +13,7 @@ interface Props {
 	onClick: any;
 	setCurrentBuyableVariation?: any,
 	setIsSizeSelected?: any,
-	isSizePropSelected : boolean
+	isSizePropSelected: boolean
 }
 
 export const ProductAttributes: React.FC<Props> = ({
@@ -30,9 +31,24 @@ export const ProductAttributes: React.FC<Props> = ({
 	const { t } = useTranslation("common");
 	const [currentStockAbleVariation, setCurrentStockAbleVariation] = useState<Variation | undefined>();
 
-	const handleSizeOnClick = (variation : Variation) => {
+	const handleSizeOnClick = (variation: Variation) => {
 		setIsSizeSelected(false)
 		setCurrentBuyableVariation(variation)
+	}
+
+	const variationColorFactory = (variation: Variation): CSSProperties => {
+		if (variation?.color?.color) {
+			return {
+				backgroundImage: `url(${variation.color.color})`,
+				backgroundPosition: "center",
+				backgroundSize: "cover",
+				border: "none",
+			}
+		} else {
+			return {
+				backgroundColor: variation.variation_type_value.hex_value
+			}
+		}
 	}
 
 	return (
@@ -42,7 +58,7 @@ export const ProductAttributes: React.FC<Props> = ({
 			</h3> */}
 			<ul className="colors flex flex-wrap -me-3 space-x-2">
 				<h1 className={`items-center self-center ${dir === 'ltr' ? 'mr-5' : 'ml-5'} text-xl`}>{t('text-color')}</h1>
-				{variations?.map((variation) => {
+				{ variations?.length > 1 &&  variations?.map((variation) => {
 					return (
 						<li
 							key={`${variation.variation_type_value.value.en}-${variation.id}`}
@@ -59,7 +75,7 @@ export const ProductAttributes: React.FC<Props> = ({
 							{variation.variation_type.type.en === "color" ? (
 								<span
 									className={`h-full w-full rounded block ${variation.variation_type_value.hex_value === '#FFFFFF' ? 'border border-black' : ''}`}
-									style={{ backgroundColor: variation.variation_type_value.hex_value }}
+									style={variationColorFactory(variation)}
 								/>
 							) : (
 								<span></span>

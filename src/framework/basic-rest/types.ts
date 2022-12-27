@@ -159,7 +159,7 @@ export interface Variation {
   order: number;
   deleted_at: null;
   media: Media[];
-  color: null;
+  color: VariationColorImage;
   stock_count: null;
   small_image : VariationSmallImage,
 }
@@ -297,4 +297,14 @@ export interface Store {
   id:          number;
   name:        string;
   description: null;
+}
+
+export interface VariationColorImage {
+  id:        number;
+  name:      string;
+  file_name: string;
+  mime_type: string;
+  width:     number;
+  height:    number;
+  color:     string;
 }
