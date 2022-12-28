@@ -44,7 +44,8 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 		}
 	}
 
-
+	console.log(item);
+	
 	return (
 		<div
 			// layout
@@ -53,7 +54,6 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 			// exit="from"
 			// variants={fadeInOut(0)}
 			className={`group w-full h-auto flex justify-start items-center bg-white py-4 md:py-7 border-b border-gray-100 relative last:border-b-0`}
-		// title={item?.title[locale as keyof typeof item.title]}
 		>
 			<div className="relative flex w-24 md:w-28 h-24 md:h-28 rounded-md overflow-hidden bg-gray-200 flex-shrink-0 cursor-pointer me-4">
 				<Image
@@ -74,12 +74,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 			</div>
 
 			<div className="flex flex-col w-full overflow-hidden">
-				{/* <Link
-					href={`${ROUTES.PRODUCT}/${item?.}`}
+				<Link
+					href={`${ROUTES.PRODUCT}`}
 					className="truncate text-sm text-heading mb-1.5 -mt-1"
 				>
-					{item.parent_variation.variation_type_value.value[locale as keyof typeof item.title] + ' - ' + item?.title[locale as keyof typeof item.title]}
-				</Link> */}
+					{item?.variation?.title}
+				</Link>
 				<span className="text-sm text-gray-400 mb-2.5">
 					{t("text-unit-price")} : &nbsp;
 					{price}
