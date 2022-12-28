@@ -1,4 +1,5 @@
 import { QueryKey } from 'react-query';
+import { Color } from './filters/get-filters-by-category';
 
 export type CollectionsQueryOptionsType = {
   text?: string;
@@ -161,7 +162,7 @@ export interface Variation {
   media: Media[];
   color: VariationColorImage;
   stock_count: null;
-  small_image : VariationSmallImage,
+  small_image: VariationSmallImage,
 }
 
 export interface ApiProduct {
@@ -193,6 +194,7 @@ export interface VariationTypeValue {
   hex_value: string;
   variation_type_id: number;
   variation_type: VariationType;
+  color: Color;
 }
 
 export interface Category {
@@ -294,17 +296,17 @@ export interface User {
 }
 
 export interface Store {
-  id:          number;
-  name:        string;
+  id: number;
+  name: string;
   description: null;
 }
 
 export interface VariationColorImage {
-  id:        number;
-  name:      string;
+  id: number;
+  name: string;
   file_name: string;
   mime_type: string;
-  width:     number;
-  height:    number;
-  color:     string;
+  width: number;
+  height: number;
+  color: string;
 }

@@ -18,6 +18,7 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 	const { pathname, query } = router;
 
 	const { data, isLoading, isError, error } = useFiltersQuery({ category: mainCategorySlug })
+	console.log(data);
 
 	const { t } = useTranslation("common");
 
@@ -62,8 +63,8 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 			</div>
 
 			<CategoryFilter subCategories={data?.sub_categories} />
-			<ColorFilter colors={data?.color} />
-			<SizeFilter size={data?.size} />
+			<ColorFilter colors={data?.filters.filter((item) => item.variation_type.type.en === 'color')} />
+			<SizeFilter size={data?.filters.filter((item) => item.variation_type.type.en === 'size')} />
 			<BrandFilter brands={data?.stores} />
 			<PriceFilter />
 		</div>

@@ -12,7 +12,7 @@ export const variationColorFactory = (variation: Variation): CSSProperties => {
         }
     } else {
         return {
-            backgroundColor: variation.variation_type_value.hex_value
+            backgroundColor: variation.variation_type_value?.hex_value
         }
     }
 }

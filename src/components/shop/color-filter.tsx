@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "next-i18next";
 import { VariationTypeValue } from '../../framework/basic-rest/types';
+import { CSSProperties } from 'react';
 
 
 interface Props {
@@ -23,8 +24,6 @@ export const ColorFilter = ({ colors }: Props) => {
 
 	function handleItemClick(e: React.FormEvent<HTMLInputElement>): void {
 		const { value } = e.currentTarget;
-
-
 		let currentFormState = formState.includes(value)
 			? formState.filter((i) => i !== value)
 			: [...formState, value];
@@ -45,6 +44,20 @@ export const ColorFilter = ({ colors }: Props) => {
 		);
 	}
 
+	const variationColorFactory = (variation: VariationTypeValue): CSSProperties => {
+		if (variation?.color?.url) {
+			return {
+				backgroundImage: `url(${variation.color.url})`,
+				backgroundPosition: "center",
+				backgroundSize: "cover",
+			}
+		} else {
+			return {
+				backgroundColor: variation?.hex_value
+			}
+		}
+	}
+
 	const mappedColors = colors?.map((item: VariationTypeValue) => {
 		return (
 			<CheckBox
@@ -53,7 +66,7 @@ export const ColorFilter = ({ colors }: Props) => {
 					<span className="flex items-center">
 						<span
 							className={`w-6 h-5 rounded-sm me-3 mt-0.5 drop-shadow-xl border-[1px] border-gray-400 hover:border-[1px] hover:border-black`}
-							style={{ backgroundColor: item.hex_value }}
+							style={variationColorFactory(item)}
 						/>
 					</span>
 				}

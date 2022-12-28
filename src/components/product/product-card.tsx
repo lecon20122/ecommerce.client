@@ -237,7 +237,7 @@ const ProductCard: FC<ProductProps> = ({
         {product.variations.length > 1 &&  product.variations.map((variation) => {
           return (
             <div key={variation.id} className='w-[18px] h-[18px] lg:w-[20px] lg:h-[20px] flex justify-center items-center'>
-              <h1 className={`w-[14px] h-[14px] lg:w-[20px] lg:h-[20px] rounded-sm ${isVariationColorWhite(variation.variation_type_value.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
+              <h1 className={`w-[14px] h-[14px] lg:w-[20px] lg:h-[20px] rounded-sm ${isVariationColorWhite(variation.variation_type_value?.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
             </div>
           )
         })}

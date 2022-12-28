@@ -49,7 +49,7 @@ const NewArrivalsProductFeedWithTabs: React.FC<any> = () => {
                   prevNextButtons='none'
                   className='!mb-12 !md:mb-14 !xl:mb-[60px]'
                 />
-                <CategoryBlock sectionHeading="text-shop-by-category" type="rounded" data={category.children} error={error} isLoading={isLoading} />
+                <CategoryBlock imgSize='large'  sectionHeading="text-shop-by-category" type="rounded" data={category.children} error={error} isLoading={isLoading} />
               </Tab.Panel>
             )
           })}
