@@ -94,7 +94,7 @@ const ProductCard: FC<ProductProps> = ({
     >
       <div
         className={cn(
-          'flex',
+          'flex w-full',
           {
             'mb-3 md:mb-3.5': variant === 'grid',
             'mb-3 md:mb-3.5 pb-0': variant === 'gridSlim',
@@ -234,10 +234,10 @@ const ProductCard: FC<ProductProps> = ({
         </div>
       )}
       <div className='flex flex-row space-x-2 rtl:space-x-reverse p-2 md:px-2.5 xl:px-4 '>
-        {product.variations.map((variation) => {
+        {product.variations.length > 1 && product.variations.map((variation) => {
           return (
-            <div key={variation.id} className='w-[18px] h-[18px] lg:w-[23px] lg:h-[23px] flex justify-center items-center'>
-              <h1 className={`w-[14px] h-[14px] lg:w-[23px] lg:h-[23px] rounded-sm ${isVariationColorWhite(variation.variation_type_value.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
+            <div key={variation.id} className='w-[18px] h-[18px] lg:w-[20px] lg:h-[20px] flex justify-center items-center'>
+              <h1 className={`w-[14px] h-[14px] lg:w-[20px] lg:h-[20px] rounded-sm ${isVariationColorWhite(variation.variation_type_value.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
             </div>
           )
         })}
