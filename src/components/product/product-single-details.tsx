@@ -145,7 +145,7 @@ function ProductSingleDetails() {
 						active={currentVariation?.id}
 						variations={data?.variations}
 						currentVariation={currentVariation}
-						onClick={handleAttribute}
+						onClickCurrentColor={handleAttribute}
 						setCurrentBuyableVariation={setCurrentBuyableVariation}
 						isSizePropSelected={isSizeSelected}
 						setIsSizeSelected={setIsSizeSelected}

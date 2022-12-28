@@ -5,12 +5,13 @@ import { CSSProperties, useState } from "react";
 import { getDirection } from "@utils/get-direction";
 import { useTranslation } from 'next-i18next';
 import { variationColorFactory } from "@utils/variation-color-factory";
+import { useEffect } from 'react';
 interface Props {
 	className?: string;
 	variations: Variation[] | undefined
 	currentVariation: Variation | undefined
 	active: number | undefined;
-	onClick: any;
+	onClickCurrentColor: any;
 	setCurrentBuyableVariation?: any,
 	setIsSizeSelected?: any,
 	isSizePropSelected: boolean
@@ -20,7 +21,7 @@ export const ProductAttributes: React.FC<Props> = ({
 	className = "mb-4",
 	variations,
 	active,
-	onClick,
+	onClickCurrentColor,
 	currentVariation,
 	setCurrentBuyableVariation,
 	isSizePropSelected,
@@ -31,6 +32,16 @@ export const ProductAttributes: React.FC<Props> = ({
 	const { t } = useTranslation("common");
 	const [currentStockAbleVariation, setCurrentStockAbleVariation] = useState<Variation | undefined>();
 
+	useEffect(() => {
+		if (variations && variations[0].children[0].variation_type.type.en === 'size' && variations[0].children.length === 1) {
+			console.log('f');
+			setIsSizeSelected(false)
+			setCurrentBuyableVariation(variations[0].children[0])
+			setCurrentStockAbleVariation(variations[0].children[0])
+
+		}
+	}, [])
+
 	const handleSizeOnClick = (variation: Variation) => {
 		setIsSizeSelected(false)
 		setCurrentBuyableVariation(variation)
@@ -39,7 +50,7 @@ export const ProductAttributes: React.FC<Props> = ({
 	return (
 		<div className={className}>
 			{/* <h3 className="text-base md:text-lg text-heading font-semibold mb-2.5 capitalize">
-				{title}
+				'hello'
 			</h3> */}
 			<ul className="colors flex flex-wrap -me-3 space-x-2">
 				{variations?.length > 1 && <h1 className={`items-center self-center ${dir === 'ltr' ? 'mr-5' : 'ml-5'} text-xl`}>{t('text-color')}</h1>}
@@ -54,7 +65,7 @@ export const ProductAttributes: React.FC<Props> = ({
 								},
 
 							)}
-							onClick={() => onClick(variation)}
+							onClick={() => onClickCurrentColor(variation)}
 						>
 
 							{variation.variation_type.type.en === "color" ? (
@@ -69,10 +80,9 @@ export const ProductAttributes: React.FC<Props> = ({
 					)
 				})}
 			</ul>
-			<ul className="colors flex flex-wrap -me-3 space-x-2">
+			<ul className="flex flex-wrap -me-3 space-x-2">
 				<h1 className={`items-center self-center ${dir === 'ltr' ? 'mr-7' : 'ml-7'} text-xl`}>{t('text-size')}:</h1>
 				{currentVariation?.children?.map((variation) => {
-
 					return (
 						<li
 							key={`${variation.variation_type_value.value.en}-${variation.id}`}
