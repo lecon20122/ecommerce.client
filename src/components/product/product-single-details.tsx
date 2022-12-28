@@ -4,13 +4,14 @@ import { useRouter } from "next/router";
 import { useProductQuery } from "@framework/product/get-product";
 import usePrice from "@framework/product/use-price";
 import { ProductAttributes } from "./product-attributes";
-import { useWindowSize } from "@utils/use-window-size";
 import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
 import { Variation, ApiProduct } from '../../framework/basic-rest/types';
 import { AddToCartInputProps, useAddToCartMutation } from "@framework/cart/use-add-to-cart";
 import Cookies from "js-cookie";
 import { useEffect } from 'react';
+import { NextSeo } from "next-seo";
+import { ROUTES } from '../../utils/routes';
 
 const productGalleryCarouselResponsive = {
 	"768": {
@@ -35,10 +36,7 @@ function ProductSingleDetails() {
 		}
 	}, [])
 
-	const { width } = useWindowSize();
 
-
-	const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
 	const [currentVariation, setCurrentVariation] = useState<Variation | undefined>();
 	const [currentBuyableVariation, setCurrentBuyableVariation] = useState<Variation | undefined>();
 	const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
@@ -53,7 +51,7 @@ function ProductSingleDetails() {
 	const { data, isLoading } = useProductQuery(slug as string, onSuccess);
 
 
-	const [addToCartLoader, setAddToCartLoader] = useState<boolean>();
+
 	const { price, basePrice, discount } = usePrice(
 		data && {
 			amount: data.price,
@@ -90,6 +88,34 @@ function ProductSingleDetails() {
 
 	return (
 		<div className="block lg:grid grid-cols-9 gap-x-10 xl:gap-x-14 pt-7 pb-10 lg:pb-14 2xl:pb-20 items-start">
+			<NextSeo
+				additionalMetaTags={[
+					{
+						name: 'viewport',
+						content: 'width=device-width, initial-scale=1.0',
+					},
+				]}
+				title='Modaje Shopping Online'
+				description='Modaje Shopping Experience'
+				canonical='https://modaje.com/'
+				openGraph={{
+					url: process.env.NEXT_PUBLIC_SITE_URL + ROUTES.PRODUCT + '/' + data?.title.en,
+					title: data?.title.en,
+					description:
+						data?.title.en,
+					images: [
+						{
+							url: data?.variations[0].media[0].thumbnail as any,
+							width: 800,
+							height: 600,
+							alt: data?.title.en,
+						},
+					],
+				}}
+			/>
+
+
+
 			<div className="md:col-span-5 md:grid md:grid-cols-1 md:gap-2.5">
 				<Carousel
 					type="rounded"

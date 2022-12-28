@@ -1,11 +1,12 @@
 import cn from "classnames";
 import { Variation } from '../../framework/basic-rest/types';
 import { useRouter } from 'next/router';
-import { CSSProperties, useState } from "react";
+import { useState } from "react";
 import { getDirection } from "@utils/get-direction";
 import { useTranslation } from 'next-i18next';
 import { variationColorFactory } from "@utils/variation-color-factory";
 import { useEffect } from 'react';
+
 interface Props {
 	className?: string;
 	variations: Variation[] | undefined
@@ -49,6 +50,7 @@ export const ProductAttributes: React.FC<Props> = ({
 
 	return (
 		<div className={className}>
+
 			{/* <h3 className="text-base md:text-lg text-heading font-semibold mb-2.5 capitalize">
 				'hello'
 			</h3> */}

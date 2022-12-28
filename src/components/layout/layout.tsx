@@ -16,30 +16,24 @@ const Layout: React.FC = ({ children }) => {
 			<NextSeo
 				additionalMetaTags={[
 					{
-						name: "viewport",
-						content: "width=device-width, initial-scale=1.0",
+						name: 'viewport',
+						content: 'width=device-width, initial-scale=1.0',
 					},
 				]}
-				title="ChawkBazar React - React Next E-commerce Template"
-				description="Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS."
-				canonical="https://chawkbazar.vercel.app/"
+				title='Modaje Shopping Online'
+				description='Modaje Shopping Experience'
+				canonical='https://modaje.com/'
 				openGraph={{
-					url: "https://chawkbazar.vercel.app",
-					title: "ChawkBazar React - React Next E-commerce Template",
+					url: 'https://modaje.com/',
+					title: 'Modaje Shopping Online',
 					description:
-						"Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS.",
+						'Modaje Shopping Experience',
 					images: [
 						{
-							url: "/assets/images/og-image-01.png",
+							url: '/assets/images/logo-white',
 							width: 800,
 							height: 600,
-							alt: "Og Image Alt",
-						},
-						{
-							url: "/assets/images/og-image-02.png",
-							width: 900,
-							height: 800,
-							alt: "Og Image Alt Second",
+							alt: 'Modaje',
 						},
 					],
 				}}
