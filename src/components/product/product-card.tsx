@@ -114,7 +114,7 @@ const ProductCard: FC<ProductProps> = ({
           className={cn(`bg-gray-300 object-cover ${!disableBorderRadius && 'rounded-s-md'}`, {
             'w-full transition duration-200 ease-in':
               variant === 'grid' || variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy',
-            'rounded-md group-hover:rounded-b-none':
+            'rounded-t-md group-hover:rounded-b-none':
               (variant === 'grid' && !disableBorderRadius) ||
               (variant === 'gridModern' && !disableBorderRadius) ||
               (variant === 'gridModernWide' && !disableBorderRadius) ||
@@ -233,8 +233,8 @@ const ProductCard: FC<ProductProps> = ({
           <ProductCompareIcon className="transition ease-in duration-300 sm:opacity-0 group-hover:opacity-100 delay-300 w-[35px] sm:w-[42px] lg:w-[52px] bg-[#F1F3F4] rounded-md" />
         </div>
       )}
-      <div className='flex flex-row space-x-2 rtl:space-x-reverse p-2 md:px-2.5 xl:px-4 '>
-        {product.variations.length > 1 && product.variations.map((variation) => {
+      <div className='flex flex-row space-x-2 rtl:space-x-reverse py-2 md:py-2.5 xl:py-3 '>
+        {product.variations.length > 1 &&  product.variations.map((variation) => {
           return (
             <div key={variation.id} className='w-[18px] h-[18px] lg:w-[20px] lg:h-[20px] flex justify-center items-center'>
               <h1 className={`w-[14px] h-[14px] lg:w-[20px] lg:h-[20px] rounded-sm ${isVariationColorWhite(variation.variation_type_value.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
