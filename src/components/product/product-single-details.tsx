@@ -10,7 +10,7 @@ import { Variation, ApiProduct } from '../../framework/basic-rest/types';
 import { AddToCartInputProps, useAddToCartMutation } from "@framework/cart/use-add-to-cart";
 import Cookies from "js-cookie";
 import { useEffect } from 'react';
-import { NextSeo } from "next-seo";
+import { NextSeo, ProductJsonLd } from "next-seo";
 import { ROUTES } from '../../utils/routes';
 
 const productGalleryCarouselResponsive = {
@@ -88,30 +88,15 @@ function ProductSingleDetails() {
 
 	return (
 		<div className="block lg:grid grid-cols-9 gap-x-10 xl:gap-x-14 pt-7 pb-10 lg:pb-14 2xl:pb-20 items-start">
+			<ProductJsonLd
+				productName={data?.title.en as string}
+				images={
+					data?.variations[0].media[0].thumbnail as any
+				}
+				description={data?.title.en}
+			/>
 			<NextSeo
-				additionalMetaTags={[
-					{
-						name: 'viewport',
-						content: 'width=device-width, initial-scale=1.0',
-					},
-				]}
-				title='Modaje Shopping Online'
-				description='Modaje Shopping Experience'
-				canonical='https://modaje.com/'
-				openGraph={{
-					url: process.env.NEXT_PUBLIC_SITE_URL + ROUTES.PRODUCT + '/' + data?.slug,
-					title: data?.title.en,
-					description:
-						data?.title.en,
-					images: [
-						{
-							url: data?.variations[0].media[0].thumbnail as any,
-							width: 800,
-							height: 600,
-							alt: data?.title.en,
-						},
-					],
-				}}
+				title={data?.title.en as string}
 			/>
 
 
