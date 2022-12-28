@@ -9,6 +9,7 @@ import RatingDisplay from '@components/common/rating-display';
 import { ApiProduct, Variation } from '../../framework/basic-rest/types';
 import { useRouter } from 'next/router';
 import { ROUTES } from '@utils/routes';
+import { variationColorFactory } from '@utils/variation-color-factory';
 
 interface ProductProps {
   product: ApiProduct;
@@ -236,7 +237,7 @@ const ProductCard: FC<ProductProps> = ({
         {product.variations.map((variation) => {
           return (
             <div key={variation.id} className='w-[18px] h-[18px] lg:w-[23px] lg:h-[23px] flex justify-center items-center'>
-              <h1 className={`w-[14px] h-[14px] lg:w-[23px] lg:h-[23px] rounded-sm ${isVariationColorWhite(variation.variation_type_value.hex_value) ? 'border border-black' : ''}`} style={{ backgroundColor: variation.color ?? variation.variation_type_value.hex_value }}></h1>
+              <h1 className={`w-[14px] h-[14px] lg:w-[23px] lg:h-[23px] rounded-sm ${isVariationColorWhite(variation.variation_type_value.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
             </div>
           )
         })}
