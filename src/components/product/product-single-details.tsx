@@ -99,7 +99,7 @@ function ProductSingleDetails() {
 				description='Modaje Shopping Experience'
 				canonical='https://modaje.com/'
 				openGraph={{
-					url: process.env.NEXT_PUBLIC_SITE_URL + ROUTES.PRODUCT + '/' + data?.title.en,
+					url: process.env.NEXT_PUBLIC_SITE_URL + ROUTES.PRODUCT + '/' + data?.slug,
 					title: data?.title.en,
 					description:
 						data?.title.en,
