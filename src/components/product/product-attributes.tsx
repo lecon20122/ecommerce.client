@@ -80,14 +80,14 @@ export const ProductAttributes: React.FC<Props> = ({
 					)
 				})}
 			</ul>
-			<ul className="flex flex-wrap -me-3 space-x-2">
+			<ul className="flex flex-wrap  items-center">
 				<h1 className={`items-center self-center ${dir === 'ltr' ? 'mr-7' : 'ml-7'} text-xl`}>{t('text-size')}:</h1>
 				{currentVariation?.children?.map((variation) => {
 					return (
 						<li
 							key={`${variation.variation_type_value.value.en}-${variation.id}`}
 							className={cn(
-								"cursor-pointer rounded border border-gray-100 w-9 md:w-11 h-9 md:h-11 p-1 mb-2 md:mb-3 me-2 md:me-3 flex justify-center items-center text-heading text-xs md:text-sm uppercase font-semibold transition duration-200 ease-in-out hover:border-black",
+								"cursor-pointer rounded border border-gray-100 p-1 text-heading font-semibold transition duration-200 ease-in-out hover:border-black",
 								{
 									"border-black": variation?.id === currentStockAbleVariation?.id,
 								},
@@ -99,7 +99,7 @@ export const ProductAttributes: React.FC<Props> = ({
 
 								<span
 									onClick={() => handleSizeOnClick(variation)}
-									className="h-full w-full rounded flex items-center justify-center text-lg"
+									className="h-full w-full rounded flex items-center justify-center"
 								>
 									{variation.variation_type_value.value.en}
 								</span>
