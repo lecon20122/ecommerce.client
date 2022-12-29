@@ -97,7 +97,7 @@ function ProductSingleDetails() {
 				}
 				description={data?.title.en}
 			/> */}
-			<NextSeo
+			{/* <NextSeo
 				title={data?.title.en as string}
 				openGraph={{
 					images: [{
@@ -105,7 +105,7 @@ function ProductSingleDetails() {
 						alt: data?.title.en as string,
 					}]
 				}}
-			/>
+			/> */}
 
 			<SocialMediaPreview
 				title={data?.title.en}
