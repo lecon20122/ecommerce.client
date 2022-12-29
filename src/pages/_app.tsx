@@ -60,8 +60,8 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 					<Hydrate state={pageProps.dehydratedState}>
 						<ManagedUIContext>
 							<Layout pageProps={pageProps}>
-								{/* <DefaultSeo /> */}
-								<SocialMediaPreview/>
+								<DefaultSeo />
+								{/* <SocialMediaPreview/> */}
 								<Component {...pageProps} key={router.route} />
 								<ToastContainer />
 							</Layout>

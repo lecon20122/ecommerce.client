@@ -14,7 +14,7 @@ const Layout: React.FC = ({ children }) => {
 	const { t } = useTranslation("common");
 	return (
 		<div className="flex flex-col min-h-screen">
-			<SocialMediaPreview />
+			{/* <SocialMediaPreview /> */}
 			{/* <NextSeo
 				additionalMetaTags={[
 					{

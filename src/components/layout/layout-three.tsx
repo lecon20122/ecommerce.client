@@ -30,7 +30,7 @@ const Layout: React.FC = ({ children }) => {
             'Modaje Shopping Experience',
           images: [
             {
-              url: '/assets/images/logo-white',
+              url: '/assets/images/og_image.webp',
               width: 800,
               height: 600,
               alt: 'Modaje',
