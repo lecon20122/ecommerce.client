@@ -96,10 +96,16 @@ function ProductSingleDetails() {
 					data?.variations[0].media[0].thumbnail as any
 				}
 				description={data?.title.en}
-			/>
+			/> */}
 			<NextSeo
 				title={data?.title.en as string}
-			/> */}
+				openGraph={{
+					images: [{
+						url: data?.variations[0].media[0].thumbnail as any,
+						alt: data?.title.en as string,
+					}]
+				}}
+			/>
 
 			<SocialMediaPreview
 				title={data?.title.en}
