@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { NextSeo, ProductJsonLd } from "next-seo";
 import { ROUTES } from '../../utils/routes';
 import SocialMediaPreview from "@components/common/social-media-preview";
+import { GetServerSideProps } from "next";
 
 const productGalleryCarouselResponsive = {
 	"768": {
@@ -100,7 +101,13 @@ function ProductSingleDetails() {
 				title={data?.title.en as string}
 			/> */}
 
-			<SocialMediaPreview title={data?.title.en} fb_image={data?.variations[0].media[0].thumbnail as any} tw_image={data?.variations[0].media[0].thumbnail as any} />
+			<SocialMediaPreview
+				title={data?.title.en}
+				fb_description={data?.variations[0].variation_type_value.value.en + '-' + data?.title.en}
+				fb_image={data?.variations[0].media[0].small as any}
+				tw_image={data?.variations[0].media[0].small as any}
+				fb_image_width={"183"} fb_image_height={"293"}
+			/>
 
 			<div className="md:col-span-5 md:grid md:grid-cols-1 md:gap-2.5">
 				<Carousel
@@ -226,3 +233,13 @@ function ProductSingleDetails() {
 };
 
 export default ProductSingleDetails;
+
+// export const getServerSideProps: GetServerSideProps = async ({ locale, params }) => {
+
+// 	await const { data, isLoading } = useProductQuery(slug as string, onSuccess);
+// 	return {
+// 	  props: {
+
+// 	  }
+// 	};
+//   };

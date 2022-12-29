@@ -8,6 +8,8 @@ interface Props {
     fb_title?: string
     fb_description?: string
     fb_image?: string
+    fb_image_width?: string
+    fb_image_height?: string
     tw_url?: string
     tw_title?: string
     tw_description?: string
@@ -19,6 +21,8 @@ export default function SocialMediaPreview({
     description = "Modaje Shopping Experience",
     fb_description = "Modaje Shopping Experience",
     fb_image,
+    fb_image_width = "300",
+    fb_image_height = "300",
     fb_title = "Modaje Shopping Online",
     fb_type = "website",
     fb_url = "https://www.modaje.com/",
@@ -38,7 +42,9 @@ export default function SocialMediaPreview({
             <meta property="og:type" content={fb_type} />
             <meta property="og:title" content={fb_title} />
             <meta property="og:description" content={fb_description} />
-            <meta property="og:image" content={fb_image} />
+            <meta property="og:image" itemProp='image' content={fb_image} />
+            <meta property="og:image:width" content={fb_image_width} />
+            <meta property="og:image:height" content={fb_image_height} />
 
             {/* <!-- Twitter Meta Tags --> */}
             <meta name="twitter:card" content="summary_large_image" />
