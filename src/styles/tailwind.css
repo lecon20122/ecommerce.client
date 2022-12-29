@@ -332,7 +332,7 @@
   .tab-li-selected {
     @apply me-8 inline-flex h-16 px-1 py-4 rounded-t-lg border-transparent text-sm sm:text-base
     font-semibold text-gray-700 active relative before:absolute before:w-full before:h-[5px]
-    before:rounded-md before:bg-gray-600 before:bottom-0;
+    before:rounded-md before:bg-gray-600 before:bottom-0 outline-none cursor-pointer;
   }
   
   .tab-li {
