@@ -7,13 +7,15 @@ import CookieBar from "@components/common/cookie-bar";
 import { useAcceptCookies } from "@utils/use-accept-cookies";
 import Button from "@components/ui/button";
 import { useTranslation } from "next-i18next";
+import SocialMediaPreview from '../common/social-media-preview';
 
 const Layout: React.FC = ({ children }) => {
 	const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
 	const { t } = useTranslation("common");
 	return (
 		<div className="flex flex-col min-h-screen">
-			<NextSeo
+			<SocialMediaPreview />
+			{/* <NextSeo
 				additionalMetaTags={[
 					{
 						name: 'viewport',
@@ -37,7 +39,7 @@ const Layout: React.FC = ({ children }) => {
 						},
 					],
 				}}
-			/>
+			/> */}
 			<Header />
 			<main
 				className="relative flex-grow"
