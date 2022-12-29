@@ -12,6 +12,7 @@ import Cookies from "js-cookie";
 import { useEffect } from 'react';
 import { NextSeo, ProductJsonLd } from "next-seo";
 import { ROUTES } from '../../utils/routes';
+import SocialMediaPreview from "@components/common/social-media-preview";
 
 const productGalleryCarouselResponsive = {
 	"768": {
@@ -88,7 +89,7 @@ function ProductSingleDetails() {
 
 	return (
 		<div className="block lg:grid grid-cols-9 gap-x-10 xl:gap-x-14 pt-7 pb-10 lg:pb-14 2xl:pb-20 items-start">
-			<ProductJsonLd
+			{/* <ProductJsonLd
 				productName={data?.title.en as string}
 				images={
 					data?.variations[0].media[0].thumbnail as any
@@ -97,9 +98,9 @@ function ProductSingleDetails() {
 			/>
 			<NextSeo
 				title={data?.title.en as string}
-			/>
+			/> */}
 
-
+			<SocialMediaPreview title={data?.title.en} fb_image={data?.variations[0].media[0].thumbnail as any} tw_image={data?.variations[0].media[0].thumbnail as any} />
 
 			<div className="md:col-span-5 md:grid md:grid-cols-1 md:gap-2.5">
 				<Carousel

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import React from 'react'
-// import second from '../../../public/assets/images/og_image.webp'
 interface Props {
     title?: string
     description?: string,
@@ -19,7 +18,7 @@ export default function SocialMediaPreview({
     title = "Modaje Shopping Online",
     description = "Modaje Shopping Experience",
     fb_description = "Modaje Shopping Experience",
-    fb_image = "../../../public/assets/images/og_image.webp",
+    fb_image,
     fb_title = "Modaje Shopping Online",
     fb_type = "website",
     fb_url = "https://www.modaje.com/",
