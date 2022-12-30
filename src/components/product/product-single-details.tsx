@@ -10,10 +10,9 @@ import { Variation, ApiProduct } from '../../framework/basic-rest/types';
 import { AddToCartInputProps, useAddToCartMutation } from "@framework/cart/use-add-to-cart";
 import Cookies from "js-cookie";
 import { useEffect } from 'react';
-import { NextSeo, ProductJsonLd } from "next-seo";
-import { ROUTES } from '../../utils/routes';
 import SocialMediaPreview from "@components/common/social-media-preview";
-import { GetServerSideProps } from "next";
+import ProductDescriptionCollapse from './product-description';
+
 
 const productGalleryCarouselResponsive = {
 	"768": {
@@ -53,7 +52,9 @@ function ProductSingleDetails() {
 	const { data, isLoading } = useProductQuery(slug as string, onSuccess);
 
 
-
+	console.log('====================================');
+	console.log(data);
+	console.log('====================================');
 	const { price, basePrice, discount } = usePrice(
 		data && {
 			amount: data.price,
@@ -175,6 +176,7 @@ function ProductSingleDetails() {
 						isSizePropSelected={isSizeSelected}
 						setIsSizeSelected={setIsSizeSelected}
 					/>
+					{data?.description && <ProductDescriptionCollapse description={data?.description} />}
 				</div>
 				<div className="flex items-center space-s-4 md:pe-32 lg:pe-12 2xl:pe-32 3xl:pe-48 border-b border-gray-300 py-8">
 					{/* <Counter
@@ -193,44 +195,6 @@ function ProductSingleDetails() {
 					>
 						<span className="py-2 3xl:px-8">Add to cart</span>
 					</Button>
-				</div>
-				<div className="py-6">
-					<ul className="text-sm space-y-5 pb-1">
-						{/* <li>
-							<span className="font-semibold text-heading inline-block pe-2">
-								SKU:
-							</span>
-							{data?.sku}
-						</li> */}
-						{/* <li>
-							<span className="font-semibold text-heading inline-block pe-2">
-								Category:
-							</span>
-							<Link
-								href="/"
-								className="transition hover:underline hover:text-heading"
-							>
-								{data?.category?.name}
-							</Link>
-						</li> */}
-						{/* {data?.tags && Array.isArray(data.tags) && (
-							<li className="productTags">
-								<span className="font-semibold text-heading inline-block pe-2">
-									Tags:
-								</span>
-								{data.tags.map((tag) => (
-									<Link
-										key={tag.id}
-										href={tag.slug}
-										className="inline-block pe-1.5 transition hover:underline hover:text-heading last:pe-0"
-									>
-										{tag.name}
-										<span className="text-heading">,</span>
-									</Link>
-								))}
-							</li>
-						)} */}
-					</ul>
 				</div>
 				{/* <ProductMetaReview data={data} /> */}
 			</div>

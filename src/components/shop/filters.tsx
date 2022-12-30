@@ -27,7 +27,9 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 			<h3>Loading..</h3>
 		)
 	}
-
+	console.log('====================================');
+	console.log(data);
+	console.log('====================================');
 	return (
 		<div className="pt-1">
 			<div className="block border-b border-gray-300 pb-7 mb-7">
@@ -63,8 +65,8 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 			</div>
 
 			{data?.sub_categories && <CategoryFilter subCategories={data?.sub_categories} />}
-			<ColorFilter colors={data?.filters.filter((item) => item.variation_type.type.en === 'color')} />
-			<SizeFilter size={data?.filters.filter((item) => item.variation_type.type.en === 'size')} />
+			<ColorFilter colors={data?.filters.filter((item) => item.variation_type?.type.en === 'color')} />
+			<SizeFilter size={data?.filters.filter((item) => item.variation_type?.type.en === 'size')} />
 			<BrandFilter brands={data?.stores} />
 			<PriceFilter />
 		</div>

@@ -172,7 +172,21 @@ export interface ApiProduct {
   slug: string;
   store_id: number;
   variations: Variation[];
+  description: ProductDescription[]
   deleted_at: null;
+}
+
+export interface ProductDescription {
+  id: number,
+  value: Translation,
+  product_id: number,
+  attribute: ProductAttribute
+}
+
+export interface ProductAttribute {
+  id: number,
+  attribute: Translation,
+  is_filterable: boolean,
 }
 
 
