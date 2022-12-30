@@ -20,9 +20,10 @@ export default function ProductDescriptionCollapse({ description }: Props) {
         <>
             <Collapse
                 i={1}
+                titleKey={"label-description"}
                 key={'description'}
                 title={'Description'}
-                translatorNS="review"
+                translatorNS="forms"
                 content={
                     <ul>
                         {description?.map((item) => (
