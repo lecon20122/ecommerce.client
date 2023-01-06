@@ -13,7 +13,7 @@ export default function StoreDashboardLayoutTwo({ children }: Props) {
             <div className='border-b border-gray-300'>
                 <HeaderTwo />
             </div>
-            <div className="flex min-h-screen flex-row  bg-gray-200">
+            <div className="flex min-h-screen flex-row bg-gray-200">
                 <SidebarTwo />
                 <main className="main -ml-48 flex flex-grow flex-col p-4 transition-all duration-150 ease-in md:ml-0">
                     <div className="flex h-full items-center justify-center text-center text-5xl font-bold shadow-md">

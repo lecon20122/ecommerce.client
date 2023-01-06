@@ -93,8 +93,8 @@ export default function products() {
                 <Toolbar className="" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
                 <DataTable loading={isLoading} ref={dt} value={data} dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                    globalFilter={globalFilter}
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" header={header} responsiveLayout="scroll">
+                    globalFilter={globalFilter} 
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" header={header} responsiveLayout="stack">
                     {/* <Column field="id" header="ID" sortable style={{ minWidth: '8rem' }}></Column> */}
                     <Column field="title.en" header="EN Title" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="title.ar" header="AR Title" sortable style={{ minWidth: '12rem' }}></Column>
