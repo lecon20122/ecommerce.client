@@ -7,7 +7,7 @@ import {
 	clearAllBodyScrollLocks,
 } from "body-scroll-lock";
 import cn from "classnames";
-import { IoClose } from "react-icons/io5";
+import { IoClose  } from "react-icons/io5";
 import { fadeInOut } from "@utils/motion/fade-in-out";
 import { zoomOutIn } from "@utils/motion/zoom-out-in";
 import { useUI } from "@contexts/ui.context";

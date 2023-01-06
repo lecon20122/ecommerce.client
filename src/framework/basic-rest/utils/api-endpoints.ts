@@ -42,4 +42,7 @@ export const API_ENDPOINTS = {
   ORDER: '/api/order.json',
   FILTERS: '/api/filters',
   API_FILTERED_PRODUCTS: '/api/category',
+  API_OWNER_STORE: '/api/store',
+  STORE_PRODUCTS: '/api/store/products',
+  STORE_PRODUCT: '/api/store/product',
 };

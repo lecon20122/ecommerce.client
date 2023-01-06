@@ -307,6 +307,7 @@ export interface User {
   name: string,
   email: string,
   phone: string,
+  is_owner: boolean
 }
 
 export interface Store {

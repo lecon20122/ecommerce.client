@@ -3,7 +3,6 @@ import { getToken } from '@framework/utils/get-token';
 import { CartProvider } from './cart/cart.context';
 import { ApiProduct } from '../framework/basic-rest/types';
 
-
 export interface State {
   isAuthorized: boolean;
   displaySidebar: boolean;
@@ -16,6 +15,7 @@ export interface State {
   modalData: any;
   drawerView: string | null;
   toastText: string;
+  StoreDashboardSideBar: boolean
 }
 
 const initialState = {
@@ -30,6 +30,7 @@ const initialState = {
   drawerView: null,
   modalData: null,
   toastText: '',
+  StoreDashboardSideBar: true
 };
 
 type Action =
@@ -94,6 +95,12 @@ type Action =
   | {
     type: 'SET_USER_AVATAR';
     value: string;
+  }
+  | {
+    type: 'OPEN_STORE_DASHBOARD_SIDEBAR'
+  }
+  | {
+    type: 'CLOSE_STORE_DASHBOARD_SIDEBAR'
   };
 
 type MODAL_VIEWS =
@@ -101,7 +108,8 @@ type MODAL_VIEWS =
   | 'LOGIN_VIEW'
   | 'FORGET_PASSWORD'
   | 'PRODUCT_VIEW'
-  | 'ADD_NEW_ADDRESS';
+  | 'ADD_NEW_ADDRESS'
+  | 'ADD_PRODUCT';
 type DRAWER_VIEWS = 'CART_SIDEBAR' | 'MOBILE_MENU';
 type ToastText = string;
 
@@ -227,6 +235,18 @@ function uiReducer(state: State, action: Action) {
         userAvatar: action.value,
       };
     }
+    case 'OPEN_STORE_DASHBOARD_SIDEBAR': {
+      return {
+        ...state,
+        StoreDashboardSideBar: true
+      }
+    }
+    case 'CLOSE_STORE_DASHBOARD_SIDEBAR': {
+      return {
+        ...state,
+        StoreDashboardSideBar: false
+      }
+    }
   }
 }
 
@@ -262,6 +282,8 @@ export const UIProvider: React.FC = (props) => {
   const closeModal = () => dispatch({ type: 'CLOSE_MODAL' });
   const openSearch = () => dispatch({ type: 'OPEN_SEARCH' });
   const closeSearch = () => dispatch({ type: 'CLOSE_SEARCH' });
+  const closeStoreSideBar = () => dispatch({ type: 'CLOSE_STORE_DASHBOARD_SIDEBAR' });
+  const openStoreSideBar = () => dispatch({ type: 'OPEN_STORE_DASHBOARD_SIDEBAR' });
 
   const setUserAvatar = (_value: string) =>
     dispatch({ type: 'SET_USER_AVATAR', value: _value });
@@ -298,6 +320,8 @@ export const UIProvider: React.FC = (props) => {
       setDrawerView,
       setUserAvatar,
       setModalData,
+      closeStoreSideBar,
+      openStoreSideBar
     }),
     [state]
   );

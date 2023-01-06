@@ -13,9 +13,11 @@ import LanguageSwitcher from '@components/ui/language-switcher'
 import WishButton from '@components/ui/wish-button'
 import { UserLineIcon } from '@components/icons/UserLineIcon'
 import Link from '@components/ui/link'
-// import ListMenu from "@components/ui/list-menu";
 import CategoryMenu from '@components/ui/category-menu'
 import { useSession } from 'next-auth/react';
+import { IoStorefrontSharp } from "react-icons/io5";
+import CustomAuthMenu from './custom-auth-menu';
+
 
 const AuthMenu = dynamic(() => import('./auth-menu'), { ssr: false })
 const CartButton = dynamic(() => import('@components/cart/cart-button'), {
@@ -170,9 +172,8 @@ const Header: React.FC = () => {
           </div>
 
           <div className='flex items-center flex-shrink-0 ms-auto gap-x-7'>
-            <AuthMenu
+            <CustomAuthMenu
               isAuthorized={status === "authenticated"}
-              href={ROUTES.ACCOUNT}
               className='flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-3'
               btnProps={{
                 children: (
@@ -184,11 +185,16 @@ const Header: React.FC = () => {
                 onClick: handleLogin,
               }}
             >
-              <>
+              <Link href={ROUTES.ACCOUNT} className="flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-2">
                 <UserLineIcon className='w-4 xl:w-[17px] h-auto text-black' />
                 {t('text-account')}
-              </>
-            </AuthMenu>
+              </Link>
+              {user?.user.is_owner && 
+              <Link href={ROUTES.DASHBOARD} className="flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-2">
+                <IoStorefrontSharp className='w-4 xl:w-[17px] h-auto text-black' />
+                {t('text-my-store')}
+              </Link>}
+            </CustomAuthMenu>
             <LanguageSwitcher />
           </div>
         </div>

@@ -44,6 +44,7 @@ export default function MobileMenu() {
   const { site_header } = siteSettings;
   const { closeSidebar } = useUI();
   const { t } = useTranslation('menu');
+  
   const handleArrowClick = (menuName: string) => {
     let newActiveMenus = [...activeMenus];
 
