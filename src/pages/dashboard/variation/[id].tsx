@@ -15,9 +15,11 @@ export default function VariationDetail() {
                 <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
                     <Button>Add Stock</Button>
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex flex-wrap justify-center items-center">
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
                     <VariationForm />
-                    <VariationGallery/>
+                </div>
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
+                    <VariationGallery />
                 </div>
             </div>
         </StoreDashboardLayoutTwo>

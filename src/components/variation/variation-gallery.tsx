@@ -9,11 +9,11 @@ export default function VariationGallery() {
     const { query } = useRouter()
     const { data, isLoading } = useGetStoreVariationDetails(parseInt(query?.id as string))
     return (
-        <section className="overflow-hidden text-gray-700 w-1/2">
-            <div className="container px-5 py-2 mx-auto">
+        <section className="mx-auto overflow-hidden text-gray-700">
+            <div className="container px-5 py-2">
                 <div className="flex flex-wrap justify-center items-center -m-1 md:-m-2">
                     {data?.media.map((image) => (
-                        <div key={image.id} className="flex flex-grow justify-center items-center w-1/3 md:w-1/2 lg:w-1/4">
+                        <div key={image.id} className="flex flex-grow justify-center items-center w-1/4 md:w-1/2 lg:w-1/4">
                             <div className="w-full p-1 md:p-2 relative">
                                 <img alt="gallery" className="block object-cover object-center w-full h-full rounded-t-lg"
                                     src={image.small} />

@@ -42,7 +42,7 @@ export default function VariationForm() {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="mx-auto flex flex-col justify-center w-1/2"
+            className="flex flex-col"
             noValidate
         >
             <div className="flex flex-col space-y-4 lg:space-y-5">
