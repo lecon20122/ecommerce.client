@@ -82,7 +82,6 @@ const HeaderTwo: React.FC = () => {
 								{t("text-account")}
 							</AuthMenu>
 						</div>
-						<CartButton />
 					</div>
 				</div>
 			</div>

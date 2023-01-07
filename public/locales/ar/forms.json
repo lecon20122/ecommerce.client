@@ -46,6 +46,7 @@
   "label-description" : "وصف",
   "label-title-ar" : "العنوان بالعربي",
   "label-title-en" : "العنوان بالانجليزي",
+  "label-price" : "السعر",
   "placeholder-search": "بحث ...",
   "placeholder-name": "أدخل اسمك",
   "placeholder-email": "أدخل بريدك الإلكتروني",

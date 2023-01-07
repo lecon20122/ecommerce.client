@@ -200,6 +200,7 @@ export interface VariationType {
   type: Translation;
   is_mediable: boolean;
   is_stockable: boolean;
+  variationTypeValues: VariationTypeValue[]
 }
 export interface VariationTypeValue {
   id: number;

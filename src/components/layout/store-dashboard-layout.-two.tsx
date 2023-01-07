@@ -15,8 +15,8 @@ export default function StoreDashboardLayoutTwo({ children }: Props) {
             </div>
             <div className="flex min-h-screen flex-row bg-gray-200">
                 <SidebarTwo />
-                <main className="ml-[-147px] flex flex-grow flex-col p-4 transition-all duration-150 ease-in md:ml-0">
-                    <div className="font-bold shadow-md">
+                <main className="main ml-[-145px] flex flex-grow flex-col p-4 transition-all duration-150 ease-in md:ml-0">
+                    <div>
                         {children}
                     </div>
                 </main>

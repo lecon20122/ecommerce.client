@@ -45,4 +45,9 @@ export const API_ENDPOINTS = {
   API_OWNER_STORE: '/api/store',
   STORE_PRODUCTS: '/api/store/products',
   STORE_PRODUCT: '/api/store/product',
+  STORE_PRODUCT_UPDATE: '/api/store/product/update',
+  STORE_PRODUCT_FORCE_DELETE: '/api/store/product/force-delete',
+  STORE_PRODUCT_DETAILS: '/api/store/product/details',
+  STORE_VARIATION: '/api/variation',
+  STORE_VARIATION_TYPES: '/api/variation-types',
 };

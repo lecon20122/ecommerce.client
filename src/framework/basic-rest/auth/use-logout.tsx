@@ -19,9 +19,10 @@ export const useLogoutMutation = () => {
       Router.push("/");
     },
     onError: (data) => {
-      console.log('====================================');
-      console.log('logout error', data);
-      console.log('====================================');
+      Cookies.remove("modaje_session");
+      Cookies.remove("XSRF-TOKEN");
+      signOut({ redirect: false  })
+      Router.push("/");
     },
   });
 };

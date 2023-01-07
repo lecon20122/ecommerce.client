@@ -12,7 +12,7 @@ export const useGetStoreProducts = () => {
         [API_ENDPOINTS.STORE_PRODUCTS],
         fetchStoreProducts,
         {
-            retry: false
+            retry: false,
         }
     );
 };

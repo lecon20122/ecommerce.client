@@ -1,30 +1,29 @@
-import { GetServerSideProps } from 'next';
 import React from 'react'
+import StoreDashboardLayoutTwo from '../../../components/layout/store-dashboard-layout.-two';
+import Button from '@components/ui/button';
+import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import StoreDashboardLayoutTwo from '../../../components/layout/store-dashboard-layout.-two';
-import ProductDetailsFrom from '../../../components/product/product-details';
-import VariationList from '@components/product/variation/list-variation';
-import { useGetStoreProductDetails } from '@framework/product/get-store-product';
-import { useRouter } from 'next/router';
+import VariationForm from '@components/variation/variation-form';
+import VariationGallery from '@components/variation/variation-gallery';
 
+export default function VariationDetail() {
 
-export default function EditProduct() {
-    const { query } = useRouter()
-    const { data, isLoading } = useGetStoreProductDetails(query.slug as string)
     return (
         <StoreDashboardLayoutTwo>
-            <div className=''>
+            <div>
                 <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
-                    <ProductDetailsFrom />
+                    <Button>Add Stock</Button>
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
-                    <VariationList variations={data?.variations} />
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex flex-wrap justify-center items-center">
+                    <VariationForm />
+                    <VariationGallery/>
                 </div>
             </div>
         </StoreDashboardLayoutTwo>
     )
 }
+
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const session = await getSession(ctx)

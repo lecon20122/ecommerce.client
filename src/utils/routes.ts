@@ -20,4 +20,5 @@ export const ROUTES = {
   ORDER: "/order",
   DASHBOARD: "/dashboard",
   DASHBOARD_PRODUCT: "/dashboard/product",
+  DASHBOARD_VARIATION: "/dashboard/variation",
 };

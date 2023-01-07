@@ -6,23 +6,24 @@ import { useTranslation } from 'next-i18next';
 interface SelectProps {
     value: any,
     labelKey?: string;
-    optionValues: any[],
-    onChange: React.ChangeEventHandler<HTMLSelectElement>,
+    children: React.ReactNode,
+    onChange?: React.ChangeEventHandler<HTMLSelectElement>,
     variant?: 'normal' | 'solid' | 'outline';
     shadow?: boolean;
     inputClassName?: string;
     className?: string;
     name: string;
     disableBorderRadius?: boolean;
+    placeholder?: string
 }
 
 
 
-const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+const CustomSelect = React.forwardRef<HTMLSelectElement, SelectProps>(
     (
         {
             value,
-            optionValues,
+            children,
             onChange,
             className,
             labelKey,
@@ -31,6 +32,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             variant = 'normal',
             shadow = false,
             disableBorderRadius = false,
+            placeholder
         },
         ref
     ) => {
@@ -62,14 +64,12 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
                         {t(labelKey)}
                     </label>
                 )}
-                <select ref={ref} onChange={onChange} value={value} className={rootClassName + `${!disableBorderRadius && ' rounded-md'}`}>
-                    {optionValues.map((option) => (
-                        <option key={option.value ?? option.id} value={option.value ?? option.id}>{option.name ?? option.type}</option>
-                    ))}
+                <select placeholder={placeholder} ref={ref} onChange={onChange} value={value} className={rootClassName + `${!disableBorderRadius && ' rounded-md'}`}>
+                    {children}
                 </select>
             </div>
         )
     }
 )
 
-export default Select
+export default CustomSelect

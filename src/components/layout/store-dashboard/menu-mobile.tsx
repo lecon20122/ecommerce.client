@@ -98,7 +98,7 @@ export default function StoreMenuMobile() {
     };
 
     return (
-        <Scrollbar className="menu-scrollbar flex-grow mb-auto">
+        <Scrollbar className="menu-scrollbar flex-grow">
             <div className="flex flex-col text-heading">
                 <ul className="mobileMenu">
                     {menu.map((menu, index) => {

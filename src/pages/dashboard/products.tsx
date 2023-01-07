@@ -14,6 +14,9 @@ import Button from '@components/ui/button';
 import { useUI } from '../../contexts/ui.context';
 import { useRouter } from 'next/router';
 import { ROUTES } from '@utils/routes';
+import { QueryClient, dehydrate } from 'react-query';
+import { API_ENDPOINTS } from '../../framework/basic-rest/utils/api-endpoints';
+import { fetchStoreProducts } from '../../framework/basic-rest/product/get-store-products';
 
 export default function products() {
 
@@ -30,7 +33,6 @@ export default function products() {
     }
 
     const confirmDeleteProduct = (product: ApiProduct) => {
-
     }
 
     const deleteProduct = () => {
@@ -92,7 +94,7 @@ export default function products() {
                 <Toolbar className="" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
                 <DataTable loading={isLoading} ref={dt} value={data} dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                    globalFilter={globalFilter} 
+                    globalFilter={globalFilter}
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" header={header} responsiveLayout="stack">
                     {/* <Column field="id" header="ID" sortable style={{ minWidth: '8rem' }}></Column> */}
                     <Column field="title.en" header="EN Title" sortable style={{ minWidth: '12rem' }}></Column>
@@ -106,23 +108,31 @@ export default function products() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-    // const session = await getAuthSession(ctx)
     const session = await getSession(ctx)
+
+    // const queryClient = new QueryClient()
+    // try {
+    //     await queryClient.fetchQuery([API_ENDPOINTS.STORE_PRODUCTS], fetchStoreProducts)
+    // } catch (error) {
+    //     if (error.response.status == 401) {
+    //         return {
+    //             redirect: { destination: "/404", permanent: false },
+    //             props: {}
+    //         }
+    //     }
+    // }
 
     if (session?.user.is_owner) {
         return {
             props: {
                 ...(await serverSideTranslations
                     (ctx.locale!, ['menu', 'common', 'forms'])),
+                // dehydratedState: dehydrate(queryClient)
             },
         };
     }
     return {
         redirect: { destination: "/404", permanent: false },
-        props: {
-            ...(await serverSideTranslations(ctx.locale!, [
-                "menu",
-            ])),
-        }
+        props: {}
     }
 };
