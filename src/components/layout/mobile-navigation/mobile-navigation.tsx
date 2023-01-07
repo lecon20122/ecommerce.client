@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import { Drawer } from '@components/common/drawer/drawer';
 import { getDirection } from '@utils/get-direction';
 import { useSession } from 'next-auth/react';
+import { IoStorefrontOutline } from "react-icons/io5";
 const CartButton = dynamic(() => import('@components/cart/cart-button'), {
   ssr: false,
 });
@@ -57,18 +58,32 @@ const BottomNavigation: React.FC = () => {
           <HomeIcon />
         </Link>
         <CartButton />
-        <AuthMenu
-          isAuthorized={status === "authenticated"}
-          href={ROUTES.ACCOUNT}
-          className="flex-shrink-0"
-          btnProps={{
-            className: 'flex-shrink-0 focus:outline-none',
-            children: <UserIcon />,
-            onClick: handleLogin,
-          }}
-        >
-          <UserIcon />
-        </AuthMenu>
+        {user?.user.is_owner ?
+          <AuthMenu
+            isAuthorized={status === "authenticated"}
+            href={ROUTES.DASHBOARD}
+            className="flex-shrink-0"
+            btnProps={{
+              className: 'flex-shrink-0 focus:outline-none',
+              children: <UserIcon />,
+              onClick: handleLogin,
+            }}
+          >
+            <UserIcon />
+          </AuthMenu> :
+          <AuthMenu
+            isAuthorized={status === "authenticated"}
+            href={ROUTES.ACCOUNT}
+            className="flex-shrink-0"
+            btnProps={{
+              className: 'flex-shrink-0 focus:outline-none',
+              children: <UserIcon />,
+              onClick: handleLogin,
+            }}
+          >
+            <IoStorefrontOutline />
+          </AuthMenu>
+        }
       </div>
       <Drawer
         placement={dir === 'rtl' ? 'right' : 'left'}

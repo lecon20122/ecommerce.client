@@ -11,7 +11,6 @@ import { getSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Toolbar } from 'primereact/toolbar';
 import Button from '@components/ui/button';
-import Container from '@components/ui/container';
 import { useUI } from '../../contexts/ui.context';
 import { useRouter } from 'next/router';
 import { ROUTES } from '@utils/routes';

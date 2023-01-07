@@ -49,6 +49,9 @@ const StoreBottomNavigation: React.FC = () => {
                 >
                     <MenuIcon />
                 </button>
+                <button className="flex-shrink-0">
+                    <IoAdd onClick={handleOnClickAdd} className='text-[30px] font-bold' />
+                </button>
                 <button
                     className="flex items-center justify-center flex-shrink-0 h-auto relative focus:outline-none"
                     onClick={openSearch}
@@ -56,21 +59,6 @@ const StoreBottomNavigation: React.FC = () => {
                 >
                     <SearchIcon />
                 </button>
-                <button className="flex-shrink-0">
-                    <IoAdd onClick={handleOnClickAdd} className='text-[30px] font-bold' />
-                </button>
-                <AuthMenu
-                    isAuthorized={status === "authenticated"}
-                    href={ROUTES.ACCOUNT}
-                    className="flex-shrink-0"
-                    btnProps={{
-                        className: 'flex-shrink-0 focus:outline-none',
-                        children: <UserIcon />,
-                        onClick: handleLogin,
-                    }}
-                >
-                    <UserIcon />
-                </AuthMenu>
             </div>
             <Drawer
                 placement={dir === 'rtl' ? 'right' : 'left'}
