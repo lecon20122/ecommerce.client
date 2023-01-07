@@ -29,8 +29,6 @@ const StoreBottomNavigation: React.FC = () => {
         return openSidebar();
     }
 
-    const { status, data: user } = useSession()
-
     const { locale } = useRouter();
     const dir = getDirection(locale);
     const contentWrapperCSS = dir === 'ltr' ? { left: 0 } : { right: 0 };

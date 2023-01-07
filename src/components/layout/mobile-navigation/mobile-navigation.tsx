@@ -69,7 +69,7 @@ const BottomNavigation: React.FC = () => {
               onClick: handleLogin,
             }}
           >
-            <UserIcon />
+            <IoStorefrontOutline className='text-[22px]' />
           </AuthMenu> :
           <AuthMenu
             isAuthorized={status === "authenticated"}
@@ -81,7 +81,7 @@ const BottomNavigation: React.FC = () => {
               onClick: handleLogin,
             }}
           >
-            <IoStorefrontOutline />
+            <UserIcon />
           </AuthMenu>
         }
       </div>
