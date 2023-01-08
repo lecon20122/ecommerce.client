@@ -14,13 +14,14 @@ import Button from '@components/ui/button';
 import { useUI } from '../../contexts/ui.context';
 import { useRouter } from 'next/router';
 import { ROUTES } from '@utils/routes';
-import { QueryClient, dehydrate } from 'react-query';
-import { API_ENDPOINTS } from '../../framework/basic-rest/utils/api-endpoints';
-import { fetchStoreProducts } from '../../framework/basic-rest/product/get-store-products';
+import { useDeleteProductMutation } from '@framework/product/delete-store-product';
+import { useRestoreProductMutation } from '@framework/product/restore-store-product';
 
 export default function products() {
 
     const { data, isLoading } = useGetStoreProducts()
+    const { mutate } = useDeleteProductMutation()
+    const { mutate: restore } = useRestoreProductMutation()
     const router = useRouter()
     const { setModalView, openModal } = useUI()
     const dt = useRef(null);
@@ -32,23 +33,33 @@ export default function products() {
         });
     }
 
-    const confirmDeleteProduct = (product: ApiProduct) => {
+    const deleteProduct = (product: ApiProduct) => {
+        mutate({ id: product.id })
     }
 
-    const deleteProduct = () => {
-
+    const restoreProduct = (product: ApiProduct) => {
+        restore({ id: product.id })
     }
 
 
     const actionBodyTemplate = (rowData: ApiProduct) => {
+        console.log(rowData);
+
         return (
             <div className='text-xl'>
-                <button className='mr-2' onClick={() => editProduct(rowData)} >
-                    <IoPencilOutline />
+                <button className='mr-2 text-blue-500' onClick={() => editProduct(rowData)} >
+                    VIEW
                 </button>
-                <button className='text-red-700' onClick={() => confirmDeleteProduct(rowData)} >
-                    <IoTrashBin />
-                </button>
+                {rowData.deleted_at === null ?
+                    <button className='text-red-700' onClick={() => deleteProduct(rowData)} >
+                        DISABLE
+                    </button>
+                    :
+                    <button className='text-green-600' onClick={() => restoreProduct(rowData)} >
+                        ENABLE
+                    </button>
+                }
+
             </div>
         );
     }

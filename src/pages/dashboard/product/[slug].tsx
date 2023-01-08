@@ -10,17 +10,37 @@ import { useRouter } from 'next/router';
 
 
 export default function EditProduct() {
-    const { query } = useRouter()
+    const { query, locale } = useRouter()
     const { data, isLoading } = useGetStoreProductDetails(query.slug as string)
     return (
         <StoreDashboardLayoutTwo>
-            <div className=''>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
+            <div className='flex md:space-x-1 flex-wrap md:flex-nowrap'>
+                <div className="bg-white p-5 rounded-lg shadow-listProduct w-full my-2 md:w-2/3">
                     <ProductDetailsFrom />
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
-                    <VariationList variations={data?.variations} />
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-1/3">
+                    <h1 className='text-heading text-center font-semibold text-xl'>Product Description</h1>
+                    <ul>
+                        {data?.description?.map((item) => (
+                            <li className='flex justify-between'>
+                                <div>
+                                    <span className="font-semibold text-heading inline-block pe-2">
+                                        {item.attribute.attribute[locale as keyof typeof item.attribute.attribute]} :
+                                    </span>
+                                    <>{item.value[locale as keyof typeof item.value]}</>
+                                </div>
+                                <div className='flex space-x-2'>
+                                    <button className='cursor-pointer'>Update</button>
+                                    <button className='cursor-pointer'>Delete</button>
+                                </div>
+                            </li>
+
+                        ))}
+                    </ul>
                 </div>
+            </div>
+            <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
+                <VariationList variations={data?.variations} />
             </div>
         </StoreDashboardLayoutTwo>
     )

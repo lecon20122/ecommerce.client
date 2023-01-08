@@ -21,7 +21,9 @@ export default function StoreDashboardLayoutTwo({ children }: Props) {
                     </div>
                 </main>
             </div>
-            <StoreMobileNavigation />
+            <div className='block mt-11 lg:m-0'>
+                <StoreMobileNavigation />
+            </div>
         </div>
     )
 }

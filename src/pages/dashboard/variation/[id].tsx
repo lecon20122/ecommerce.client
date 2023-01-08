@@ -6,20 +6,29 @@ import { getSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import VariationForm from '@components/variation/variation-form';
 import VariationGallery from '@components/variation/variation-gallery';
+import UploadImage from '@components/common/upload-image';
+import { useAddMediaToVariationMutation } from '@framework/variation/add-media-to-variation';
+import { useGetStoreVariationDetails } from '@framework/variation/get-owner-variation';
+import { useRouter } from 'next/router';
 
 export default function VariationDetail() {
-
+    const { query } = useRouter()
+    const { mutate, isLoading } = useAddMediaToVariationMutation()
+    const { data } = useGetStoreVariationDetails(parseInt(query.id as string))
     return (
         <StoreDashboardLayoutTwo>
             <div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex space-x-2">
                     <Button>Add Stock</Button>
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
-                    <VariationForm />
-                </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
-                    <VariationGallery />
+                <div className='flex space-x-1 flex-wrap md:flex-nowrap'>
+                    <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-1/3">
+                        <VariationForm />
+                    </div>
+                    <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-2/3">
+                        <VariationGallery />
+                        <UploadImage className='flex justify-start items-center self h-[100px] space-x-2' loading={isLoading} multiple mutate={mutate} listType={'picture'} buttonLabel={'Start upload'} param={{ variation_id: data?.id }} />
+                    </div>
                 </div>
             </div>
         </StoreDashboardLayoutTwo>
