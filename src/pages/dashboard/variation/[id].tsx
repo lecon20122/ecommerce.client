@@ -27,7 +27,9 @@ export default function VariationDetail() {
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-2/3">
                         <VariationGallery />
-                        <UploadImage className='flex justify-start items-center self h-[100px] space-x-2' loading={isLoading} multiple mutate={mutate} listType={'picture'} buttonLabel={'Start upload'} param={{ variation_id: data?.id }} />
+                        <div className='block my-5'>
+                            <UploadImage className='' loading={isLoading} multiple mutate={mutate} listType={'picture-card'} buttonLabel={'Start upload'} param={{ variation_id: data?.id }} />
+                        </div>
                     </div>
                 </div>
             </div>

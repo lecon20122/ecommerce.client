@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 
 
 interface SelectProps {
-    value: any,
+    value?: any,
     labelKey?: string;
     children: React.ReactNode,
     onChange?: React.ChangeEventHandler<HTMLSelectElement>,

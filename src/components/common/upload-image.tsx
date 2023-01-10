@@ -5,7 +5,7 @@ import { Upload } from 'antd';
 import Button from '@components/ui/button';
 
 interface Props {
-    param: any
+    param?: any
     multiple: boolean
     buttonLabel?: string
     listType?: UploadListType;
@@ -22,8 +22,9 @@ export default function UploadImage({ multiple, mutate, param, btnClassName, but
         const formData = new FormData();
 
         fileList.map((file) => {
-            formData.append('images', file.originFileObj as any);
+            formData.append('images[]', file.originFileObj as any);
         });
+
         mutate({ images: formData, ...param })
     };
 
@@ -40,15 +41,6 @@ export default function UploadImage({ multiple, mutate, param, btnClassName, but
 
     return (
         <div className={className}>
-            <Button
-                type="button"
-                onClick={handleUpload}
-                disabled={fileList.length === 0}
-                loading={loading}
-                className={btnClassName}
-            >
-                {loading ? 'Uploading' : 'Start Upload'}
-            </Button>
             <Upload
                 onChange={(e) => onChangeHandler(e)}
                 listType={listType}
@@ -57,6 +49,16 @@ export default function UploadImage({ multiple, mutate, param, btnClassName, but
             >
                 {fileList.length < 6 && <span>Upload from Device</span>}
             </Upload>
+            {fileList.length !== 0 &&
+                <Button
+                    type="submit"
+                    onClick={handleUpload}
+                    disabled={fileList.length === 0}
+                    loading={loading}
+                    className={btnClassName}
+                >
+                    {loading ? 'Uploading' : 'Start Upload'}
+                </Button>}
         </div>
     )
 }

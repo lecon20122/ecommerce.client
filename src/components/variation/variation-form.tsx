@@ -23,6 +23,8 @@ export default function VariationForm() {
 
     async function onSubmit(input: any) {
         // mutate(removeEmptyFields(input))
+        console.log(input);
+        
     }
 
     const { data, isLoading } = useGetStoreVariationDetails(parseInt(query?.id as string))

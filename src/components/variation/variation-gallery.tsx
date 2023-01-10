@@ -14,7 +14,7 @@ export default function VariationGallery() {
                 <div className="flex flex-wrap my-2 -m-1 md:-m-2 justify-center items-center">
                     {data?.media.map((image) => (
                         <div key={image.id} className="flex flex-[1_1_200px] justify-center items-center">
-                            <div className="p-1 md:p-2 relative">
+                            <div className="p-1 md:p-2 relative w-[90px] lg:w-full">
                                 <img alt="gallery" className="px-1 aspect-[2/3] md:w-[150px] object-contain rounded-t-lg"
                                     src={image.small} />
                                 <Button onClick={() => mutate({ image_id: image.id, variation_id: data.id })} className='w-full bg-red-400 hover:bg-red-500 py-1 px-3' variant='flat' disableBorderRadius >Delete</Button>

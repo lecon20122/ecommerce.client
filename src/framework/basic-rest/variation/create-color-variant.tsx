@@ -6,35 +6,38 @@ import { toast } from 'react-toastify';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { useUI } from '../../../contexts/ui.context';
 
-export interface Props {
+export interface CreateColorVariantProps {
+    price: number,
+    product_id: number,
+    variation_type_value_id: number,
+    store_id: number,
+    parent_id?: number,
+    order?: number,
     images: any
-    variation_id: number
 }
 
 
 
-async function addMediaToVariation({ images, variation_id }: Props) {
+async function createColorVariation(inputs: CreateColorVariantProps) {
     const response = await http.post(
-        API_ENDPOINTS.STORE_VARIATION_ADD_MEDIA + '/' + variation_id,
-        images, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    }
-    );
+        API_ENDPOINTS.STORE_VARIATION_CREATE_COLOR, inputs, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+    });
     return response
 }
 
-export const useAddMediaToVariationMutation = () => {
+export const useCreateColorVariationMutation = () => {
     const { width } = useWindowSize();
     const { setModalView, openModal } = useUI();
     const queryClient = useQueryClient()
-    return useMutation((input: Props) => addMediaToVariation(input), {
+
+    return useMutation((input: CreateColorVariantProps) => createColorVariation(input), {
         onSuccess: (data) => {
-
-            queryClient.setQueryData([API_ENDPOINTS.STORE_VARIATION], data.data)
-
-            toast.success("New Image Created", {
+            console.log(data.data);
+            queryClient.refetchQueries<any>([API_ENDPOINTS.STORE_PRODUCT_DETAILS])
+            toast.success("Color Added", {
                 progressClassName: "fancy-progress-bar",
                 position: width > 768 ? "bottom-center" : "bottom-center",
                 autoClose: 2000,
@@ -46,7 +49,7 @@ export const useAddMediaToVariationMutation = () => {
                 progress: 0
             });
         },
-        onError: (error: AxiosError, _variables: Props, _context) => {
+        onError: (error: AxiosError, _variables: CreateColorVariantProps, _context) => {
             if (error.response?.status === 401) {
                 setModalView('LOGIN_VIEW')
                 openModal()

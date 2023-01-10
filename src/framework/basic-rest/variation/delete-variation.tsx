@@ -6,35 +6,26 @@ import { toast } from 'react-toastify';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { useUI } from '../../../contexts/ui.context';
 
-export interface Props {
-    images: any
-    variation_id: number
+export interface DeleteVariation {
+    id: number,
 }
 
-
-
-async function addMediaToVariation({ images, variation_id }: Props) {
-    const response = await http.post(
-        API_ENDPOINTS.STORE_VARIATION_ADD_MEDIA + '/' + variation_id,
-        images, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    }
-    );
+async function deleteVariation(inputs: DeleteVariation) {
+    const response = await http.post(API_ENDPOINTS.STORE_VARIATION_DELETE_VARIATION + '/' + inputs.id);
     return response
 }
 
-export const useAddMediaToVariationMutation = () => {
+export const useDeleteVariationMutation = () => {
     const { width } = useWindowSize();
     const { setModalView, openModal } = useUI();
     const queryClient = useQueryClient()
-    return useMutation((input: Props) => addMediaToVariation(input), {
+
+    return useMutation((input: DeleteVariation) => deleteVariation(input), {
         onSuccess: (data) => {
+            console.log(data.data);
+            queryClient.refetchQueries([API_ENDPOINTS.STORE_PRODUCT_DETAILS])
 
-            queryClient.setQueryData([API_ENDPOINTS.STORE_VARIATION], data.data)
-
-            toast.success("New Image Created", {
+            toast.success("Deleted", {
                 progressClassName: "fancy-progress-bar",
                 position: width > 768 ? "bottom-center" : "bottom-center",
                 autoClose: 2000,
@@ -46,7 +37,7 @@ export const useAddMediaToVariationMutation = () => {
                 progress: 0
             });
         },
-        onError: (error: AxiosError, _variables: Props, _context) => {
+        onError: (error: AxiosError, _variables: DeleteVariation, _context) => {
             if (error.response?.status === 401) {
                 setModalView('LOGIN_VIEW')
                 openModal()
