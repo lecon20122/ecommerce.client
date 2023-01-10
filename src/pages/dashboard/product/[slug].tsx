@@ -7,6 +7,7 @@ import ProductDetailsFrom from '../../../components/product/product-details';
 import VariationList from '@components/product/variation/list-variation';
 import { useGetStoreProductDetails } from '@framework/product/get-store-product';
 import { useRouter } from 'next/router';
+import ProductDescriptionCollapse from '@components/product/product-description';
 
 
 export default function EditProduct() {
@@ -19,24 +20,7 @@ export default function EditProduct() {
                     <ProductDetailsFrom />
                 </div>
                 <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-1/3">
-                    <h1 className='text-heading text-center font-semibold text-xl'>Product Description</h1>
-                    <ul>
-                        {data?.description?.map((item) => (
-                            <li className='flex justify-between'>
-                                <div>
-                                    <span className="font-semibold text-heading inline-block pe-2">
-                                        {item.attribute.attribute[locale as keyof typeof item.attribute.attribute]} :
-                                    </span>
-                                    <>{item.value[locale as keyof typeof item.value]}</>
-                                </div>
-                                <div className='flex space-x-2'>
-                                    <button className='cursor-pointer'>Update</button>
-                                    <button className='cursor-pointer'>Delete</button>
-                                </div>
-                            </li>
-
-                        ))}
-                    </ul>
+                    <ProductDescriptionCollapse variant='transparent' description={data?.description} />
                 </div>
             </div>
             <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">

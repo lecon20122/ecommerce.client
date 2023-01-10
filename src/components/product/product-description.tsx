@@ -5,12 +5,13 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 interface Props {
-    description: ProductDescription[] | undefined
+    description: ProductDescription[] | undefined,
+    variant?: "gray" | "transparent";
 }
 
 
 
-export default function ProductDescriptionCollapse({ description }: Props) {
+export default function ProductDescriptionCollapse({ description , variant }: Props) {
     const {
         locale
     } = useRouter();
@@ -27,8 +28,8 @@ export default function ProductDescriptionCollapse({ description }: Props) {
                 content={
                     <ul>
                         {description?.map((item) => (
-                            <li>
-                                <span className="font-semibold text-heading inline-block pe-2">
+                            <li key={item.id}>
+                                <span  className="font-semibold text-heading inline-block pe-2">
                                     {item.attribute.attribute[locale as keyof typeof item.attribute.attribute]} :
                                 </span>
                                 <>{item.value[locale as keyof typeof item.value]}</>
@@ -38,7 +39,7 @@ export default function ProductDescriptionCollapse({ description }: Props) {
                 }
                 expanded={expanded}
                 setExpanded={setExpanded}
-                variant="transparent"
+                variant={variant}
             />
 
         </>

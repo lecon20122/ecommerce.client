@@ -13,6 +13,8 @@ export const useGetStoreProductDetails = (slug: string) => {
         () => fetchStoreProductDetails(slug),
         {
             retry: false,
+            staleTime: 1,
+            cacheTime: 0,
         }
     );
 };

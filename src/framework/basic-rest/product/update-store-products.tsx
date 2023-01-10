@@ -28,7 +28,7 @@ export const useUpdateStoreProductMutation = () => {
     const router = useRouter()
     const { setModalView, openModal } = useUI();
     const queryClient = useQueryClient()
-    return useMutation((input: UpdateProductProps) => updateStoreProduct(input), {
+    return useMutation((input: UpdateProductProps) => updateStoreProduct({ ...input, slug: router.query.slug as string }), {
         onSuccess: (data) => {
             queryClient.setQueryData([API_ENDPOINTS.STORE_PRODUCT_DETAILS], data.data)
             toast.success("Product updated!", {
