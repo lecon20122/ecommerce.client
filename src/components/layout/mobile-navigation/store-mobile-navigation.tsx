@@ -10,8 +10,9 @@ import dynamic from 'next/dynamic';
 import { Drawer } from '@components/common/drawer/drawer';
 import { getDirection } from '@utils/get-direction';
 import { useSession } from 'next-auth/react';
-import { IoAdd } from "react-icons/io5";
+import { IoAdd, IoClose } from "react-icons/io5";
 import StoreMenuMobile from '../store-dashboard/menu-mobile';
+import Logo from '@components/ui/logo';
 
 const AuthMenu = dynamic(() => import('@components/layout/header/auth-menu'), {
     ssr: false,
@@ -68,7 +69,20 @@ const StoreBottomNavigation: React.FC = () => {
                 contentWrapperStyle={contentWrapperCSS}
             >
                 <div className='p-5'>
-                    <StoreMenuMobile />
+                    <div className="flex flex-col justify-between w-full h-full">
+                        <div className="w-full border-b border-gray-100 flex justify-between items-center relative ps-5 md:ps-7 flex-shrink-0 py-0.5">
+                            <Logo />
+
+                            <button
+                                className="flex text-2xl items-center justify-center text-gray-500 px-4 md:px-6 py-6 lg:py-8 focus:outline-none transition-opacity hover:opacity-60"
+                                onClick={closeSidebar}
+                                aria-label="close"
+                            >
+                                <IoClose className="text-black mt-1 md:mt-0.5" />
+                            </button>
+                        </div>
+                        <StoreMenuMobile />
+                    </div>
                 </div>
             </Drawer>
         </>
