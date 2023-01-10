@@ -15,18 +15,19 @@ interface Props {
 }
 
 export default function CreateColorVariantForm({ handleAddDialog, openAddDialog }: Props) {
-
+    const [form] = Form.useForm();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 
     const { data } = useGetColorTypeValues()
     const { query, locale } = useRouter()
     const { data: product } = useGetStoreProductDetails(query.slug as string)
-    const { mutate } = useCreateColorVariationMutation()
+    const { mutate, isLoading } = useCreateColorVariationMutation()
 
     async function onFinish(input: any) {
         console.log(input);
 
         if (!input.images) {
+
         } else {
             input.images = appendImageToFormData(fileList)
         }
@@ -96,6 +97,7 @@ export default function CreateColorVariantForm({ handleAddDialog, openAddDialog 
                     label="Variation Image"
                     name="images"
                     valuePropName='images'
+                    rules={[{ required: true }]}
                 >
                     <Upload multiple listType="picture-card" onRemove={(file) => onRemove(file, fileList, setFileList)} onChange={(e) => onChangeHandler(e)}>
                         <div>
@@ -105,7 +107,7 @@ export default function CreateColorVariantForm({ handleAddDialog, openAddDialog 
                     </Upload>
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="default" htmlType="submit">
+                    <Button type="default" htmlType="submit" loading={isLoading} disabled={isLoading}>
                         Create new Color
                     </Button>
                 </Form.Item>

@@ -63,7 +63,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 								<DefaultSeo />
 								{/* <SocialMediaPreview/> */}
 								<Component {...pageProps} key={router.route} />
-								<ToastContainer />
+								<ToastContainer pauseOnFocusLoss={false} />
 							</Layout>
 							<ManagedModal />
 							<ManagedDrawer />
