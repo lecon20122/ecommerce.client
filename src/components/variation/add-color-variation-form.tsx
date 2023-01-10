@@ -35,6 +35,7 @@ export default function CreateColorVariantForm({ handleAddDialog, openAddDialog 
         input.images.append('store_id', input.store_id);
         input.images.append('variation_type_value_id', input.variation_type_value_id);
         mutate(removeEmptyFields(input.images))
+        handleAddDialog()
     }
 
     const selectVariationTypeValueItems = data?.map((value) => {
