@@ -28,7 +28,7 @@ export default function EditProduct() {
                 </div>
             </div>
             <div className="bg-white p-5 rounded-lg shadow-listProduct my-2">
-                <VariationList variations={data?.variations} />
+                <VariationList variationType='product' variations={data?.variations} />
             </div>
         </StoreDashboardLayoutTwo>
     )

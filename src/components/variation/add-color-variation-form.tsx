@@ -79,7 +79,7 @@ export default function CreateColorVariantForm({ handleAddDialog, openAddDialog 
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="(ex:red,blue)"
+                    label="Color"
                     name="variation_type_value_id"
                     rules={[{ required: true }]}
                 >

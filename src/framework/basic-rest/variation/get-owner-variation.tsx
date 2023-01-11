@@ -9,7 +9,7 @@ export const fetchStoreVariationDetails = async (id: number) => {
 };
 export const useGetStoreVariationDetails = (id: number) => {
     return useQuery<Variation, Error>(
-        [API_ENDPOINTS.STORE_VARIATION],
+        [API_ENDPOINTS.STORE_VARIATION, id],
         () => fetchStoreVariationDetails(id),
         {
             retry: false,

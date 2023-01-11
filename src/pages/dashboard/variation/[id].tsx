@@ -11,6 +11,8 @@ import { useAddMediaToVariationMutation } from '@framework/variation/add-media-t
 import { useGetStoreVariationDetails } from '@framework/variation/get-owner-variation';
 import { useRouter } from 'next/router';
 import AddStockForm from '@components/variation/add-stock-form';
+import CreateSizeVariantForm from '@components/variation/add-size-variation-form';
+import VariationList from '@components/product/variation/list-variation';
 
 export default function VariationDetail() {
     const { query } = useRouter()
@@ -18,29 +20,47 @@ export default function VariationDetail() {
     const { data } = useGetStoreVariationDetails(parseInt(query.id as string))
 
     const [openAddStockDialog, setOpenAddStockDialog] = useState(false);
+    const [openAddSizekDialog, setOpenAddSizekDialog] = useState(false);
 
     const handleOnClickAddStockDialog = () => {
         setOpenAddStockDialog(!openAddStockDialog);
     }
 
+    const handleOnClickAddSizekDialog = () => {
+        setOpenAddSizekDialog(!openAddSizekDialog);
+    }
+
     return (
         <StoreDashboardLayoutTwo>
             <div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex space-x-2">
-                    <Button onClick={handleOnClickAddStockDialog}>Add Stock</Button>
-                    <span className='mt-[12px]'>Current Stock : {data?.stock_count}</span>
-                    <AddStockForm openAddDialog={openAddStockDialog} handleAddDialog={handleOnClickAddStockDialog} />
-                </div>
+                {
+                    data?.variation_type.is_stockable ?
+                        <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex space-x-2">
+                            <Button onClick={handleOnClickAddStockDialog}>Add Stock</Button>
+                            <span className='mt-[12px]'>Current Stock : {data?.stock_count}</span>
+                            <AddStockForm openAddDialog={openAddStockDialog} handleAddDialog={handleOnClickAddStockDialog} />
+                        </div> :
+                        <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex space-x-2">
+                            <Button onClick={handleOnClickAddSizekDialog}>Add Size</Button>
+                            <CreateSizeVariantForm handleAddDialog={handleOnClickAddSizekDialog} openAddDialog={openAddSizekDialog} />
+                        </div>
+                }
                 <div className='flex space-x-1 flex-wrap md:flex-nowrap'>
                     <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-1/3">
                         <VariationForm />
                     </div>
-                    <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-2/3">
-                        <VariationGallery />
-                        <div className='block my-5'>
-                            <UploadImage className='' loading={isLoading} multiple mutate={mutate} listType={'picture-card'} buttonLabel={'Start upload'} param={{ variation_id: data?.id }} />
+                    {data?.variation_type.type.en === 'color' &&
+
+                        <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-2/3">
+                            <VariationGallery />
+                            <div className='block my-5'>
+                                <UploadImage className='' loading={isLoading} multiple mutate={mutate} listType={'picture-card'} buttonLabel={'Start upload'} param={{ variation_id: data?.id }} />
+                            </div>
                         </div>
-                    </div>
+                    }
+                </div>
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full">
+                    <VariationList variationType={data?.variation_type.type.en} variations={data?.children} />
                 </div>
             </div>
         </StoreDashboardLayoutTwo>

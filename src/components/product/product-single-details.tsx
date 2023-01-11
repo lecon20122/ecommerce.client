@@ -11,7 +11,7 @@ import { AddToCartInputProps, useAddToCartMutation } from "@framework/cart/use-a
 import Cookies from "js-cookie";
 import { useEffect } from 'react';
 import SocialMediaPreview from "@components/common/social-media-preview";
-import ProductDescriptionCollapse from './product-description';
+import ClientProductDescriptionCollapse from "./client-product-description";
 
 
 const productGalleryCarouselResponsive = {
@@ -51,10 +51,6 @@ function ProductSingleDetails() {
 
 	const { data, isLoading } = useProductQuery(slug as string, onSuccess);
 
-
-	console.log('====================================');
-	console.log(data);
-	console.log('====================================');
 	const { price, basePrice, discount } = usePrice(
 		data && {
 			amount: data.price,
@@ -176,7 +172,7 @@ function ProductSingleDetails() {
 						isSizePropSelected={isSizeSelected}
 						setIsSizeSelected={setIsSizeSelected}
 					/>
-					{data?.description && <ProductDescriptionCollapse description={data?.description} />}
+					{data?.description && <ClientProductDescriptionCollapse variant="transparent" description={data?.description} />}
 				</div>
 				<div className="flex items-center space-s-4 md:pe-32 lg:pe-12 2xl:pe-32 3xl:pe-48 border-b border-gray-300 py-8">
 					{/* <Counter

@@ -62,6 +62,8 @@ export const API_ENDPOINTS = {
   STORE_VARIATION_ADD_MEDIA: '/api/variation/add-media',
   STORE_VARIATION_DELETE_MEDIA: '/api/variation/delete-media',
   STORE_VARIATION_CREATE_COLOR: '/api/variation/color',
+  STORE_VARIATION_CREATE_SIZE: '/api/variation/size',
   STORE_VARIATION_GET_COLOR_VALUES: '/api/variation/color/values',
+  STORE_VARIATION_GET_SIZE_VALUES: '/api/variation/size/values',
   STORE_VARIATION_DELETE_VARIATION: '/api/variation/delete',
 };
