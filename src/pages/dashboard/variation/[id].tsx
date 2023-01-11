@@ -28,7 +28,7 @@ export default function VariationDetail() {
             <div>
                 <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex space-x-2">
                     <Button onClick={handleOnClickAddStockDialog}>Add Stock</Button>
-                    <span className='mt-4'>Current Stock : {data?.stock_count}</span>
+                    <span className='mt-[12px]'>Current Stock : {data?.stock_count}</span>
                     <AddStockForm openAddDialog={openAddStockDialog} handleAddDialog={handleOnClickAddStockDialog} />
                 </div>
                 <div className='flex space-x-1 flex-wrap md:flex-nowrap'>
