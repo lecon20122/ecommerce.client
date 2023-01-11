@@ -72,7 +72,6 @@ export default function VariationList({ variations, variationType }: Props) {
     }
 
     const colorColumns: ColumnsType<DataType> = [
-        { title: 'ID', dataIndex: 'id', key: 'id' },
         {
             title: 'Image',
             dataIndex: 'image',
@@ -99,7 +98,6 @@ export default function VariationList({ variations, variationType }: Props) {
     ];
 
     const sizeColumns: ColumnsType<DataType> = [
-        { title: 'ID', dataIndex: 'id', key: 'id' },
         {
             title: 'Size',
             dataIndex: 'variation_type_value',

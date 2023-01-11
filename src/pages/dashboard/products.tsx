@@ -107,7 +107,6 @@ export default function products() {
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     globalFilter={globalFilter}
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" header={header} responsiveLayout="stack">
-                    {/* <Column field="id" header="ID" sortable style={{ minWidth: '8rem' }}></Column> */}
                     <Column field="title.en" header="EN Title" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="title.ar" header="AR Title" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="price" header="Price" sortable style={{ minWidth: '8rem' }}></Column>
