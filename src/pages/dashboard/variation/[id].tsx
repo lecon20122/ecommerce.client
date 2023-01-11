@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StoreDashboardLayoutTwo from '../../../components/layout/store-dashboard-layout.-two';
 import Button from '@components/ui/button';
 import { GetServerSideProps } from 'next';
@@ -10,16 +10,25 @@ import UploadImage from '@components/common/upload-image';
 import { useAddMediaToVariationMutation } from '@framework/variation/add-media-to-variation';
 import { useGetStoreVariationDetails } from '@framework/variation/get-owner-variation';
 import { useRouter } from 'next/router';
+import AddStockForm from '@components/variation/add-stock-form';
 
 export default function VariationDetail() {
     const { query } = useRouter()
     const { mutate, isLoading } = useAddMediaToVariationMutation()
     const { data } = useGetStoreVariationDetails(parseInt(query.id as string))
+
+    const [openAddStockDialog, setOpenAddStockDialog] = useState(false);
+
+    const handleOnClickAddStockDialog = () => {
+        setOpenAddStockDialog(!openAddStockDialog);
+    }
+
     return (
         <StoreDashboardLayoutTwo>
             <div>
                 <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 flex space-x-2">
-                    <Button>Add Stock</Button>
+                    <Button onClick={handleOnClickAddStockDialog}>Add Stock</Button>
+                    <AddStockForm openAddDialog={openAddStockDialog} handleAddDialog={handleOnClickAddStockDialog} />
                 </div>
                 <div className='flex space-x-1 flex-wrap md:flex-nowrap'>
                     <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-1/3">

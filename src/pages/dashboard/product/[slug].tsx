@@ -8,6 +8,7 @@ import VariationList from '@components/product/variation/list-variation';
 import { useGetStoreProductDetails } from '@framework/product/get-store-product';
 import { useRouter } from 'next/router';
 import ProductDescriptionCollapse from '@components/product/product-description';
+import AttachedProductCategoriesForm from '@components/product/attached-product-form';
 
 
 export default function EditProduct() {
@@ -16,10 +17,13 @@ export default function EditProduct() {
     return (
         <StoreDashboardLayoutTwo>
             <div className='flex md:space-x-1 flex-wrap md:flex-nowrap'>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct w-full my-2 md:w-2/3">
+                <div className="bg-white p-5 rounded-lg shadow-listProduct w-full my-2 md:w-1/4">
                     <ProductDetailsFrom />
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-1/3">
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-2/4">
+                    <AttachedProductCategoriesForm />
+                </div>
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-1/4">
                     <ProductDescriptionCollapse variant='transparent' description={data?.description} />
                 </div>
             </div>

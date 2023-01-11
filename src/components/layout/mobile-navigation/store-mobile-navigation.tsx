@@ -1,15 +1,10 @@
-import Link from '@components/ui/link';
 import SearchIcon from '@components/icons/search-icon';
-import UserIcon from '@components/icons/user-icon';
 import MenuIcon from '@components/icons/menu-icon';
-import HomeIcon from '@components/icons/home-icon';
 import { useUI } from '@contexts/ui.context';
 import { useRouter } from 'next/router';
-import { ROUTES } from '@utils/routes';
 import dynamic from 'next/dynamic';
 import { Drawer } from '@components/common/drawer/drawer';
 import { getDirection } from '@utils/get-direction';
-import { useSession } from 'next-auth/react';
 import { IoAdd, IoClose } from "react-icons/io5";
 import StoreMenuMobile from '../store-dashboard/menu-mobile';
 import Logo from '@components/ui/logo';

@@ -174,6 +174,7 @@ export interface ApiProduct {
   variations: Variation[];
   description: ProductDescription[]
   deleted_at: null;
+  categories : Category[]
 }
 
 export interface ProductDescription {
