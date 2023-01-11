@@ -36,11 +36,9 @@ export default function AddStockForm({ handleAddDialog, openAddDialog }: Props) 
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item
-                    label="Amount"
-                    name="amount"
-                >
-                    <InputNumber />
+                <Form.Item label={'New Stock Amount'} name={'amount'}
+                    rules={[{ required: true, type: 'integer', message: 'Stock Amount is required' }]}>
+                    <InputNumber prefix={'+'} min={1} max={1000} />
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="submit" loading={isLoading} disabled={isLoading}>

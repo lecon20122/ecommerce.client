@@ -60,7 +60,7 @@ export default function ProductDescriptionCollapse({ description, variant }: Pro
                                 </div>
                                 <div className='flex space-x-1'>
                                     {/* <span className='cursor-pointer' onClick={(e) => handleOnClickUpdateDescriptionDialog(item)}>Update</span> */}
-                                    <span onClick={(e) => destroy({ product_description_id: item.id })} className='cursor-pointer'>Delete</span>
+                                    <span onClick={(e) => destroy({ product_description_id: item?.id })} className='cursor-pointer'>Delete</span>
                                 </div>
                             </li>
                         ))}
