@@ -57,6 +57,7 @@ export const API_ENDPOINTS = {
   STORE_PRODUCT_UPDATE_DESCRIPTION: '/api/store/product/description/update',
   STORE_PRODUCT_DELETE_DESCRIPTION: '/api/store/product/description/delete',
   STORE_VARIATION: '/api/variation',
+  STORE_VARIATION_UPDATE: '/api/variation/update',
   STORE_VARIATION_ADD_STOCK: '/api/stock',
   STORE_VARIATION_TYPES: '/api/variation-types',
   STORE_VARIATION_ADD_MEDIA: '/api/variation/add-media',

@@ -5,15 +5,15 @@ import ModalWithChildren from '@components/common/modal';
 import { useGetStoreVariationDetails } from '../../framework/basic-rest/variation/get-owner-variation';
 import { useAddStockToVariationMutation } from '@framework/variation/add-stock';
 import Button from '@components/ui/button';
+import { Variation } from '../../framework/basic-rest/types';
 
 interface Props {
     handleAddDialog: (data?: any) => void,
     openAddDialog: boolean
+    variationId: number
 }
 
-export default function AddStockForm({ handleAddDialog, openAddDialog }: Props) {
-    const { query } = useRouter()
-    const { data: variation } = useGetStoreVariationDetails(parseInt(query.id as string))
+export default function AddStockForm({ handleAddDialog, openAddDialog, variationId }: Props) {
     const { mutate: addStock, isLoading } = useAddStockToVariationMutation()
 
 
@@ -32,7 +32,7 @@ export default function AddStockForm({ handleAddDialog, openAddDialog }: Props) 
                 <Form.Item
                     name="variation_id"
                     hidden
-                    initialValue={variation?.id}
+                    initialValue={variationId}
                 >
                     <Input />
                 </Form.Item>

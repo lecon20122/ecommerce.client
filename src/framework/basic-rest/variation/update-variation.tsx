@@ -6,34 +6,33 @@ import { toast } from 'react-toastify';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { useUI } from '../../../contexts/ui.context';
 
-export interface CreateSizeVariantProps {
-    price: number,
-    product_id: number,
-    variation_type_value_id: number,
-    store_id: number,
-    parent_id?: number,
+export interface UpdateVariationProps {
+    variation_id: number | undefined,
+    price?: number,
+    title?: string,
     order?: number,
-    stock_amount?: number
+    variation_type_value_id?: number
+    queryKey: any
 }
 
-
-
-async function createSizeVariation(inputs: CreateSizeVariantProps) {
-    const response = await http.post(API_ENDPOINTS.STORE_VARIATION_CREATE_SIZE, inputs);
+async function UpdateVariation(inputs: UpdateVariationProps) {
+    const response = await http.post(API_ENDPOINTS.STORE_VARIATION_UPDATE + '/' + inputs.variation_id , inputs);
     return response
 }
 
-export const useCreateSizeVariationMutation = () => {
+export const useUpdateVariationMutation = () => {
     const { width } = useWindowSize();
     const { setModalView, openModal } = useUI();
     const queryClient = useQueryClient()
 
-    return useMutation((input: CreateSizeVariantProps) => createSizeVariation(input), {
-        onSuccess: (data) => {
+    return useMutation((input: UpdateVariationProps) => UpdateVariation(input), {
+        onSuccess: (data, variables) => {
+            console.log('====================================');
+            console.log(variables.queryKey);
+            console.log('====================================');
+            queryClient.refetchQueries(variables.queryKey)
 
-            queryClient.refetchQueries<any>([API_ENDPOINTS.STORE_VARIATION])
-
-            toast.success("Size Added", {
+            toast.success("Updated", {
                 progressClassName: "fancy-progress-bar",
                 position: width > 768 ? "bottom-center" : "bottom-center",
                 autoClose: 2000,
@@ -45,7 +44,7 @@ export const useCreateSizeVariationMutation = () => {
                 progress: 0
             });
         },
-        onError: (error: AxiosError, _variables: CreateSizeVariantProps, _context) => {
+        onError: (error: AxiosError, _variables: UpdateVariationProps, _context) => {
             if (error.response?.status === 401) {
                 setModalView('LOGIN_VIEW')
                 openModal()

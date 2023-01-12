@@ -1,11 +1,12 @@
 import React from 'react'
 import { removeEmptyFields } from '@utils/removeEmptyFields';
 import { useRouter } from 'next/router';
-import { Button, Form, Input, InputNumber, Select } from 'antd';
+import { Form, Input, InputNumber, Select } from 'antd';
 import ModalWithChildren from '@components/common/modal';
 import { useCreateSizeVariationMutation } from '../../framework/basic-rest/variation/add-size-variation';
 import { useGetSizeTypeValues } from '@framework/variation/get-size-values';
 import { useGetStoreVariationDetails } from '../../framework/basic-rest/variation/get-owner-variation';
+import Button from '@components/ui/button';
 
 interface Props {
     handleAddDialog: (data?: any) => void,
@@ -36,10 +37,10 @@ export default function CreateSizeVariantForm({ handleAddDialog, openAddDialog }
 
 
     return (
-        <ModalWithChildren onCancel={handleAddDialog} onOk={handleAddDialog} openModal={openAddDialog} >
+        <ModalWithChildren onCancel={handleAddDialog} onOk={handleAddDialog} openModal={openAddDialog} title='Add Size'>
             <Form name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 24 }}
                 onFinish={onFinish}
                 autoComplete="off" >
                 <Form.Item
@@ -65,6 +66,7 @@ export default function CreateSizeVariantForm({ handleAddDialog, openAddDialog }
                 </Form.Item>
                 <Form.Item
                     label="Size"
+                    hasFeedback
                     name="variation_type_value_id"
                     rules={[{ required: true }]}
                 >
@@ -73,21 +75,26 @@ export default function CreateSizeVariantForm({ handleAddDialog, openAddDialog }
                     </Select>
                 </Form.Item>
                 <Form.Item
+                    className='w-full'
                     label="Price"
                     name="price"
+                    hasFeedback
+                    rules={[{ required: true }]}
                 >
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
+                    hasFeedback
+                    className='w-full'
                     label="Stock"
                     name="stock_amount"
-                    rules={[{ required: true , type : "integer" }]}
+                    rules={[{ required: true, type: "integer", min: 0 }]}
                 >
                     <InputNumber />
                 </Form.Item>
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="default" htmlType="submit" loading={isLoading} disabled={isLoading}>
-                        Create new Color
+                <Form.Item wrapperCol={{ span: 24 }} className='text-center'>
+                    <Button type="submit" loading={isLoading} disabled={isLoading}>
+                        Create size
                     </Button>
                 </Form.Item>
             </Form>

@@ -67,13 +67,13 @@ const HeaderTwo: React.FC = () => {
 						<LanguageSwitcher />
 					</div> */}
 					<div className="hidden md:flex justify-end items-center space-s-6 lg:space-s-5 xl:space-s-8 2xl:space-s-10 ms-auto flex-shrink-0">
-						<button
+						{/* <button
 							className="flex items-center justify-center flex-shrink-0 h-auto relative focus:outline-none transform"
 							onClick={openSearch}
 							aria-label="search-button"
 						>
 							<SearchIcon />
-						</button>
+						</button> */}
 						<div className="-mt-0.5 flex-shrink-0">
 							<div className="flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-3">
 								<UserLineIcon className='w-4 xl:w-[17px] h-auto text-black' />

@@ -4,7 +4,7 @@ import Button from '@components/ui/button';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import VariationForm from '@components/variation/variation-form';
+import VariationColorForm from '@components/variation/update-variation-color-form';
 import VariationGallery from '@components/variation/variation-gallery';
 import UploadImage from '@components/common/upload-image';
 import { useAddMediaToVariationMutation } from '@framework/variation/add-media-to-variation';
@@ -46,11 +46,10 @@ export default function VariationDetail() {
                         </div>
                 }
                 <div className='flex space-x-1 flex-wrap md:flex-nowrap'>
-                    <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-1/3">
-                        <VariationForm />
+                    <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-1/3 flex items-center justify-center">
+                        <VariationColorForm />
                     </div>
                     {data?.variation_type.type.en === 'color' &&
-
                         <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full lg:w-2/3">
                             <VariationGallery />
                             <div className='block my-5'>
@@ -59,9 +58,11 @@ export default function VariationDetail() {
                         </div>
                     }
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full">
-                    <VariationList variationType={data?.variation_type.type.en} variations={data?.children} />
-                </div>
+                {data?.children.length != 0 &&
+                    <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full">
+                        <VariationList variationType={data?.variation_type.type.en} variations={data?.children} />
+                    </div>
+                }
             </div>
         </StoreDashboardLayoutTwo>
     )

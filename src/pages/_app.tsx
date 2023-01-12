@@ -69,7 +69,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 							<ManagedDrawer />
 						</ManagedUIContext>
 					</Hydrate>
-					{/* <ReactQueryDevtools position="bottom-right" /> */}
+					<ReactQueryDevtools position="bottom-right" />
 				</QueryClientProvider>
 			</SessionProvider>
 		</AnimatePresence>
