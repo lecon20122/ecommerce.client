@@ -3,6 +3,9 @@ import React from "react";
 import cn from "classnames";
 import { useTranslation } from "next-i18next";
 import { IoCloseOutline } from "react-icons/io5";
+import { useUI } from "@contexts/ui.context";
+import { valid } from "overlayscrollbars";
+import { values } from "lodash";
 
 type SearchProps = {
 	className?: string;
@@ -16,6 +19,7 @@ type SearchProps = {
 const SearchBox = React.forwardRef<HTMLInputElement, SearchProps>(
 	({ className, onSubmit, onClear, ...rest }, ref) => {
 		const { t } = useTranslation("forms");
+		const { closeSearch } = useUI();
 		return (
 			<form
 				className={cn(
@@ -45,7 +49,7 @@ const SearchBox = React.forwardRef<HTMLInputElement, SearchProps>(
 					className="absolute top-0 flex items-center justify-center w-12 h-full text-2xl text-gray-400 transition duration-200 ease-in-out outline-none md:text-3xl end-0 md:w-14 hover:text-heading focus:outline-none"
 					onClick={onClear}
 				>
-					<IoCloseOutline className="w-6 h-6" />
+					<IoCloseOutline className="w-6 h-6"/>
 				</button>
 			</form>
 		);

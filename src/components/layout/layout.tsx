@@ -1,4 +1,3 @@
-import { NextSeo } from "next-seo";
 import Header from "@components/layout/header/header";
 import Footer from "@components/layout/footer/footer";
 import MobileNavigation from "@components/layout/mobile-navigation/mobile-navigation";
@@ -7,10 +6,9 @@ import CookieBar from "@components/common/cookie-bar";
 import { useAcceptCookies } from "@utils/use-accept-cookies";
 import Button from "@components/ui/button";
 import { useTranslation } from "next-i18next";
-import SocialMediaPreview from '../common/social-media-preview';
 
 const Layout: React.FC = ({ children }) => {
-	const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
+	// const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
 	const { t } = useTranslation("common");
 	return (
 		<div className="flex flex-col min-h-screen">
@@ -53,7 +51,7 @@ const Layout: React.FC = ({ children }) => {
 			<Footer />
 			<MobileNavigation />
 			<Search />
-			<CookieBar
+			{/* <CookieBar
 				title={t("text-cookies-title")}
 				hide={acceptedCookies}
 				action={
@@ -61,7 +59,7 @@ const Layout: React.FC = ({ children }) => {
 						{t("text-accept-cookies")}
 					</Button>
 				}
-			/>
+			/> */}
 		</div>
 	);
 };

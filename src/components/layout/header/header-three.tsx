@@ -17,6 +17,7 @@ import CategoryMenu from '@components/ui/category-menu'
 import { useSession } from 'next-auth/react';
 import { IoStorefrontSharp } from "react-icons/io5";
 import CustomAuthMenu from './custom-auth-menu';
+import UserDropDown from '@components/ui/user-dropdown'
 
 
 const AuthMenu = dynamic(() => import('./auth-menu'), { ssr: false })
@@ -185,15 +186,15 @@ const Header: React.FC = () => {
                 onClick: handleLogin,
               }}
             >
-              <Link href={ROUTES.ACCOUNT} className="flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-2">
+              <UserDropDown />
+              {/* <Link href={ROUTES.ACCOUNT} className="flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-2">
                 <UserLineIcon className='w-4 xl:w-[17px] h-auto text-black' />
-                {t('text-account')}
-              </Link>
-              {user?.user.is_owner && 
-              <Link href={ROUTES.DASHBOARD} className="flex-shrink-0 hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-2">
-                <IoStorefrontSharp className='w-4 xl:w-[17px] h-auto text-black' />
-                {t('text-my-store')}
-              </Link>}
+                {user?.user.name}
+              </Link> */}
+              {user?.user.is_owner &&
+                <Link href={ROUTES.DASHBOARD} className="flex-shrink-0 justify-center items-center hidden text-sm xl:text-base lg:flex focus:outline-none text-heading gap-x-2">
+                  <IoStorefrontSharp className='w-4 xl:w-[17px] h-auto text-black' />
+                </Link>}
             </CustomAuthMenu>
             <LanguageSwitcher />
           </div>
