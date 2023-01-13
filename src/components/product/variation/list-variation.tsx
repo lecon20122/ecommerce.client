@@ -68,8 +68,8 @@ export default function VariationList({ variations, variationType }: Props) {
                         </button>
                     </div>
                     :
-                    <button className='mr-2' onClick={() => editProduct(rowData)} >
-                        <IoPencilOutline />
+                    <button className='mr-2 flex' onClick={() => editProduct(rowData)} >
+                        <span className='text-sm mr-1'>sizes</span><IoPencilOutline />
                     </button>
                 }
                 <Popconfirm
