@@ -38,6 +38,11 @@ export default function ProductDetailsFrom() {
                     defaultValue={query.slug as string}
                 />
                 <Input
+                    {...register("product_id")}
+                    hidden
+                    defaultValue={data?.id}
+                />
+                <Input
                     labelKey="forms:label-title-en"
                     {...register("en")}
                     errorKey={errors.en?.message}

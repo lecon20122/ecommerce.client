@@ -13,7 +13,8 @@ export interface UpdateProductProps {
     en: string
     price: number,
     store_id: number,
-    slug: string
+    slug: string,
+    product_id: number,
 }
 
 
