@@ -13,6 +13,7 @@ import { UserLineIcon } from "@components/icons/UserLineIcon";
 import Link from "next/link";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaSignOutAlt } from "react-icons/fa";
+import { useLogoutMutation } from "@framework/auth/use-logout";
 const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
 const CartButton = dynamic(() => import("@components/cart/cart-button"), {
 	ssr: false,
@@ -20,6 +21,7 @@ const CartButton = dynamic(() => import("@components/cart/cart-button"), {
 
 type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const HeaderTwo: React.FC = () => {
+	
 	const {
 		openSidebar,
 		setDrawerView,
@@ -31,6 +33,7 @@ const HeaderTwo: React.FC = () => {
 	const { t } = useTranslation("common");
 	const { status, data: user } = useSession()
 	const siteHeaderRef = useRef() as DivElementRef;
+	const { mutate: signOut } = useLogoutMutation()
 	addActiveScroll(siteHeaderRef);
 
 	function handleLogin() {
@@ -71,7 +74,7 @@ const HeaderTwo: React.FC = () => {
 							<div className="flex-shrink-0  text-sm xl:text-base flex focus:outline-none text-heading gap-x-3">
 								<UserLineIcon className='w-4 xl:w-[17px] h-auto text-black' />
 								{user?.user.name}
-								<FaSignOutAlt className='w-4 xl:w-[17px] h-auto text-black cursor-pointer' onClick={() => signOut({redirect : true  , callbackUrl : '/'})} />
+								<FaSignOutAlt className='w-4 xl:w-[17px] h-auto text-black cursor-pointer' onClick={() => signOut()} />
 							</div>
 						</div>
 
