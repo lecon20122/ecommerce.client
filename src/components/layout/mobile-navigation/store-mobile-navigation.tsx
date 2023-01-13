@@ -48,7 +48,7 @@ const StoreBottomNavigation: React.FC = () => {
                 </button>
                 <button
                     className="flex items-center justify-center flex-shrink-0 h-auto relative focus:outline-none"
-                    onClick={openSearch}
+                    onClick={openSearch()}
                     aria-label="search-button"
                 >
                     <SearchIcon />
