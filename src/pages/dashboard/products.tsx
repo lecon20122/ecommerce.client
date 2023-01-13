@@ -50,16 +50,18 @@ export default function products() {
                 <button className='mr-2 text-blue-500' onClick={() => editProduct(rowData)} >
                     VIEW
                 </button>
-                {rowData.deleted_at === null ?
+                {/* {rowData.deleted_at === null ?
                     <button className='text-red-700' onClick={() => deleteProduct(rowData)} >
-                        DISABLE
+                        DELETE
                     </button>
                     :
                     <button className='text-green-600' onClick={() => restoreProduct(rowData)} >
                         ENABLE
                     </button>
-                }
-
+                } */}
+                <button className='text-red-700' onClick={() => deleteProduct(rowData)} >
+                    DELETE
+                </button>
             </div>
         );
     }
