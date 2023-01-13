@@ -5,6 +5,8 @@ import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { useUI } from '../../../contexts/ui.context';
+import { useRouter } from 'next/router';
+import { ROUTES } from '../../../utils/routes';
 
 export interface AddProductProps {
     ar: string
@@ -21,6 +23,7 @@ async function createNewProduct(props: AddProductProps) {
 }
 
 export const useCreateProductMutation = () => {
+    const { push } = useRouter()
     const { width } = useWindowSize();
     const { setModalView, openModal } = useUI();
     const queryClient = useQueryClient()
@@ -28,7 +31,7 @@ export const useCreateProductMutation = () => {
         onSuccess: (data) => {
 
             queryClient.setQueryData([API_ENDPOINTS.STORE_PRODUCTS], data.data)
-
+            push(ROUTES.DASHBOARD_PRODUCTS)
             toast.success("New Product Created", {
                 progressClassName: "fancy-progress-bar",
                 position: width > 768 ? "bottom-center" : "bottom-center",

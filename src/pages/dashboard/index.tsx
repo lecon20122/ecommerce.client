@@ -3,11 +3,21 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react'
 import { getSession } from 'next-auth/react';
+import Button from '@components/ui/button';
+import { IoShirtOutline, IoShirtSharp } from 'react-icons/io5';
+import Link from 'next/link';
+import { ROUTES } from '../../utils/routes';
 
 export default function index() {
     return (
         <StoreDashboardLayoutTwo>
-            <div>index</div>
+            <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full flex items-center">
+                <Link href={ROUTES.DASHBOARD_PRODUCTS}>
+                    <Button>
+                        <IoShirtSharp className='text-lg mr-2' />Products
+                    </Button>
+                </Link>
+            </div>
         </StoreDashboardLayoutTwo>
     )
 }
