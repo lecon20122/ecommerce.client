@@ -46,13 +46,13 @@ const StoreBottomNavigation: React.FC = () => {
                 <button className="flex-shrink-0">
                     <IoAdd onClick={handleOnClickAdd} className='text-[30px] font-bold' />
                 </button>
-                <button
+                {/* <button
                     className="flex items-center justify-center flex-shrink-0 h-auto relative focus:outline-none"
-                    onClick={openSearch()}
+                    onClick={openSearch}
                     aria-label="search-button"
                 >
                     <SearchIcon />
-                </button>
+                </button> */}
             </div>
             <Drawer
                 placement={dir === 'rtl' ? 'right' : 'left'}
