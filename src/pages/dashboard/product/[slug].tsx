@@ -17,13 +17,13 @@ export default function EditProduct() {
     return (
         <StoreDashboardLayoutTwo>
             <div className='flex md:space-x-1 flex-wrap md:flex-nowrap'>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct w-full my-2 md:w-1/4">
+                <div className="bg-white p-5 rounded-lg shadow-listProduct w-full my-2 md:w-2/6">
                     <ProductDetailsFrom />
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-2/4">
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-3/6">
                     <AttachedProductCategoriesForm />
                 </div>
-                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-1/4">
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full md:w-2/6">
                     <ProductDescriptionCollapse variant='transparent' description={data?.description} />
                 </div>
             </div>

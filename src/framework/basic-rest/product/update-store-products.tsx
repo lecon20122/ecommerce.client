@@ -27,6 +27,7 @@ async function updateStoreProduct(props: UpdateProductProps) {
 export const useUpdateStoreProductMutation = () => {
     const { width } = useWindowSize();
     const router = useRouter()
+
     const { setModalView, openModal } = useUI();
     const queryClient = useQueryClient()
     return useMutation((input: UpdateProductProps) => updateStoreProduct({ ...input, slug: router.query.slug as string }), {
