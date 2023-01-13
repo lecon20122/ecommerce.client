@@ -13,6 +13,7 @@
     "@fontsource/satisfy": "^4.5.0",
     "@headlessui/react": "^1.4.2",
     "@reach/portal": "^0.16.2",
+    "@sentry/nextjs": "^7.30.0",
     "@tailwindcss/forms": "^0.3.4",
     "antd": "^5.1.2",
     "axios": "^0.24.0",
