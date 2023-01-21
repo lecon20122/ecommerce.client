@@ -24,9 +24,6 @@ export default function AttachedProductCategoriesForm() {
     const onFinishAttachCategories = (values: any) => {
         attach({ ids: values.id, product_id: product?.id as number })
         form.resetFields()
-        // Inertia.post(route('admin.attach.category.to.product', currentProduct), values, {
-        //   preserveState: false
-        // })
     }
 
     const currentAttachedCategories = product?.categories.map((category) => {

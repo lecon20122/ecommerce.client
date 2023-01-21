@@ -46,6 +46,7 @@ export const API_ENDPOINTS = {
   STORE_CATEGORIES : '/api/categories-list',
   STORE_PRODUCTS: '/api/store/products',
   STORE_PRODUCT: '/api/store/product',
+  STORE_PRODUCT_MEGA_FORM: '/api/store/product/mega-form',
   STORE_PRODUCT_UPDATE: '/api/store/product/update',
   STORE_PRODUCT_DELETE: '/api/store/product/delete',
   STORE_PRODUCT_RESTORE: '/api/store/product/restore',

@@ -4,7 +4,7 @@
 
 
 @import "primereact/resources/themes/lara-light-indigo/theme.css";  
-@import "primereact/resources/primereact.min.css";                                            
+@import "primereact/resources/primereact.min.css";                                    
  
 /* Write your own custom base styles here */
 @layer base {

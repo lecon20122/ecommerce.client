@@ -22,4 +22,6 @@ export const ROUTES = {
   DASHBOARD_PRODUCT: "/dashboard/product",
   DASHBOARD_PRODUCTS: "/dashboard/products",
   DASHBOARD_VARIATION: "/dashboard/variation",
+  DASHBOARD_CREATE_VARIANTS: "/dashboard/create-product-variants",
+  DASHBOARD_CREATE_PRODUCT_STEPS: "/dashboard/create-product-steps",
 };

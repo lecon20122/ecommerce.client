@@ -8,6 +8,8 @@ import { getDirection } from '@utils/get-direction';
 import { IoAdd, IoClose } from "react-icons/io5";
 import StoreMenuMobile from '../store-dashboard/menu-mobile';
 import Logo from '@components/ui/logo';
+import { ROUTES } from '../../../utils/routes';
+import Link from 'next/link';
 
 const AuthMenu = dynamic(() => import('@components/layout/header/auth-menu'), {
     ssr: false,
@@ -44,7 +46,9 @@ const StoreBottomNavigation: React.FC = () => {
                     <MenuIcon />
                 </button>
                 <button className="flex-shrink-0">
-                    <IoAdd onClick={handleOnClickAdd} className='text-[30px] font-bold' />
+                    <Link href={ROUTES.DASHBOARD_CREATE_PRODUCT_STEPS}>
+                        <IoAdd className='text-[30px] font-bold' />
+                    </Link>
                 </button>
                 {/* <button
                     className="flex items-center justify-center flex-shrink-0 h-auto relative focus:outline-none"

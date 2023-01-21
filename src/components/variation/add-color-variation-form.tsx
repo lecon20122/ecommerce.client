@@ -15,7 +15,6 @@ interface Props {
 }
 
 export default function CreateColorVariantForm({ handleAddDialog, openAddDialog }: Props) {
-    const [form] = Form.useForm();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 
     const { data } = useGetColorTypeValues()
@@ -27,7 +26,6 @@ export default function CreateColorVariantForm({ handleAddDialog, openAddDialog 
         console.log(input);
 
         if (!input.images) {
-
         } else {
             input.images = appendImageToFormData(fileList)
         }

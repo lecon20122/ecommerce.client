@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { ROUTES } from '@utils/routes';
 import { useDeleteProductMutation } from '@framework/product/delete-store-product';
 import { useRestoreProductMutation } from '@framework/product/restore-store-product';
+import Link from 'next/link';
 
 export default function products() {
 
@@ -96,7 +97,9 @@ export default function products() {
     const leftToolbarTemplate = () => {
         return (
             <>
-                <Button onClick={handleOnClick} variant='slim'>Create Product</Button>
+                <Link href={ROUTES.DASHBOARD_CREATE_PRODUCT_STEPS}>
+                    <Button variant='slim'>Create Product</Button>
+                </Link>
             </>
         )
     }

@@ -1,5 +1,4 @@
 import { UploadFile } from "antd";
-import { RcFile } from "antd/es/upload";
 
 
 export const onRemove = (file: any, fileList: UploadFile[], setFileList: React.Dispatch<React.SetStateAction<UploadFile<any>[]>>) => {
@@ -11,8 +10,8 @@ export const onRemove = (file: any, fileList: UploadFile[], setFileList: React.D
 
 export function appendImageToFormData(fileList: UploadFile[]) {
     const formData = new FormData();
-    fileList.map((file) => {
-        formData.append('images[]', file.originFileObj as any);
+    fileList.map((file , index) => {
+        formData.append(`images[${index}]`, file.originFileObj as any);
     });
     
     return formData
