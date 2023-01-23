@@ -28,7 +28,7 @@ export default function AttachedProductCategoriesForm() {
 
     const currentAttachedCategories = product?.categories.map((category) => {
         return (
-            <div className='border border-1 border-black p-1 flex space-x-1 items-center'>
+            <div key={category.id} className='border border-1 border-black p-1 flex space-x-1 items-center'>
                 <h1 className={'text-left '}>{category.title.en}</h1>
                 <button className={'cursor text-red-600'} onClick={event => handleDetachCategories(category.id)}>x
                 </button>

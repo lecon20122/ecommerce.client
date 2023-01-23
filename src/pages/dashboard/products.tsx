@@ -28,9 +28,7 @@ export default function products() {
     const [globalFilter, setGlobalFilter] = useState(null);
 
     const editProduct = (product: ApiProduct) => {
-        router.push(`${ROUTES.DASHBOARD_PRODUCT}/${product.id}`, undefined, {
-            locale: router.locale,
-        });
+        router.push(`${ROUTES.DASHBOARD_PRODUCT}/${product.id}`, undefined);
     }
 
     const deleteProduct = (product: ApiProduct) => {
