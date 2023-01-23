@@ -9,13 +9,17 @@ import { useGetStoreProductDetails } from '@framework/product/get-store-product'
 import { useRouter } from 'next/router';
 import ProductDescriptionCollapse from '@components/product/product-description';
 import AttachedProductCategoriesForm from '@components/product/attached-product-form';
+import ProductDiscountForm from '@components/product/discount-form';
 
 
 export default function EditProduct() {
     const { query, locale } = useRouter()
-    const { data, isLoading } = useGetStoreProductDetails(query.slug as string)
+    const { data, isLoading } = useGetStoreProductDetails(parseInt(query.id as string))
     return (
         <StoreDashboardLayoutTwo>
+            <div className="bg-white p-5 rounded-lg shadow-listProduct w-full my-2">
+                <ProductDiscountForm />
+            </div>
             <div className='flex md:space-x-1 flex-wrap md:flex-nowrap'>
                 <div className="bg-white p-5 rounded-lg shadow-listProduct w-full my-2 md:w-2/6">
                     <ProductDetailsFrom />

@@ -17,7 +17,7 @@ export default function CreateProductDescriptionForm({ handleAddDialog, openAddD
     const { query, locale } = useRouter()
     const { data: attributes } = useGetProductAttributes()
     const { mutate: add, isLoading } = useProductDescriptionMutation()
-    const { data: product } = useGetStoreProductDetails(query.slug as string)
+    const { data: product } = useGetStoreProductDetails(parseInt(query.id as string))
 
     const onFinish = (values: AddProductDescriptionProps) => {
         add(values)
@@ -26,8 +26,8 @@ export default function CreateProductDescriptionForm({ handleAddDialog, openAddD
     return (
         <ModalWithChildren onCancel={handleAddDialog} onOk={handleAddDialog} openModal={openAddDialog} >
             <Form name="basic"
-            size="large"
-            className='mt-6'
+                size="large"
+                className='mt-6'
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
                 onFinish={onFinish}

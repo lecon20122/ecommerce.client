@@ -9,7 +9,7 @@ import { useDetachCategoryTtMutation } from '@framework/product/detach-category'
 
 export default function AttachedProductCategoriesForm() {
     const { query, locale } = useRouter()
-    const { data: product } = useGetStoreProductDetails(query.slug as string)
+    const { data: product } = useGetStoreProductDetails(parseInt(query.id as string))
     const { data: categories } = useStoreCategoriesQuery()
     const { mutate: attach } = useAttachCategoryTtMutation()
     const { mutate: detach } = useDetachCategoryTtMutation()

@@ -19,7 +19,7 @@ export default function CreateColorVariantForm({ handleAddDialog, openAddDialog 
 
     const { data } = useGetColorTypeValues()
     const { query, locale } = useRouter()
-    const { data: product } = useGetStoreProductDetails(query.slug as string)
+    const { data: product } = useGetStoreProductDetails(parseInt(query.id as string))
     const { mutate, isLoading } = useCreateColorVariationMutation()
 
     async function onFinish(input: any) {

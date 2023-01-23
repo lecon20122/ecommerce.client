@@ -1,6 +1,5 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { IoPencilOutline, IoTrashBin } from "react-icons/io5";
 import { useState, useRef } from 'react';
 import { useGetStoreProducts } from '@framework/product/get-store-products';
 import { ApiProduct } from '../../framework/basic-rest/types';
@@ -29,7 +28,7 @@ export default function products() {
     const [globalFilter, setGlobalFilter] = useState(null);
 
     const editProduct = (product: ApiProduct) => {
-        router.push(`${ROUTES.DASHBOARD_PRODUCT}/${product.slug}`, undefined, {
+        router.push(`${ROUTES.DASHBOARD_PRODUCT}/${product.id}`, undefined, {
             locale: router.locale,
         });
     }

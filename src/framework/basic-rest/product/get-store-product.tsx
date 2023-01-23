@@ -3,14 +3,14 @@ import { API_ENDPOINTS } from "@framework/utils/api-endpoints";
 import { useQuery } from "react-query";
 import { ApiProduct } from '../types';
 
-export const fetchStoreProductDetails = async (slug: string) => {
-    const { data } = await http.get(API_ENDPOINTS.STORE_PRODUCT_DETAILS, { params: { slug: slug } });
+export const fetchStoreProductDetails = async (id: number) => {
+    const { data } = await http.get(API_ENDPOINTS.STORE_PRODUCT_DETAILS + '/' + id);
     return data;
 };
-export const useGetStoreProductDetails = (slug: string) => {
+export const useGetStoreProductDetails = (id: number) => {
     return useQuery<ApiProduct, Error>(
         [API_ENDPOINTS.STORE_PRODUCT_DETAILS],
-        () => fetchStoreProductDetails(slug),
+        () => fetchStoreProductDetails(id),
         {
             retry: false,
             staleTime: 1,

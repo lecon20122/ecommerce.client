@@ -10,7 +10,7 @@ import { useTranslation } from 'next-i18next';
 export default function ProductDetailsFrom() {
     const { query } = useRouter()
 
-    const { data, isLoading } = useGetStoreProductDetails(query.slug as string)
+    const { data, isLoading } = useGetStoreProductDetails(parseInt(query.id as string))
     const { t } = useTranslation();
     const { mutate } = useUpdateStoreProductMutation()
 

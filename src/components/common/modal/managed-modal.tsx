@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import Newsletter from "../newsletter";
 import CheckoutAddressForm from "@components/checkout/checkout-address-form";
 import CreateProductForm from "@components/product/add-new-product";
-import CreateColorVariantForm from "@components/variation/add-color-variation-form";
 const LoginForm = dynamic(() => import("@components/auth/login-form"));
 const SignUpForm = dynamic(() => import("@components/auth/sign-up-form"));
 const ForgetPasswordForm = dynamic(
@@ -22,7 +21,6 @@ const ManagedModal: React.FC = () => {
 			{modalView === "NEWSLETTER_VIEW" && <Newsletter />}
 			{modalView === "ADD_NEW_ADDRESS" && <CheckoutAddressForm />}
 			{modalView === "ADD_PRODUCT" && <CreateProductForm />}
-			{modalView === "ADD_COLOR_VARIANT" && <CreateColorVariantForm />}
 		</Modal>
 	);
 };
