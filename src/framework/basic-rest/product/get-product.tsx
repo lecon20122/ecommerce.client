@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { ApiProduct } from '../types';
 
 export const fetchProduct = async (id: number) => {
-	const { data } = await http.get(`${API_ENDPOINTS.PRODUCT}`, { params: { id: id } });
+	const { data } = await http.get(`${API_ENDPOINTS.PRODUCT}/${id}`);
 	return data;
 };
 export const useProductQuery = (id: number, onSuccess: (data: ApiProduct) => void) => {
