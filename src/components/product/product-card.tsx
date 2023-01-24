@@ -59,7 +59,8 @@ const ProductCard: FC<ProductProps> = ({
   });
 
   function navigateToProductPage() {
-    router.push(`${ROUTES.PRODUCT}/${product.slug}`, undefined, {
+
+    router.push({ pathname: ROUTES.PRODUCT, query: { slug: product.slug, id: product.id } }, undefined, {
       locale: router.locale,
     });
   }
@@ -234,7 +235,7 @@ const ProductCard: FC<ProductProps> = ({
         </div>
       )}
       <div className='flex flex-row space-x-2 rtl:space-x-reverse py-2 md:py-2.5 xl:py-3 '>
-        {product.variations.length > 1 &&  product.variations.map((variation) => {
+        {product.variations.length > 1 && product.variations.map((variation) => {
           return (
             <div key={variation.id} className='w-[18px] h-[18px] lg:w-[20px] lg:h-[20px] flex justify-center items-center'>
               <h1 className={`w-[14px] h-[14px] lg:w-[20px] lg:h-[20px] rounded-sm ${isVariationColorWhite(variation.variation_type_value?.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>

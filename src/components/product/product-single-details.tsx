@@ -25,7 +25,7 @@ const productGalleryCarouselResponsive = {
 
 function ProductSingleDetails() {
 	const {
-		query: { slug },
+		query: { slug, id },
 		locale
 	} = useRouter();
 
@@ -49,7 +49,7 @@ function ProductSingleDetails() {
 		setCurrentVariation(data.variations[0])
 	}
 
-	const { data, isLoading } = useProductQuery(slug as string, onSuccess);
+	const { data, isLoading } = useProductQuery(parseInt(id as string), onSuccess);
 
 	const { price, basePrice, discount } = usePrice(
 		data && {
