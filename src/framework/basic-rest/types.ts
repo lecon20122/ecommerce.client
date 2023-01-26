@@ -175,8 +175,23 @@ export interface ApiProduct {
   description: ProductDescription[]
   deleted_at: null;
   categories : Category[]
-  store : Store
+  store : Store,
+  discount : Discount,
+  discount_price : number,
 }
+
+export interface Discount {
+  id:         number;
+  product_id: number;
+  type:       string;
+  value:      number;
+  start_at:   Date;
+  end_at:     Date;
+  is_active:  number;
+  created_at: Date;
+  updated_at: Date;
+}
+
 
 export interface ProductDescription {
   id: number,

@@ -99,5 +99,6 @@ module.exports = {
       strategy: 'class',
     }),
     require('tailwindcss-rtl'),
+    require('@tailwindcss/line-clamp'),
   ],
 };

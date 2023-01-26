@@ -53,7 +53,7 @@ const ProductCard: FC<ProductProps> = ({
   const placeholderImage = `/assets/placeholder/products/product-${variant}.svg`;
 
   const { price, basePrice, discount } = usePrice({
-    amount: product.price,
+    amount: product.discount_price,
     baseAmount: product.price,
     currencyCode: 'EGP',
   });
@@ -197,8 +197,17 @@ const ProductCard: FC<ProductProps> = ({
             {!!showRating && <RatingDisplay rating={2.5} />}
           </div>
         )}
+        <div className='flex flex-row space-x-2 rtl:space-x-reverse py-2 md:py-2.5 xl:py-3 justify-center items-center'>
+          {product.variations.length > 1 && product.variations.map((variation) => {
+            return (
+              <div key={variation.id} className='w-[18px] h-[18px] lg:w-[20px] lg:h-[20px] flex justify-center items-center'>
+                <h1 className={`w-[14px] h-[14px] lg:w-[20px] lg:h-[20px] rounded-sm ${isVariationColorWhite(variation.variation_type_value?.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
+              </div>
+            )
+          })}
+        </div>
         <h2
-          className={cn('truncate mb-1', {
+          className={cn('truncate mb-1 text-center', {
             'text-sm md:text-base': variant === 'grid',
             'font-semibold': demoVariant !== 'ancient',
             'font-bold': demoVariant === 'ancient',
@@ -212,35 +221,15 @@ const ProductCard: FC<ProductProps> = ({
         >
           {product?.store.name}
         </h2>
-        <div className='flex flex-row space-x-2 rtl:space-x-reverse py-2 md:py-2.5 xl:py-3 justify-center items-center'>
-          {product.variations.length > 1 && product.variations.map((variation) => {
-            return (
-              <div key={variation.id} className='w-[18px] h-[18px] lg:w-[20px] lg:h-[20px] flex justify-center items-center'>
-                <h1 className={`w-[14px] h-[14px] lg:w-[20px] lg:h-[20px] rounded-sm ${isVariationColorWhite(variation.variation_type_value?.hex_value) ? 'border border-black' : ''}`} style={variationColorFactory(variation)}></h1>
-              </div>
-            )
-          })}
-        </div>
-        <h2
-          className={cn('truncate mb-1', {
-            'text-sm md:text-base': variant === 'grid',
-            'font-semibold': demoVariant !== 'ancient',
-            'font-bold': demoVariant === 'ancient',
-            'text-xs sm:text-sm md:text-base': variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy',
-            'md:mb-1.5 text-sm sm:text-base md:text-sm lg:text-base xl:text-lg': variant === 'gridSlim',
-            'text-sm sm:text-base md:mb-1.5 pb-0': variant === 'listSmall',
-            'text-sm sm:text-base md:text-sm lg:text-base xl:text-lg md:mb-1.5': variant === 'list',
-            'text-white': bgTransparent,
-            'text-heading': !bgTransparent,
-          })}
-        >
+
+        <h2 className='line-clamp-2 w-full text-center'>
           {product?.title[locale as keyof typeof product.title]}
         </h2>
         {/* {!hideProductDescription && product?.description && (
           <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed max-w-[250px] truncate">{product?.description}</p>
         )} */}
         <div
-          className={`font-semibold text-sm sm:text-base mt-1.5 space-s-2 ${variant === 'grid' ? 'lg:text-lg lg:mt-2.5' : 'sm:text-xl md:text-base lg:text-xl md:mt-2.5 2xl:mt-3'
+          className={`font-semibold text-sm sm:text-base mt-1.5 space-s-2 text-center ${variant === 'grid' ? 'lg:text-lg lg:mt-2.5' : 'sm:text-xl md:text-base lg:text-xl md:mt-2.5 2xl:mt-3'
             }
           ${variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy'
               ? 'flex flex-col-reverse !space-s-0 !mt-auto'
