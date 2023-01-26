@@ -6,7 +6,7 @@ import usePrice from "@framework/product/use-price";
 import { ProductAttributes } from "./product-attributes";
 import Carousel from "@components/ui/carousel/carousel";
 import { SwiperSlide } from "swiper/react";
-import { Variation, ApiProduct } from '../../framework/basic-rest/types';
+import { Variation, ApiProduct, Store } from '../../framework/basic-rest/types';
 import { AddToCartInputProps, useAddToCartMutation } from "@framework/cart/use-add-to-cart";
 import Cookies from "js-cookie";
 import { useEffect } from 'react';
@@ -87,23 +87,6 @@ function ProductSingleDetails() {
 
 	return (
 		<div className="block lg:grid grid-cols-9 gap-x-10 xl:gap-x-14 pt-7 pb-10 lg:pb-14 2xl:pb-20 items-start">
-			{/* <ProductJsonLd
-				productName={data?.title.en as string}
-				images={
-					data?.variations[0].media[0].thumbnail as any
-				}
-				description={data?.title.en}
-			/> */}
-			{/* <NextSeo
-				title={data?.title.en as string}
-				openGraph={{
-					images: [{
-						url: data?.variations[0].media[0].thumbnail as any,
-						alt: data?.title.en as string,
-					}]
-				}}
-			/> */}
-
 			<SocialMediaPreview
 				title={data?.title.en}
 				fb_description={data?.variations[0].variation_type_value.value.en + '-' + data?.title.en}
@@ -143,8 +126,9 @@ function ProductSingleDetails() {
 			</div>
 
 			<div className="col-span-4 pt-8 lg:pt-0">
+				<h1>Seller : {data?.store.name}</h1>
 				<div className="pb-7 mb-7 border-b border-gray-300">
-					<h2 className="text-heading text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-bold hover:text-black mb-3.5">
+					<h2 className="text-lg md:text-xl font-bold hover:text-black mb-3.5">
 						{data?.title[locale as keyof typeof data.title]}
 					</h2>
 					{/* <p className="text-body text-sm lg:text-base leading-6 lg:leading-8">
