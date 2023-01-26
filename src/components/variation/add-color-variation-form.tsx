@@ -29,6 +29,7 @@ export default function CreateColorVariantForm({ handleAddDialog, openAddDialog 
         } else {
             input.images = appendImageToFormData(fileList)
         }
+        
         input.images.append('price', input.price);
         input.images.append('product_id', input.product_id);
         input.images.append('store_id', input.store_id);

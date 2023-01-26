@@ -20,7 +20,7 @@ export interface UpdateProductProps {
 
 
 async function updateStoreProduct(props: UpdateProductProps) {
-    const response = await http.post(API_ENDPOINTS.STORE_PRODUCT_UPDATE + '/' + props.slug, props);
+    const response = await http.post(API_ENDPOINTS.STORE_PRODUCT_UPDATE, props);
     return response
 }
 
@@ -44,7 +44,6 @@ export const useUpdateStoreProductMutation = () => {
                 theme: "light",
                 progress: 0
             });
-            router.push(ROUTES.DASHBOARD_PRODUCT + '/' + data.data.slug)
         },
         onError: (error: AxiosError, _variables: UpdateProductProps, _context) => {
             if (error.response?.status === 401) {

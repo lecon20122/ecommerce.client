@@ -175,6 +175,7 @@ export interface ApiProduct {
   description: ProductDescription[]
   deleted_at: null;
   categories : Category[]
+  store : Store
 }
 
 export interface ProductDescription {
