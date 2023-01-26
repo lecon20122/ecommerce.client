@@ -53,7 +53,7 @@ function ProductSingleDetails() {
 
 	const { price, basePrice, discount } = usePrice(
 		data && {
-			amount: data.price,
+			amount: data.discount_price,
 			baseAmount: data.price,
 			currencyCode: "EGP",
 		}
