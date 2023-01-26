@@ -1,7 +1,7 @@
-import StoreDashboardLayoutTwo from '@components/layout/store-dashboard-layout.-two'
+import StoreDashboardLayout from '@components/layout/store-dashboard-layout.-two'
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React from 'react'
+import React, { Suspense } from 'react'
 import { getSession } from 'next-auth/react';
 import Button from '@components/ui/button';
 import { IoShirtSharp } from 'react-icons/io5';
@@ -10,15 +10,15 @@ import { ROUTES } from '../../utils/routes';
 
 export default function index() {
     return (
-        <StoreDashboardLayoutTwo>
-            <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full flex items-center">
-                <Link href={ROUTES.DASHBOARD_PRODUCTS}>
-                    <Button>
-                        <IoShirtSharp className='text-lg mr-2' />Products
-                    </Button>
-                </Link>
-            </div>
-        </StoreDashboardLayoutTwo>
+        <StoreDashboardLayout>
+                <div className="bg-white p-5 rounded-lg shadow-listProduct my-2 w-full flex items-center">
+                    <Link href={ROUTES.DASHBOARD_PRODUCTS}>
+                        <Button>
+                            <IoShirtSharp className='text-lg mr-2' />Products
+                        </Button>
+                    </Link>
+                </div>
+        </StoreDashboardLayout>
     )
 }
 

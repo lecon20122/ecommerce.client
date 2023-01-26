@@ -15,4 +15,6 @@ module.exports = withPWA({
 	typescript: {
 		ignoreBuildErrors: true,
 	},
+	reactStrictMode: true,
+	concurrentFeatures: true,
 })

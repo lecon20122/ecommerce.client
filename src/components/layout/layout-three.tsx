@@ -6,10 +6,23 @@ import CookieBar from '@components/common/cookie-bar'
 import { useAcceptCookies } from '@utils/use-accept-cookies'
 import Button from '@components/ui/button'
 import { useTranslation } from 'next-i18next'
+import Router from 'next/router';
+import Spinner from '@components/loading/Spinner'
+import { useState } from 'react';
 
 const Layout: React.FC = ({ children }) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   const { t } = useTranslation('common')
+
+  const [loading, setLoading] = useState(false);
+  Router.events.on('routeChangeStart', () => {
+    setLoading(true);
+  });
+
+  Router.events.on('routeChangeComplete', () => {
+    setLoading(false);
+  });
+
   return (
     <div className='flex flex-col min-h-screen'>
       <NextSeo
@@ -45,6 +58,7 @@ const Layout: React.FC = ({ children }) => {
           WebkitOverflowScrolling: 'touch',
         }}
       >
+        {loading && <Spinner />}
         {children}
       </main>
       <Footer />

@@ -38,7 +38,6 @@ function handleExitComplete() {
 function Noop({ children }: { children: React.ReactNode }) { return (<>{children}</>) }
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
-
 	const queryClientRef = useRef<any>();
 
 	if (!queryClientRef.current) {
@@ -52,7 +51,8 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 		document.documentElement.dir = dir;
 	}, [dir]);
 
-	const Layout = (Component as any).Layout || Noop;
+	const Layout = (Component as any).Layout || Noop
+
 	return (
 		<AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
 			<SessionProvider session={pageProps.session} refetchOnWindowFocus={false}>
