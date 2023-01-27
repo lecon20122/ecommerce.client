@@ -70,7 +70,7 @@ const ProductCard: FC<ProductProps> = ({
   return (
     <div
       className={cn(
-        `group box-border overflow-hidden flex ${!disableBorderRadius && 'rounded-md'} cursor-pointer`,
+        `group box-border overflow-hidden flex shadow-listProduct ${!disableBorderRadius && 'rounded-md'} cursor-pointer`,
         {
           'pe-0 pb-2 lg:pb-3 flex-col items-start transition duration-200 ease-in-out transform hover:-translate-y-1 md:hover:-translate-y-1.5 hover:shadow-product':
             variant === 'grid' || variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy',
@@ -127,13 +127,14 @@ const ProductCard: FC<ProductProps> = ({
 
         <div className="absolute top-3.5 md:top-5 3xl:top-7 start-3.5 md:start-5 3xl:start-7 flex flex-col gap-y-1 items-start">
           {discount && (variant === 'gridModernWide' || variant === 'gridModern' || variant === 'gridTrendy') && (
-            <span className="bg-heading text-white text-10px md:text-xs leading-5 rounded-md inline-block px-1 sm:px-1.5 xl:px-2 py-0.5 sm:py-1">
+            <span className="bg-heading text-white text-10px md:text-xs leading-5 inline-block px-1 sm:px-1.5 xl:px-2 py-0.5 sm:py-1">
               <p>
                 <span className="sm:hidden">-</span>
                 {discount} <span className="hidden sm:inline">OFF</span>
               </p>
             </span>
           )}
+          
 
           {/* {product?.isNewArrival && (variant === 'gridModernWide' || variant === 'gridModern' || variant === 'gridTrendy') && (
             <span className="bg-[#B26788] text-white text-10px md:text-xs leading-5 rounded-md inline-block px-1.5 sm:px-1.5 xl:px-2 py-0.5 sm:py-1">
@@ -144,13 +145,13 @@ const ProductCard: FC<ProductProps> = ({
           )} */}
         </div>
 
-        {variant === 'gridModernWide' && (
+        {/* {variant === 'gridModernWide' && (
           <div className="absolute end-2 sm:end-3 bottom-6 space-y-2 w-[32px] sm:w-[42px] lg:w-[52px]">
             <ProductViewIcon className="transition ease-in duration-300 sm:opacity-0 group-hover:opacity-100 delay-100 w-full bg-white rounded-md" />
             <ProductWishIcon className="transition ease-in duration-300 sm:opacity-0 group-hover:opacity-100 delay-200 w-full bg-white rounded-md" />
             <ProductCompareIcon className="transition ease-in duration-300 sm:opacity-0 group-hover:opacity-100 delay-300 w-full bg-white rounded-md" />
           </div>
-        )}
+        )} */}
       </div>
       <div
         className={cn(
@@ -167,7 +168,7 @@ const ProductCard: FC<ProductProps> = ({
           contactClassName
         )}
       >
-        {(variant === 'gridModern' || variant === 'gridModernWide' || variant === 'gridTrendy') && (
+        {( variant === 'gridModernWide' || variant === 'gridTrendy') && (
           <div className="py-2 flex items-center gap-x-2">
             <svg
               className="w-4 h-4 sm:w-6 sm:h-6 text-[#FBD103]"
@@ -181,8 +182,9 @@ const ProductCard: FC<ProductProps> = ({
             {/* {product.quantity === 0 && <span className="text-xs sm:text-sm leading-5 ps-3 font-semibold text-[#EF4444]">Out of stock</span>} */}
           </div>
         )}
+        
         {/* space-y-1 md:space-x-2.5 lg:space-x-2.5 xl:space-x-2.5 2xl:space-x-2.5  */}
-        {!!(showCategory || showRating) && (
+        {/* {!!(showCategory || showRating) && (
           <div className="flex flex-col md:flex-row md:items-center lg:flex-row xl:flex-row 2xl:flex-row  mb-0.5 items-start">
             {!!showCategory && (
               <h3
@@ -196,7 +198,7 @@ const ProductCard: FC<ProductProps> = ({
             )}
             {!!showRating && <RatingDisplay rating={2.5} />}
           </div>
-        )}
+        )} */}
         <div className='flex flex-row space-x-2 rtl:space-x-reverse py-1 md:py-2.5 xl:py-3 justify-center items-center'>
           {product.variations.length > 1 && product.variations.map((variation) => {
             return (
@@ -241,12 +243,12 @@ const ProductCard: FC<ProductProps> = ({
         </div>
       </div>
 
-      {(variant === 'gridTrendy' || variant === 'gridModern') && (
+      {/* {(variant === 'gridTrendy' || variant === 'gridModern') && (
         <div className="absolute end-2 bottom-2 flex gap-x-2">
           <ProductWishIcon className="transition ease-in duration-300 sm:opacity-0 group-hover:opacity-100 delay-200 w-[35px] sm:w-[42px] lg:w-[52px] bg-[#F1F3F4] rounded-md" />
           <ProductCompareIcon className="transition ease-in duration-300 sm:opacity-0 group-hover:opacity-100 delay-300 w-[35px] sm:w-[42px] lg:w-[52px] bg-[#F1F3F4] rounded-md" />
         </div>
-      )}
+      )} */}
 
     </div>
   );
