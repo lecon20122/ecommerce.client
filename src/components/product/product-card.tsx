@@ -53,11 +53,12 @@ const ProductCard: FC<ProductProps> = ({
   const placeholderImage = `/assets/placeholder/products/product-${variant}.svg`;
 
   const { price, basePrice, discount } = usePrice({
-    amount: product.discount_price,
+    amount: product.discount_price ? product.discount_price : product.price,
     baseAmount: product.price,
     currencyCode: 'EGP',
   });
-
+  console.log( product.price ,  discount , basePrice ,  price);
+  
   function navigateToProductPage() {
 
     router.push({ pathname: ROUTES.PRODUCT + '/' + product.slug, query: { id: product.id } }, undefined, {
@@ -209,7 +210,7 @@ const ProductCard: FC<ProductProps> = ({
           })}
         </div>
         <h2
-          className={cn('truncate mb-1 text-center', {
+          className={cn('truncate mb-1 text-center font-bold', {
             'text-sm md:text-base': variant === 'grid',
             'font-semibold': demoVariant !== 'ancient',
             'font-bold': demoVariant === 'ancient',
@@ -238,7 +239,7 @@ const ProductCard: FC<ProductProps> = ({
               : ''
             } ${bgTransparent ? 'text-white' : 'text-heading'}`}
         >
-          <span className={`inline-block ${demoVariant === 'ancient' && 'font-bold text-gray-900 text-lg'}`}>{price}</span>
+          <span className='inline-block font-bold text-gray-900 text-lg' >{price}</span>
           {discount && <del className={`sm:text-base font-normal ${bgTransparent ? 'text-white/70' : 'text-gray-800'}`}>{basePrice}</del>}
         </div>
       </div>
