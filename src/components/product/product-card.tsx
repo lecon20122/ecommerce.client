@@ -120,7 +120,7 @@ const ProductCard: FC<ProductProps> = ({
               (variant === 'gridModern' && !disableBorderRadius) ||
               (variant === 'gridModernWide' && !disableBorderRadius) ||
               (variant === 'gridTrendy' && !disableBorderRadius),
-            'rounded-md transition duration-150 ease-linear transform group-hover:scale-105': variant === 'gridSlim',
+            'transition duration-150 ease-linear transform group-hover:scale-105': variant === 'gridSlim',
             'rounded-s-md transition duration-200 ease-linear transform group-hover:scale-105': variant === 'list',
           })}
         />
@@ -154,7 +154,7 @@ const ProductCard: FC<ProductProps> = ({
       </div>
       <div
         className={cn(
-          'w-full overflow-hidden p-2',
+          'w-full overflow-hidden p-1',
           {
             'md:px-2.5 xl:px-4': variant === 'grid',
 
@@ -197,7 +197,7 @@ const ProductCard: FC<ProductProps> = ({
             {!!showRating && <RatingDisplay rating={2.5} />}
           </div>
         )}
-        <div className='flex flex-row space-x-2 rtl:space-x-reverse py-2 md:py-2.5 xl:py-3 justify-center items-center'>
+        <div className='flex flex-row space-x-2 rtl:space-x-reverse py-1 md:py-2.5 xl:py-3 justify-center items-center'>
           {product.variations.length > 1 && product.variations.map((variation) => {
             return (
               <div key={variation.id} className='w-[18px] h-[18px] lg:w-[20px] lg:h-[20px] flex justify-center items-center'>
