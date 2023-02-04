@@ -10,6 +10,7 @@ import Button from '@components/ui/button';
 import { getFormData } from '@utils/common';
 import { useCreateProductMegaFormMutation } from '@framework/product/add-new-product-mega-form';
 import { appendImageToFormData } from '../../utils/upload-functions';
+import AntdImgCrop from 'antd-img-crop';
 
 
 export default function CreateProductVariantsForm() {
@@ -84,16 +85,18 @@ export default function CreateProductVariantsForm() {
                 className='w-full'
             >
                 <>
-                    <Upload defaultFileList={fileList}
-                        className='w-full'
-                        multiple
-                        listType="picture-card"
-                        onRemove={(file) => onRemove(file, fileList, setFileList)}
-                        onChange={(e) => onChangeImageUploader(e)}>
-                        <div>
-                            <div style={{ marginTop: 8 }}>Upload</div>
-                        </div>
-                    </Upload>
+                    <AntdImgCrop cropperProps={{ cropSize: { width: 1080, height: 1349 } }} grid aspect={1080/1349}>
+                        <Upload defaultFileList={fileList}
+                            className='w-full'
+                            multiple
+                            listType="picture-card"
+                            onRemove={(file) => onRemove(file, fileList, setFileList)}
+                            onChange={(e) => onChangeImageUploader(e)}>
+                            <div>
+                                <div style={{ marginTop: 8 }}>Upload</div>
+                            </div>
+                        </Upload>
+                    </AntdImgCrop>
                     <Form.List name={"sizes"}>
                         {(fields, { add, remove }) => (
 
