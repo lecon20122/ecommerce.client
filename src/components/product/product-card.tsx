@@ -57,7 +57,6 @@ const ProductCard: FC<ProductProps> = ({
     baseAmount: product.price,
     currencyCode: 'EGP',
   });
-  console.log( product.price ,  discount , basePrice ,  price);
   
   function navigateToProductPage() {
 

@@ -13,13 +13,13 @@ async function logout() {
 export const useLogoutMutation = () => {
   return useMutation(() => logout(), {
     onSuccess: (_data) => {
-      Cookies.remove("modaje_session");
+      Cookies.remove("session");
       Cookies.remove("XSRF-TOKEN");
       signOut({ redirect: false })
       Router.push("/");
     },
     onError: (data) => {
-      Cookies.remove("modaje_session");
+      Cookies.remove("session");
       Cookies.remove("XSRF-TOKEN");
       signOut({ redirect: false  })
       Router.push("/");

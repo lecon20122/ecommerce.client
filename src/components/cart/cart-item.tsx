@@ -1,14 +1,8 @@
 import Link from "@components/ui/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { fadeInOut } from "@utils/motion/fade-in-out";
-import { IoIosCloseCircle } from "react-icons/io";
-import Counter from "@components/common/counter";
-import { useCart } from "@contexts/cart/cart.context";
 import usePrice from "@framework/product/use-price";
 import { useTranslation } from "next-i18next";
 import { Cart } from "@framework/cart/use-get-cart";
-import { useRouter } from 'next/router';
 import { useRemoveFromCartMutation } from '../../framework/basic-rest/cart/use-remove-cart-item';
 import { useUpdateCartItemQuantityMutation } from '../../framework/basic-rest/cart/use-update-cart-item-quantity';
 import { ROUTES } from "@utils/routes";
@@ -19,7 +13,6 @@ type CartItemProps = {
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
 	const { t } = useTranslation("common");
-	const { locale } = useRouter()
 
 	const { mutate: removeCartItemMutate, isLoading: removeIsLoading } = useRemoveFromCartMutation()
 	const { mutate: updateQuantityMutate, isLoading: updateIsLoading } = useUpdateCartItemQuantityMutation()
@@ -42,17 +35,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 		} else {
 			updateQuantityMutate({ cart_id: item.id, quantity: parseInt(event.target.value) })
 		}
-	}
-
-	console.log(item);
-	
+	}	
 	return (
 		<div
-			// layout
-			// initial="from"
-			// animate="to"
-			// exit="from"
-			// variants={fadeInOut(0)}
 			className={`group w-full h-auto flex justify-start items-center bg-white py-4 md:py-7 border-b border-gray-100 relative last:border-b-0`}
 		>
 			<div className="relative flex w-24 md:w-28 h-24 md:h-28 rounded-md overflow-hidden bg-gray-200 flex-shrink-0 cursor-pointer me-4">

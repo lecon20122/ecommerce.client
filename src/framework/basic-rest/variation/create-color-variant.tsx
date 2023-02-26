@@ -35,7 +35,6 @@ export const useCreateColorVariationMutation = () => {
 
     return useMutation((input: CreateColorVariantProps) => createColorVariation(input), {
         onSuccess: (data) => {
-            console.log(data.data);
             queryClient.refetchQueries<any>([API_ENDPOINTS.STORE_PRODUCT_DETAILS])
             toast.success("Color Added", {
                 progressClassName: "fancy-progress-bar",

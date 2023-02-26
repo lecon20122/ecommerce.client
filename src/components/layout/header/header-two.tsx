@@ -77,7 +77,6 @@ const HeaderTwo: React.FC = () => {
 								<FaSignOutAlt className='w-4 xl:w-[17px] h-auto text-black cursor-pointer' onClick={() => signOut()} />
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>

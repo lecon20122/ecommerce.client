@@ -18,7 +18,6 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 	const { pathname, query } = router;
 
 	const { data, isLoading, isError, error } = useFiltersQuery({ category: mainCategorySlug })
-	console.log(data);
 
 	const { t } = useTranslation("common");
 
@@ -27,9 +26,6 @@ export default function ShopFilters({ mainCategorySlug }: Props) {
 			<h3>Loading..</h3>
 		)
 	}
-	console.log('====================================');
-	console.log(data);
-	console.log('====================================');
 	return (
 		<div className="pt-1">
 			<div className="block border-b border-gray-300 pb-7 mb-7">

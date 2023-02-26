@@ -22,7 +22,6 @@ export const useDeleteVariationMutation = () => {
 
     return useMutation((input: DeleteVariation) => deleteVariation(input), {
         onSuccess: (data) => {
-            console.log(data.data);
             queryClient.refetchQueries([API_ENDPOINTS.STORE_PRODUCT_DETAILS])
 
             toast.success("Deleted", {

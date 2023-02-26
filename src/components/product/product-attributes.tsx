@@ -35,11 +35,9 @@ export const ProductAttributes: React.FC<Props> = ({
 
 	useEffect(() => {
 		if (variations && variations[0]?.children[0]?.variation_type?.type?.en === 'size' && variations[0]?.children?.length === 1) {
-			console.log('f');
 			setIsSizeSelected(false)
 			setCurrentBuyableVariation(variations[0].children[0])
 			setCurrentStockAbleVariation(variations[0].children[0])
-
 		}
 	}, [])
 

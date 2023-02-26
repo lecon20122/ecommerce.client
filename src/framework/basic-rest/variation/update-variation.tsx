@@ -27,9 +27,6 @@ export const useUpdateVariationMutation = () => {
 
     return useMutation((input: UpdateVariationProps) => UpdateVariation(input), {
         onSuccess: (data, variables) => {
-            console.log('====================================');
-            console.log(variables.queryKey);
-            console.log('====================================');
             queryClient.refetchQueries(variables.queryKey)
 
             toast.success("Updated", {
